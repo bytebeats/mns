@@ -5,7 +5,7 @@ import com.intellij.openapi.options.Configurable;
 import com.intellij.openapi.options.ConfigurationException;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.Nullable;
-import me.bytebeats.tool.Utils;
+import me.bytebeats.tool.Keys;
 
 import javax.swing.*;
 
@@ -33,15 +33,15 @@ public class SettingWindow implements Configurable {
     @Nullable
     @Override
     public JComponent createComponent() {
-        us_stock_input.setText(PropertiesComponent.getInstance().getValue(Utils.KEY_US_STOCK));
-        hk_stock_input.setText(PropertiesComponent.getInstance().getValue(Utils.KEY_HK_STOCK));
-        a_stock_input.setText(PropertiesComponent.getInstance().getValue(Utils.KEY_A_STOCK));
-        boolean isHidden = PropertiesComponent.getInstance().getBoolean(Utils.KEY_HIDE_MODE, false);
+        us_stock_input.setText(PropertiesComponent.getInstance().getValue(Keys.KEY_US_STOCK));
+        hk_stock_input.setText(PropertiesComponent.getInstance().getValue(Keys.KEY_HK_STOCK));
+        a_stock_input.setText(PropertiesComponent.getInstance().getValue(Keys.KEY_A_STOCK));
+        boolean isHidden = PropertiesComponent.getInstance().getBoolean(Keys.KEY_HIDE_MODE, false);
         red_rise_green_fall.setEnabled(!isHidden);
         red_fall_green_rise.setEnabled(!isHidden);
         hide_mode_setting.setSelected(isHidden);
-        red_rise_green_fall.setSelected(PropertiesComponent.getInstance().getBoolean(Utils.KEY_RED_RISE, true));
-        red_fall_green_rise.setSelected(PropertiesComponent.getInstance().getBoolean(Utils.KEY_RED_FALL, false));
+        red_rise_green_fall.setSelected(PropertiesComponent.getInstance().getBoolean(Keys.KEY_RED_RISE, true));
+        red_fall_green_rise.setSelected(PropertiesComponent.getInstance().getBoolean(Keys.KEY_RED_FALL, false));
         return mns_setting;
     }
 
@@ -52,12 +52,12 @@ public class SettingWindow implements Configurable {
 
     @Override
     public void apply() throws ConfigurationException {
-        PropertiesComponent.getInstance().setValue(Utils.KEY_US_STOCK, us_stock_input.getText());
-        PropertiesComponent.getInstance().setValue(Utils.KEY_HK_STOCK, hk_stock_input.getText());
-        PropertiesComponent.getInstance().setValue(Utils.KEY_A_STOCK, a_stock_input.getText());
-        PropertiesComponent.getInstance().setValue(Utils.KEY_RED_RISE, red_rise_green_fall.isSelected());
-        PropertiesComponent.getInstance().setValue(Utils.KEY_RED_FALL, red_fall_green_rise.isSelected());
-        PropertiesComponent.getInstance().setValue(Utils.KEY_HIDE_MODE, hide_mode_setting.isSelected());
+        PropertiesComponent.getInstance().setValue(Keys.KEY_US_STOCK, us_stock_input.getText());
+        PropertiesComponent.getInstance().setValue(Keys.KEY_HK_STOCK, hk_stock_input.getText());
+        PropertiesComponent.getInstance().setValue(Keys.KEY_A_STOCK, a_stock_input.getText());
+        PropertiesComponent.getInstance().setValue(Keys.KEY_RED_RISE, red_rise_green_fall.isSelected());
+        PropertiesComponent.getInstance().setValue(Keys.KEY_RED_FALL, red_fall_green_rise.isSelected());
+        PropertiesComponent.getInstance().setValue(Keys.KEY_HIDE_MODE, hide_mode_setting.isSelected());
     }
 
     @Nullable

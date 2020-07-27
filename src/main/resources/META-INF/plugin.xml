@@ -13,7 +13,7 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <!--        <toolWindow icon="/icon.png" anchor="left" id="mns" factoryClass=""/>-->
+        <toolWindow icon="/icon.png" anchor="left" id="mns" factoryClass="me.bytebeats.ui.UsStockWindow" />
         <applicationConfigurable id="mns_setting" instance="me.bytebeats.ui.SettingWindow" />
     </extensions>
 

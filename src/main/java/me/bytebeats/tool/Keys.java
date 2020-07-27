@@ -1,6 +1,6 @@
 package me.bytebeats.tool;
 
-public class Utils {
+public class Keys {
     public static final String KEY_US_STOCK = "us_stock";
     public static final String KEY_HK_STOCK = "hk_stock";
     public static final String KEY_A_STOCK = "a_stock";
