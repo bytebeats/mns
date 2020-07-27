@@ -1,0 +1,23 @@
+<idea-plugin>
+    <id>me.bytebeats.mns</id>
+    <name>Money Never Sleep</name>
+    <vendor email="happychinapc@gmail.com" url="https://github.com/bytebeats">bytebeats</vendor>
+
+    <description><![CDATA[
+    提供股票行情的实时刷新, 支持港股, 美股, A股.<br>
+    <em>Money never sleep!</em>
+    ]]></description>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!--        <toolWindow icon="/icon.png" anchor="left" id="mns" factoryClass=""/>-->
+        <applicationConfigurable id="mns_setting" instance="me.bytebeats.ui.SettingWindow" />
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+</idea-plugin>
