@@ -20,16 +20,21 @@ public class TencentStockHandler extends AbsStockHandler {
 
     @Override
     public void load(List<String> symbols) {
+        stocks.clear();
+        for (String symbol : symbols) {
+            stocks.add(new Stock(symbol));
+        }
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 fetch(symbols);
             }
         }, 0, REFRESH_INTERVAL);
-        LogUtil.info("MNS updated stock data.");
+        LogUtil.info("mns updated stock data.");
     }
 
     private void fetch(List<String> symbols) {
+        LogUtil.info("fetching");
         if (symbols.isEmpty()) {
             return;
         }
@@ -52,7 +57,9 @@ public class TencentStockHandler extends AbsStockHandler {
         String[] raws = entity.split("\n");
         List<Stock> data = new ArrayList<>();
         for (String raw : raws) {
-            String symbol = raw.substring(4, raw.indexOf('='));
+            LogUtil.info(raw);
+            LogUtil.info("==================");
+            String symbol = raw.substring(6, raw.indexOf('='));
             String[] metas = raw.substring(raw.indexOf('=') + 2, raw.length() - 2).split("~");
             Stock stock = new Stock();
             stock.setSymbol(symbol);
@@ -64,9 +71,11 @@ public class TencentStockHandler extends AbsStockHandler {
             stock.setVolume(Double.parseDouble(metas[6]));
             stock.setTurnover(Double.parseDouble(metas[7]));
             stock.setMarketValue(Double.parseDouble(metas[9]));
+            LogUtil.info(stock.toString());
         }
         stocks.clear();
         stocks.addAll(data);
+        LogUtil.info(stocks.size()+"");
         updateView();
     }
 }

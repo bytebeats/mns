@@ -84,4 +84,31 @@ public class Stock {
     public void setMarketValue(double marketValue) {
         this.marketValue = marketValue;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Stock stock = (Stock) o;
+        return symbol.equals(stock.symbol);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(symbol);
+    }
+
+    @Override
+    public String toString() {
+        return "Stock{" +
+                "symbol='" + symbol + '\'' +
+                ", name='" + name + '\'' +
+                ", latestPrice=" + latestPrice +
+                ", change=" + change +
+                ", changeRatio=" + changeRatio +
+                ", volume=" + volume +
+                ", turnover=" + turnover +
+                ", marketValue=" + marketValue +
+                '}';
+    }
 }

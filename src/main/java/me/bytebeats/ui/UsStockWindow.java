@@ -8,6 +8,7 @@ import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentFactory;
 import me.bytebeats.LogUtil;
 import me.bytebeats.SymbolParser;
+import me.bytebeats.UISettingProvider;
 import me.bytebeats.handler.AbsStockHandler;
 import me.bytebeats.handler.TencentStockHandler;
 import me.bytebeats.tool.Keys;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class UsStockWindow implements ToolWindowFactory, SymbolParser {
+public class UsStockWindow implements ToolWindowFactory, SymbolParser, UISettingProvider {
     private JPanel us_stock_window;
     private JScrollPane us_stock_scroll;
     private JTable us_stock_table;
@@ -36,7 +37,7 @@ public class UsStockWindow implements ToolWindowFactory, SymbolParser {
 
         //add us stock
         toolWindow.getContentManager().addContent(usStock);
-        us_refresh.addActionListener(e -> resetRefreshHandler());
+        us_refresh.addActionListener(e -> refreshHandler());
     }
 
     @Override
@@ -54,7 +55,7 @@ public class UsStockWindow implements ToolWindowFactory, SymbolParser {
         List<String> symbols = new ArrayList<>();
         String raw = raw();
         if (!raw.isEmpty()) {
-            Arrays.stream(raw.split("[,; ]]")).filter(s -> !s.isEmpty()).forEach(s -> symbols.add(prefix() + s));
+            Arrays.stream(raw.split("[,; ]")).filter(s -> !s.isEmpty()).forEach(s -> symbols.add(prefix() + s));
         }
         return symbols;
     }
@@ -66,16 +67,24 @@ public class UsStockWindow implements ToolWindowFactory, SymbolParser {
 
     @Override
     public void init(@NotNull ToolWindow toolWindow) {
-        resetRefreshHandler();
+        handler = new TencentStockHandler(us_stock_table, us_stock_timestamp);
+        refreshHandler();
     }
 
-    private void resetRefreshHandler() {
-        boolean isHidden = PropertiesComponent.getInstance().getBoolean(Keys.KEY_HIDE_MODE, false);
-        boolean isRedRise = PropertiesComponent.getInstance().getBoolean(Keys.KEY_RED_RISE, true);
-        handler = new TencentStockHandler(us_stock_table, us_stock_timestamp);
-        handler.setHidden(isHidden);
-        handler.setRedRise(isRedRise);
+    private void refreshHandler() {
+        handler.setHidden(isInHiddenMode());
+        handler.setRedRise(isRedRise());
         handler.load(parse());
+    }
+
+    @Override
+    public boolean isInHiddenMode() {
+        return PropertiesComponent.getInstance().getBoolean(Keys.KEY_HIDE_MODE, false);
+    }
+
+    @Override
+    public boolean isRedRise() {
+        return PropertiesComponent.getInstance().getBoolean(Keys.KEY_RED_RISE, true);
     }
 
     @Override
