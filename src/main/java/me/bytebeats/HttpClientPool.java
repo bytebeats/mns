@@ -15,6 +15,7 @@ import org.apache.http.util.EntityUtils;
 import java.net.URLDecoder;
 
 public class HttpClientPool {
+
     private HttpClientPool() {
         connectionManager = new PoolingHttpClientConnectionManager();
         connectionManager.setMaxTotal(20);

@@ -20,6 +20,27 @@ intellij {
 }
 patchPluginXml {
     changeNotes """
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>"""
+      v1.0.0 添加了美股正股的实时查询.<br>
+      """
 }
+
+//jar {
+//    baseName('mns')
+//    version = project.version
+//}
+
+task move(type: Copy) {
+//    doLast {
+//        println('move task started...')
+//        println('start copying...')
+//        copy {
+            from "build/libs/mns-" + project.version + ".jar"
+//    from jar
+    into 'lib/'
+//        }
+//        println('move task finished.')
+//    }
+}
+
+tasks.build.finalizedBy move
+

@@ -8,6 +8,7 @@ import org.jetbrains.annotations.Nullable;
 import me.bytebeats.tool.Keys;
 
 import javax.swing.*;
+import java.awt.event.ItemEvent;
 
 public class SettingWindow implements Configurable {
     private JPanel mns_setting;
@@ -41,7 +42,25 @@ public class SettingWindow implements Configurable {
         red_fall_green_rise.setEnabled(!isHidden);
         hide_mode_setting.setSelected(isHidden);
         red_rise_green_fall.setSelected(PropertiesComponent.getInstance().getBoolean(Keys.KEY_RED_RISE, true));
-        red_fall_green_rise.setSelected(PropertiesComponent.getInstance().getBoolean(Keys.KEY_RED_FALL, false));
+        red_rise_green_fall.addItemListener(e -> {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                red_fall_green_rise.setSelected(false);
+            }
+        });
+        red_fall_green_rise.addItemListener(e -> {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                red_rise_green_fall.setSelected(false);
+            }
+        });
+        hide_mode_setting.addItemListener(e -> {
+            boolean hidden = e.getStateChange() == ItemEvent.SELECTED;
+            mkt_setting.setEnabled(!hidden);
+            red_rise_green_fall.setEnabled(!hidden);
+            red_fall_green_rise.setEnabled(!hidden);
+        });
+        mkt_setting.addItemListener(e -> {
+            //do nothing here, it should be a JLabel other than a JCheckBox.
+        });
         return mns_setting;
     }
 
@@ -56,7 +75,6 @@ public class SettingWindow implements Configurable {
         PropertiesComponent.getInstance().setValue(Keys.KEY_HK_STOCK, hk_stock_input.getText());
         PropertiesComponent.getInstance().setValue(Keys.KEY_A_STOCK, a_stock_input.getText());
         PropertiesComponent.getInstance().setValue(Keys.KEY_RED_RISE, red_rise_green_fall.isSelected());
-        PropertiesComponent.getInstance().setValue(Keys.KEY_RED_FALL, red_fall_green_rise.isSelected());
         PropertiesComponent.getInstance().setValue(Keys.KEY_HIDE_MODE, hide_mode_setting.isSelected());
     }
 
@@ -73,7 +91,11 @@ public class SettingWindow implements Configurable {
 
     @Override
     public void reset() {
-
+        hide_mode_setting.setSelected(false);
+        red_rise_green_fall.setEnabled(true);
+        red_rise_green_fall.setSelected(true);
+        red_fall_green_rise.setEnabled(false);
+        red_fall_green_rise.setSelected(false);
     }
 
     @Override
