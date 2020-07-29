@@ -57,6 +57,10 @@ public class Stock {
         return changeRatio;
     }
 
+    public String getChangeRatioString() {
+        return changeRatio + "%";
+    }
+
     public void setChangeRatio(double changeRatio) {
         this.changeRatio = changeRatio;
     }

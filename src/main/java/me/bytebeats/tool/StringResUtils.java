@@ -14,5 +14,5 @@ public class StringResUtils {
     public static final String STOCK_TURNOVER = "成交额(万)";
     public static final String STOCK_MKT_VALUE = "总市值(万亿)";
     public static final String TIMESTAMP_FORMATTER = "yyyy-MM-dd HH:mm:ss";
-    public static final String REFRESH_TIMESTAMP = "Last updated at: $s";
+    public static final String REFRESH_TIMESTAMP = "Last updated at: %s";
 }
