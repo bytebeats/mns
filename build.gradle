@@ -24,22 +24,12 @@ patchPluginXml {
       """
 }
 
-//jar {
-//    baseName('mns')
-//    version = project.version
-//}
-
 task move(type: Copy) {
-//    doLast {
-//        println('move task started...')
-//        println('start copying...')
-//        copy {
-            from "build/libs/mns-" + project.version + ".jar"
-//    from jar
+    println('move task started...')
+    println('start copying...')
+    from "build/libs/mns-${project.version}.jar"
     into 'lib/'
-//        }
-//        println('move task finished.')
-//    }
+    println('move task finished.')
 }
 
 tasks.build.finalizedBy move
