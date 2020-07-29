@@ -16,3 +16,8 @@ Settings:
 Details:
 
 ![Detail](/WX20200729-204933@2x.png)
+
+
+# Changes
+* V1.0.0
+  * 添加了设置窗口, 美股窗口.
