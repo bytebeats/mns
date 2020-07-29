@@ -1,19 +1,20 @@
 package me.bytebeats.handler;
 
+import com.intellij.ui.JBColor;
 import me.bytebeats.meta.Stock;
 import me.bytebeats.tool.StringResUtils;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbsStockHandler {
-    public static SimpleDateFormat dateFormat = new SimpleDateFormat(StringResUtils.TIMESTAMP_FORMATTER);
-    public static final long REFRESH_INTERVAL = 5L * 1000L;
+    public static final long REFRESH_INTERVAL = 10L * 1000L;
 
     protected List<Stock> stocks = new ArrayList<>();
     private boolean isHidden = false;
@@ -24,6 +25,8 @@ public abstract class AbsStockHandler {
     private String[] column_names = {StringResUtils.STOCK_NAME, StringResUtils.STOCK_SYMBOL, StringResUtils.STOCK_LATEST_PRICE,
             StringResUtils.STOCK_RISE_AND_FALL, StringResUtils.STOCK_RISE_AND_FALL_RATIO, StringResUtils.STOCK_VOLUME,
             StringResUtils.STOCK_TURNOVER, StringResUtils.STOCK_MKT_VALUE};
+
+    private int[] numColumnIdx = {3, 4};
 
     public AbsStockHandler(JTable table, JLabel label) {
         this.jTable = table;
@@ -41,12 +44,13 @@ public abstract class AbsStockHandler {
             DefaultTableModel model = new DefaultTableModel(convert2Data(), column_names);
             jTable.setModel(model);
             resetTabSize();
+            updateRowTextColors();
             updateTimestamp();
         });
     }
 
     private void updateTimestamp() {
-        jLabel.setText(String.format(StringResUtils.REFRESH_TIMESTAMP, dateFormat.format(LocalDateTime.now())));
+        jLabel.setText(String.format(StringResUtils.REFRESH_TIMESTAMP, LocalDateTime.now().format(DateTimeFormatter.ofPattern(StringResUtils.TIMESTAMP_FORMATTER))));
     }
 
     private void restoreTabSizes() {
@@ -72,9 +76,63 @@ public abstract class AbsStockHandler {
         for (int i = 0; i < stocks.size(); i++) {
             Stock stock = stocks.get(i);
             data[i] = new Object[]{stock.getName(), stock.getSymbol(), stock.getLatestPrice(), stock.getChange(),
-                    stock.getChangeRatio(), stock.getVolume(), stock.getTurnover(), stock.getMarketValue()};
+                    stock.getChangeRatioString(), stock.getVolume(), stock.getTurnover(), stock.getMarketValue()};
         }
         return data;
+    }
+
+    protected void updateStock(Stock stock) {
+        int idx = stocks.indexOf(stock);
+        if (idx > -1 && idx < stocks.size()) {
+            stocks.set(idx, stock);
+        } else {
+            stocks.add(stock);
+        }
+    }
+
+    private void updateRowTextColors() {
+        for (int idx : numColumnIdx) {
+            jTable.getColumn(jTable.getColumnName(idx)).setCellRenderer(new DefaultTableCellRenderer() {
+                @Override
+                public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                    double chg = 0.0;
+                    try {
+                        String chgRaw = value.toString();
+                        if (column == 4) {
+                            chgRaw = chgRaw.substring(0, chgRaw.length() - 1);
+                        }
+                        chg = Double.parseDouble(chgRaw);
+                    } catch (NumberFormatException e) {
+                        chg = 0.0;
+                    }
+                    if (!isHidden) {
+                        if (chg == 0) {
+                            setForeground(JBColor.DARK_GRAY);
+                        } else if (isRedRise) {
+                            if (chg > 0) {
+                                setForeground(JBColor.RED);
+                            } else {
+                                setForeground(JBColor.GREEN);
+                            }
+                        } else {
+                            if (chg > 0) {
+                                setForeground(JBColor.GREEN);
+                            } else {
+                                setForeground(JBColor.RED);
+                            }
+                        }
+                    } else {
+                        setForeground(JBColor.DARK_GRAY);
+                    }
+                    return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                }
+            });
+        }
+        if (isHidden) {
+
+        } else if (isRedRise) {
+
+        }
     }
 
     public String appendParams(String params) {

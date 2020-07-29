@@ -42,7 +42,8 @@ public class UsStockWindow implements ToolWindowFactory, SymbolParser, UISetting
 
     @Override
     public String prefix() {
-        return "s_us";
+        return "us";//实时数据
+//        return "s_us";//简要信息
     }
 
     @Override
@@ -61,11 +62,6 @@ public class UsStockWindow implements ToolWindowFactory, SymbolParser, UISetting
     }
 
     @Override
-    public boolean isApplicable(@NotNull Project project) {
-        return true;
-    }
-
-    @Override
     public void init(@NotNull ToolWindow toolWindow) {
         handler = new TencentStockHandler(us_stock_table, us_stock_timestamp);
         refreshHandler();
@@ -79,12 +75,12 @@ public class UsStockWindow implements ToolWindowFactory, SymbolParser, UISetting
 
     @Override
     public boolean isInHiddenMode() {
-        return PropertiesComponent.getInstance().getBoolean(Keys.KEY_HIDE_MODE, false);
+        return AppSettingState.getInstance().isHiddenMode();
     }
 
     @Override
     public boolean isRedRise() {
-        return PropertiesComponent.getInstance().getBoolean(Keys.KEY_RED_RISE, true);
+        return AppSettingState.getInstance().isRedRise();
     }
 
     @Override
@@ -94,6 +90,11 @@ public class UsStockWindow implements ToolWindowFactory, SymbolParser, UISetting
 
     @Override
     public boolean isDoNotActivateOnStart() {
+        return true;
+    }
+
+    @Override
+    public boolean isApplicable(@NotNull Project project) {
         return true;
     }
 }
