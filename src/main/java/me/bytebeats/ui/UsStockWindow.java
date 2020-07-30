@@ -29,6 +29,7 @@ public class UsStockWindow implements ToolWindowFactory, SymbolParser {
     private HkStockWindow hkStockWindow = new HkStockWindow();
     private ShStockWindow shStockWindow = new ShStockWindow();
     private SzStockWindow szStockWindow = new SzStockWindow();
+    private CoreIndicesWindow indciesWindow = new CoreIndicesWindow();
 
     @Override
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
@@ -38,12 +39,14 @@ public class UsStockWindow implements ToolWindowFactory, SymbolParser {
         Content hkStock = contentFactory.createContent(hkStockWindow.getJPanel(), StringResUtils.HK_STOCK, false);
         Content shStock = contentFactory.createContent(shStockWindow.getJPanel(), StringResUtils.SH_STOCK, false);
         Content szStock = contentFactory.createContent(szStockWindow.getJPanel(), StringResUtils.SZ_STOCK, false);
+        Content indicesContent = contentFactory.createContent(indciesWindow.getJPanel(), StringResUtils.INDICES, false);
 
         //add us stock
         toolWindow.getContentManager().addContent(usStock);
         toolWindow.getContentManager().addContent(hkStock);
         toolWindow.getContentManager().addContent(shStock);
         toolWindow.getContentManager().addContent(szStock);
+        toolWindow.getContentManager().addContent(indicesContent);
         us_refresh.addActionListener(e -> refreshHandler());
     }
 
@@ -75,6 +78,7 @@ public class UsStockWindow implements ToolWindowFactory, SymbolParser {
         hkStockWindow.onInit();
         shStockWindow.onInit();
         szStockWindow.onInit();
+        indciesWindow.onInit();
     }
 
     private void refreshHandler() {
@@ -90,4 +94,6 @@ public class UsStockWindow implements ToolWindowFactory, SymbolParser {
     public boolean isApplicable(@NotNull Project project) {
         return true;
     }
+
+
 }

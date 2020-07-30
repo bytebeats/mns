@@ -4,19 +4,18 @@ import me.bytebeats.tool.NumberFormatUtils;
 
 import java.util.Objects;
 
-public class Stock {
+public class Index {
     private String symbol = "";//股票代码
     private String name = "";//股票名称
-    private double latestPrice = 0.0;//最新价格
+    private double latest = 0.0;//最新
     private double change = 0.0;//涨跌
     private double changeRatio = 0.0;//涨跌幅
-    private double volume = 0.0;//成交量
+    private double open = 0.0;//今开
+    private double close = 0.0;//昨收
+    private double lowest = 0.0;//最低
+    private double highest = 0.0;//最高
     private double turnover = 0.0;//成交额
-    private double marketValue = 0.0;//成交额
-
-    public Stock() {
-
-    }
+    private double dailyRatio = 0.0;//日振幅
 
     public String getSymbol() {
         return symbol;
@@ -34,16 +33,20 @@ public class Stock {
         this.name = name;
     }
 
-    public double getLatestPrice() {
-        return latestPrice;
+    public double getLatest() {
+        return latest;
     }
 
-    public void setLatestPrice(double latestPrice) {
-        this.latestPrice = latestPrice;
+    public void setLatest(double latest) {
+        this.latest = latest;
     }
 
     public double getChange() {
         return change;
+    }
+
+    public String getChangeString() {
+        return NumberFormatUtils.formatDouble(change);
     }
 
     public void setChange(double change) {
@@ -62,16 +65,36 @@ public class Stock {
         this.changeRatio = changeRatio;
     }
 
-    public double getVolume() {
-        return volume;
+    public double getOpen() {
+        return open;
     }
 
-    public String getVolumeString() {
-        return NumberFormatUtils.formatDouble(volume);
+    public void setOpen(double open) {
+        this.open = open;
     }
 
-    public void setVolume(double volume) {
-        this.volume = volume;
+    public double getClose() {
+        return close;
+    }
+
+    public void setClose(double close) {
+        this.close = close;
+    }
+
+    public double getLowest() {
+        return lowest;
+    }
+
+    public void setLowest(double lowest) {
+        this.lowest = lowest;
+    }
+
+    public double getHighest() {
+        return highest;
+    }
+
+    public void setHighest(double highest) {
+        this.highest = highest;
     }
 
     public double getTurnover() {
@@ -86,42 +109,28 @@ public class Stock {
         this.turnover = turnover;
     }
 
-    public double getMarketValue() {
-        return marketValue;
+    public double getDailyRatio() {
+        return dailyRatio;
     }
 
-    public String getMarketValueString() {
-        return NumberFormatUtils.formatDouble(marketValue);
+    public String getDailyRatioString() {
+        return dailyRatio + "%";
     }
 
-    public void setMarketValue(double marketValue) {
-        this.marketValue = marketValue;
+    public void setDailyRatio(double dailyRatio) {
+        this.dailyRatio = dailyRatio;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Stock stock = (Stock) o;
-        return symbol.equals(stock.symbol);
+        Index that = (Index) o;
+        return symbol.equals(that.symbol);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(symbol);
-    }
-
-    @Override
-    public String toString() {
-        return "Stock{" +
-                "symbol='" + symbol + '\'' +
-                ", name='" + name + '\'' +
-                ", latestPrice=" + latestPrice +
-                ", change=" + change +
-                ", changeRatio=" + changeRatio +
-                ", volume=" + volume +
-                ", turnover=" + turnover +
-                ", marketValue=" + marketValue +
-                '}';
     }
 }

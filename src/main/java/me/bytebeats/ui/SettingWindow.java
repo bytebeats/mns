@@ -26,6 +26,8 @@ public class SettingWindow implements Configurable {
     private JTextField sz_stock_input;
     private JCheckBox concise_mode;
     private JLabel consise_mode_desc;
+    private JLabel idx_label;
+    private JLabel idx_input_noneditable;
 
     @Nls(capitalization = Nls.Capitalization.Title)
     @Override
