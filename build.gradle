@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'me.bytebeats'
-version '1.0.0'
+version '1.1.0'
 
 repositories {
     mavenCentral()
@@ -20,13 +20,17 @@ intellij {
 }
 patchPluginXml {
     changeNotes """
-      v1.0.0 添加了美股正股的实时查询.<br>
+      v1.0.0 添加了美股股票的实时查询.<br>
+      v1.1.0 添加了港股股票的实时查询.<br>
       """
 }
 
 task move(type: Copy) {
     println('move task started...')
     println('start copying...')
+    delete fileTree('lib').matching {
+        include "*.jar"
+    }
     from "build/libs/mns-${project.version}.jar"
     into 'lib/'
     println('move task finished.')
