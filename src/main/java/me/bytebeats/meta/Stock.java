@@ -1,5 +1,7 @@
 package me.bytebeats.meta;
 
+import me.bytebeats.tool.NumberFormatUtils;
+
 import java.util.Objects;
 
 public class Stock {
@@ -69,6 +71,10 @@ public class Stock {
         return volume;
     }
 
+    public String getVolumeString() {
+        return NumberFormatUtils.formatDouble(volume);
+    }
+
     public void setVolume(double volume) {
         this.volume = volume;
     }
@@ -77,12 +83,20 @@ public class Stock {
         return turnover;
     }
 
+    public String getTurnoverString() {
+        return NumberFormatUtils.formatDouble(turnover);
+    }
+
     public void setTurnover(double turnover) {
         this.turnover = turnover;
     }
 
     public double getMarketValue() {
         return marketValue;
+    }
+
+    public String getMarketValueString() {
+        return NumberFormatUtils.formatDouble(marketValue);
     }
 
     public void setMarketValue(double marketValue) {

@@ -12,6 +12,8 @@
     <rowspec value="center:max(d;4px):noGrow"/>
     <rowspec value="top:3dlu:noGrow"/>
     <rowspec value="center:max(d;4px):noGrow"/>
+    <rowspec value="top:3dlu:noGrow"/>
+    <rowspec value="center:max(d;4px):noGrow"/>
     <colspec value="fill:d:noGrow"/>
     <colspec value="left:4dlu:noGrow"/>
     <colspec value="fill:d:grow"/>
@@ -163,6 +165,25 @@
           <forms defaultalign-horz="false"/>
         </constraints>
         <properties/>
+      </component>
+      <component id="7144d" class="javax.swing.JCheckBox" binding="concise_mode">
+        <constraints>
+          <grid row="12" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <forms/>
+        </constraints>
+        <properties>
+          <horizontalTextPosition value="10"/>
+          <text resource-bundle="strings_cn" key="concise_mode"/>
+        </properties>
+      </component>
+      <component id="49501" class="javax.swing.JLabel" binding="consise_mode_desc">
+        <constraints>
+          <grid row="12" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <forms/>
+        </constraints>
+        <properties>
+          <text resource-bundle="strings_cn" key="concise_mode_desc"/>
+        </properties>
       </component>
     </children>
   </grid>

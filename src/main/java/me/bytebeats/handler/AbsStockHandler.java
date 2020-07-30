@@ -57,16 +57,21 @@ public abstract class AbsStockHandler implements UISettingProvider {
         if (jTable.getColumnModel().getColumnCount() == 0) {
             return;
         }
-        for (int i = 0; i < tab_sizes.length; i++) {
+        for (int i = 0; i < column_names.length; i++) {
             tab_sizes[i] = jTable.getColumnModel().getColumn(i).getWidth();
         }
     }
 
     private void resetTabSize() {
-        for (int i = 0; i < tab_sizes.length; i++) {
+        for (int i = 0; i < column_names.length; i++) {
             if (tab_sizes[i] > 0) {
+//                if (isConciseMode()) {
+//                    jTable.getColumnModel().getColumn(i).setWidth(0);
+//                    jTable.getColumnModel().getColumn(i).setPreferredWidth(0);
+//                } else {
                 jTable.getColumnModel().getColumn(i).setWidth(tab_sizes[i]);
                 jTable.getColumnModel().getColumn(i).setPreferredWidth(tab_sizes[i]);
+//                }
             }
         }
     }
@@ -75,8 +80,13 @@ public abstract class AbsStockHandler implements UISettingProvider {
         Object[][] data = new Object[stocks.size()][column_names.length];
         for (int i = 0; i < stocks.size(); i++) {
             Stock stock = stocks.get(i);
+//            if (isConciseMode()) {
+//                data[i] = new Object[]{stock.getName(), stock.getSymbol(), stock.getLatestPrice(), stock.getChange(),
+//                        stock.getChangeRatioString(), "--", "--", "--"};
+//            } else {
             data[i] = new Object[]{stock.getName(), stock.getSymbol(), stock.getLatestPrice(), stock.getChange(),
-                    stock.getChangeRatioString(), stock.getVolume(), stock.getTurnover(), stock.getMarketValue()};
+                    stock.getChangeRatioString(), stock.getVolumeString(), stock.getTurnoverString(), stock.getMarketValueString()};
+//            }
         }
         return data;
     }
@@ -142,5 +152,14 @@ public abstract class AbsStockHandler implements UISettingProvider {
     @Override
     public boolean isRedRise() {
         return AppSettingState.getInstance().isRedRise();
+    }
+
+    @Override
+    public boolean isConciseMode() {
+        if (AppSettingState.getInstance() != null) {
+            return AppSettingState.getInstance().isConciseMode();
+        } else {
+            return false;
+        }
     }
 }

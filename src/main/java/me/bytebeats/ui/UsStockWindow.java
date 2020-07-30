@@ -87,11 +87,6 @@ public class UsStockWindow implements ToolWindowFactory, SymbolParser {
     }
 
     @Override
-    public boolean isDoNotActivateOnStart() {
-        return true;
-    }
-
-    @Override
     public boolean isApplicable(@NotNull Project project) {
         return true;
     }

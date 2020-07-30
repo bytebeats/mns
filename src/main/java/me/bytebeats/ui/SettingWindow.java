@@ -24,6 +24,8 @@ public class SettingWindow implements Configurable {
     private JCheckBox hide_mode_setting;
     private JLabel sz_stock;
     private JTextField sz_stock_input;
+    private JCheckBox concise_mode;
+    private JLabel consise_mode_desc;
 
     @Nls(capitalization = Nls.Capitalization.Title)
     @Override
@@ -34,7 +36,7 @@ public class SettingWindow implements Configurable {
     @Nullable
     @Override
     public JComponent createComponent() {
-        reset();
+        initSettingUI();
         red_rise_green_fall.addItemListener(e -> {
             if (e.getStateChange() == ItemEvent.SELECTED) {
                 red_fall_green_rise.setSelected(false);
@@ -71,6 +73,7 @@ public class SettingWindow implements Configurable {
         settingState.setSzStocks(sz_stock_input.getText());
         settingState.setRedRise(red_rise_green_fall.isSelected());
         settingState.setHiddenMode(hide_mode_setting.isSelected());
+        settingState.setConciseMode(concise_mode.isSelected());
     }
 
     @Nullable
@@ -86,6 +89,10 @@ public class SettingWindow implements Configurable {
 
     @Override
     public void reset() {
+        initSettingUI();
+    }
+
+    private void initSettingUI() {
         AppSettingState settings = AppSettingState.getInstance();
         us_stock_input.setText(settings.getUsStocks());
         hk_stock_input.setText(settings.getHkStocks());
@@ -97,6 +104,7 @@ public class SettingWindow implements Configurable {
         red_rise_green_fall.setEnabled(!isHidden);
         red_fall_green_rise.setEnabled(!isHidden);
         hide_mode_setting.setSelected(isHidden);
+        concise_mode.setSelected(settings.isConciseMode());
     }
 
     @Override
