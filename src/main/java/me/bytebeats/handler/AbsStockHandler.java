@@ -1,8 +1,10 @@
 package me.bytebeats.handler;
 
 import com.intellij.ui.JBColor;
+import me.bytebeats.UISettingProvider;
 import me.bytebeats.meta.Stock;
 import me.bytebeats.tool.StringResUtils;
+import me.bytebeats.ui.AppSettingState;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -13,12 +15,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbsStockHandler {
+public abstract class AbsStockHandler implements UISettingProvider {
     public static final long REFRESH_INTERVAL = 10L * 1000L;
 
     protected List<Stock> stocks = new ArrayList<>();
-    private boolean isHidden = false;
-    private boolean isRedRise = true;
     private JTable jTable;
     private JLabel jLabel;
     private int[] tab_sizes = {0, 0, 0, 0, 0, 0, 0, 0};
@@ -105,10 +105,10 @@ public abstract class AbsStockHandler {
                     } catch (NumberFormatException e) {
                         chg = 0.0;
                     }
-                    if (!isHidden) {
+                    if (!isInHiddenMode()) {
                         if (chg == 0) {
                             setForeground(JBColor.DARK_GRAY);
-                        } else if (isRedRise) {
+                        } else if (isRedRise()) {
                             if (chg > 0) {
                                 setForeground(JBColor.RED);
                             } else {
@@ -128,30 +128,19 @@ public abstract class AbsStockHandler {
                 }
             });
         }
-        if (isHidden) {
-
-        } else if (isRedRise) {
-
-        }
     }
 
     public String appendParams(String params) {
         return StringResUtils.QT_STOCK_URL + params;
     }
 
-    public boolean isHidden() {
-        return isHidden;
+    @Override
+    public boolean isInHiddenMode() {
+        return AppSettingState.getInstance().isHiddenMode();
     }
 
-    public void setHidden(boolean hidden) {
-        isHidden = hidden;
-    }
-
+    @Override
     public boolean isRedRise() {
-        return isRedRise;
-    }
-
-    public void setRedRise(boolean redRise) {
-        isRedRise = redRise;
+        return AppSettingState.getInstance().isRedRise();
     }
 }
