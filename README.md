@@ -35,3 +35,8 @@ Core indices:
   * 新增了简洁模式.
 * V1.4.0
   * 新增了核心指数.
+* V1.4.1
+  * 更新了 plugin.xml 以上传 Marketplace..
+  
+# TODO
+* 基金

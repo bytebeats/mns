@@ -4,11 +4,24 @@
     <vendor email="happychinapc@gmail.com" url="https://github.com/bytebeats">bytebeats</vendor>
 
     <description><![CDATA[
-    提供股票行情的实时刷新, 支持港股, 美股, A股.<br>
+    mns: Money Never Sleeps!
+    IntelliJ IDEA platform plugin. Supports instant stock market from USA, HK and China mainland.<br>
+    IntelliJ IDEA 平台插件, 支持股票行情数据的实时更新, 包括美股, 港股和宇宙第一大A股!.<br>
     Money never sleeps, NEITHER do We!<br>
+    金钱永不眠, 我们也不睡!<br>
     Good luck!<br>
-    使用说明: https://github.com/bytebeats/mns
+    Instruction/使用说明: https://github.com/bytebeats/mns
     ]]></description>
+
+    <change-notes><![CDATA[
+      v1.0.0 添加了美股股票的实时查询.<br>
+      v1.1.0 添加了港股股票的实时查询.<br>
+      v1.2.0 添加了上证, 深证股票的实时查询.<br>
+      v1.2.1 格式化了成交额, 成交量, 总市值.<br>
+      v1.2.2 新增了简洁模式.<br>
+      v1.4.0 新增了核心指数.<br>
+      v1.4.1 更新了 plugin.xml 以上传 Marketplace.<br>
+    ]]></change-notes>
 
     <depends>com.intellij.modules.platform</depends>
 
