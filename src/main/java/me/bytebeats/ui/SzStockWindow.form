@@ -17,7 +17,9 @@
         <children>
           <component id="4dca8" class="javax.swing.JTable" binding="sz_stock_table">
             <constraints/>
-            <properties/>
+            <properties>
+              <toolTipText resource-bundle="strings_cn" key="sz_stock"/>
+            </properties>
           </component>
         </children>
       </scrollpane>

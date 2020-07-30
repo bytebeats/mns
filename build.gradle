@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'me.bytebeats'
-version '1.2.0'
+version '1.4.0'
 
 repositories {
     mavenCentral()
@@ -23,6 +23,9 @@ patchPluginXml {
       v1.0.0 添加了美股股票的实时查询.<br>
       v1.1.0 添加了港股股票的实时查询.<br>
       v1.2.0 添加了上证, 深证股票的实时查询.<br>
+      v1.2.1 格式化了成交额, 成交量, 总市值.<br>
+      v1.2.2 新增了简洁模式.<br>
+      v1.4.0 新增了核心指数.<br>
       """
 }
 

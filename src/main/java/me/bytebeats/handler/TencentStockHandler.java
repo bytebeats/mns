@@ -5,7 +5,6 @@ import me.bytebeats.LogUtil;
 import me.bytebeats.meta.Stock;
 
 import javax.swing.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -27,7 +26,7 @@ public class TencentStockHandler extends AbsStockHandler {
                 fetch(symbols);
             }
         }, 0, REFRESH_INTERVAL);
-        LogUtil.info("mns starts updating stock data");
+        LogUtil.info("mns starts updating " + jTable.getToolTipText() + " data");
     }
 
     private void fetch(List<String> symbols) {
@@ -52,7 +51,6 @@ public class TencentStockHandler extends AbsStockHandler {
 
     private void parse(String entity) {
         String[] raws = entity.split("\n");
-        List<Stock> data = new ArrayList<>();
         for (String raw : raws) {
             //实时数据
             String[] metas = raw.substring(raw.indexOf('=') + 2, raw.length() - 2).split("~");
@@ -60,7 +58,6 @@ public class TencentStockHandler extends AbsStockHandler {
             String symbol = raw.substring(2, raw.indexOf("="));
             stock.setSymbol(symbol);
             stock.setName(metas[1]);
-            stock.setSymbol(metas[2]);
             stock.setLatestPrice(Double.parseDouble(metas[3]));
             stock.setChange(Double.parseDouble(metas[31]));
             stock.setChangeRatio(Double.parseDouble(metas[32]));
