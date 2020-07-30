@@ -9,25 +9,25 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class HkStockWindow implements SymbolParser {
-    private JPanel hk_stock_window;
-    private JScrollPane hk_stock_scroll;
-    private JTable hk_stock_table;
-    private JLabel hk_stock_timestamp;
-    private JButton hk_sync;
+public class ShStockWindow implements SymbolParser {
+    private JPanel sh_stock_window;
+    private JScrollPane sh_stock_scroll;
+    private JTable sh_stock_table;
+    private JLabel sh_stock_timestamp;
+    private JButton sh_sync;
 
     private AbsStockHandler handler;
 
-    public HkStockWindow() {
-        handler = new TencentStockHandler(hk_stock_table, hk_stock_timestamp);
+    public ShStockWindow() {
+        handler = new TencentStockHandler(sh_stock_table, sh_stock_timestamp);
     }
 
     public JPanel getJPanel() {
-        return hk_stock_window;
+        return sh_stock_window;
     }
 
     public void onInit() {
-        hk_sync.addActionListener(e -> syncRefresh());
+        sh_sync.addActionListener(e -> syncRefresh());
         syncRefresh();
     }
 
@@ -37,13 +37,13 @@ public class HkStockWindow implements SymbolParser {
 
     @Override
     public String prefix() {
-        return "hk";//实时数据
-//        return "s_hk";//简要信息
+        return "sh";//实时数据
+//        return "s_sh";//简要信息
     }
 
     @Override
     public String raw() {
-        return AppSettingState.getInstance().getHkStocks();
+        return AppSettingState.getInstance().getShStocks();
     }
 
     @Override

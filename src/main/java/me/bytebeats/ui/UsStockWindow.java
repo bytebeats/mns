@@ -7,7 +7,6 @@ import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentFactory;
 import me.bytebeats.LogUtil;
 import me.bytebeats.SymbolParser;
-import me.bytebeats.UISettingProvider;
 import me.bytebeats.handler.AbsStockHandler;
 import me.bytebeats.handler.TencentStockHandler;
 import me.bytebeats.tool.StringResUtils;
@@ -18,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class UsStockWindow implements ToolWindowFactory, SymbolParser, UISettingProvider {
+public class UsStockWindow implements ToolWindowFactory, SymbolParser {
     private JPanel us_stock_window;
     private JScrollPane us_stock_scroll;
     private JTable us_stock_table;
@@ -28,17 +27,23 @@ public class UsStockWindow implements ToolWindowFactory, SymbolParser, UISetting
     private AbsStockHandler handler;
 
     private HkStockWindow hkStockWindow = new HkStockWindow();
+    private ShStockWindow shStockWindow = new ShStockWindow();
+    private SzStockWindow szStockWindow = new SzStockWindow();
 
     @Override
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
         LogUtil.init(project);
         ContentFactory contentFactory = ContentFactory.SERVICE.getInstance();
         Content usStock = contentFactory.createContent(us_stock_window, StringResUtils.US_STOCK, false);
-        Content hkStock = contentFactory.createContent(hkStockWindow.getHk_stock_window(), StringResUtils.HK_STOCK, false);
+        Content hkStock = contentFactory.createContent(hkStockWindow.getJPanel(), StringResUtils.HK_STOCK, false);
+        Content shStock = contentFactory.createContent(shStockWindow.getJPanel(), StringResUtils.SH_STOCK, false);
+        Content szStock = contentFactory.createContent(szStockWindow.getJPanel(), StringResUtils.SZ_STOCK, false);
 
         //add us stock
         toolWindow.getContentManager().addContent(usStock);
         toolWindow.getContentManager().addContent(hkStock);
+        toolWindow.getContentManager().addContent(shStock);
+        toolWindow.getContentManager().addContent(szStock);
         us_refresh.addActionListener(e -> refreshHandler());
     }
 
@@ -68,22 +73,12 @@ public class UsStockWindow implements ToolWindowFactory, SymbolParser, UISetting
         handler = new TencentStockHandler(us_stock_table, us_stock_timestamp);
         refreshHandler();
         hkStockWindow.onInit();
+        shStockWindow.onInit();
+        szStockWindow.onInit();
     }
 
     private void refreshHandler() {
-        handler.setHidden(isInHiddenMode());
-        handler.setRedRise(isRedRise());
         handler.load(parse());
-    }
-
-    @Override
-    public boolean isInHiddenMode() {
-        return AppSettingState.getInstance().isHiddenMode();
-    }
-
-    @Override
-    public boolean isRedRise() {
-        return AppSettingState.getInstance().isRedRise();
     }
 
     @Override

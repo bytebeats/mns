@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'me.bytebeats'
-version '1.1.0'
+version '1.2.0'
 
 repositories {
     mavenCentral()
@@ -22,6 +22,7 @@ patchPluginXml {
     changeNotes """
       v1.0.0 添加了美股股票的实时查询.<br>
       v1.1.0 添加了港股股票的实时查询.<br>
+      v1.2.0 添加了上证, 深证股票的实时查询.<br>
       """
 }
 
