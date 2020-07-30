@@ -1,6 +1,5 @@
 package me.bytebeats.ui;
 
-import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowFactory;
@@ -11,7 +10,6 @@ import me.bytebeats.SymbolParser;
 import me.bytebeats.UISettingProvider;
 import me.bytebeats.handler.AbsStockHandler;
 import me.bytebeats.handler.TencentStockHandler;
-import me.bytebeats.tool.Keys;
 import me.bytebeats.tool.StringResUtils;
 import org.jetbrains.annotations.NotNull;
 
@@ -29,14 +27,18 @@ public class UsStockWindow implements ToolWindowFactory, SymbolParser, UISetting
 
     private AbsStockHandler handler;
 
+    private HkStockWindow hkStockWindow = new HkStockWindow();
+
     @Override
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
         LogUtil.init(project);
         ContentFactory contentFactory = ContentFactory.SERVICE.getInstance();
         Content usStock = contentFactory.createContent(us_stock_window, StringResUtils.US_STOCK, false);
+        Content hkStock = contentFactory.createContent(hkStockWindow.getHk_stock_window(), StringResUtils.HK_STOCK, false);
 
         //add us stock
         toolWindow.getContentManager().addContent(usStock);
+        toolWindow.getContentManager().addContent(hkStock);
         us_refresh.addActionListener(e -> refreshHandler());
     }
 
@@ -48,7 +50,7 @@ public class UsStockWindow implements ToolWindowFactory, SymbolParser, UISetting
 
     @Override
     public String raw() {
-        return PropertiesComponent.getInstance().getValue(Keys.KEY_US_STOCK);
+        return AppSettingState.getInstance().getUsStocks();
     }
 
     @Override
@@ -65,6 +67,7 @@ public class UsStockWindow implements ToolWindowFactory, SymbolParser, UISetting
     public void init(@NotNull ToolWindow toolWindow) {
         handler = new TencentStockHandler(us_stock_table, us_stock_timestamp);
         refreshHandler();
+        hkStockWindow.onInit();
     }
 
     private void refreshHandler() {
