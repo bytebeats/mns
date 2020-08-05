@@ -2,7 +2,8 @@
 IntelliJ IDEA平台插件. 支持查看股票实时行情. 支持美股, 港股, A股.
 
 # Installation:
-IntelliJ IDEA -> Preferences -> Plugins -> Install Plugin From Disk..., 从本项目中下载 `libs/mns-x.x.x.jar`文件并选中, 安装.
+* IntelliJ IDEA -> Preferences -> Plugins -> Install Plugin From Disk..., 从本项目中下载 `libs/mns-x.x.x.jar`文件并选中, 安装.
+* IntelliJ IDEA -> Preferences -> Plugins -> Marketplace, type `mns`/`money`/`money never`/`money never sleeps` to search and install.
 
 # Compilation:
 打开 `Terminal` 窗口, 运行 `./gradlew build` 命令, 结束后你会发现 `libs/mns-x.x.x.jar` 文件的生成.
