@@ -36,7 +36,9 @@ Core indices:
 * V1.4.0
   * 新增了核心指数.
 * V1.4.1
-  * 更新了 plugin.xml 以上传 Marketplace..
+  * 更新了 plugin.xml 以上传 Marketplace.
+* V1.4.2
+  * 跟随 IdeaIC 2020.2 更新.<br>
   
 # TODO
 * 基金
