@@ -43,3 +43,4 @@ Core indices:
   
 # TODO
 * 基金
+* 行情图
