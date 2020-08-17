@@ -1,6 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="mns:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/mns_jar</output-path>
-    <root id="archive" name="mns.jar" />
-  </artifact>
-</component>
