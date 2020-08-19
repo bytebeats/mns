@@ -94,6 +94,4 @@ public class UsStockWindow implements ToolWindowFactory, SymbolParser {
     public boolean isApplicable(@NotNull Project project) {
         return true;
     }
-
-
 }
