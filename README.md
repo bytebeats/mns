@@ -40,6 +40,8 @@ Core indices:
   * 更新了 plugin.xml 以上传 Marketplace.
 * V1.4.2
   * 跟随 IdeaIC 2020.2 更新.<br>
+* V1.4.3
+  * 激活了隐秘模式.<br>
   
 # TODO
 * 基金

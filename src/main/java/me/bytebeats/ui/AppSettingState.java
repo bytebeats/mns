@@ -18,7 +18,7 @@ public class AppSettingState implements PersistentStateComponent<AppSettingState
     public final static String HK_STOCKS = "00981;09988;09618";
     public final static String SH_STOCKS = "600036";
     public final static String SZ_STOCKS = "002352";
-    public final static String ALL_INDICES = "usDJI;usIXIC;usSPX;hkHSI;hkHSCEI;hkHSCCI;sh000001;sz399001;sz399006;sh000300;sh000016;sz399903";
+    public final static String ALL_INDICES = "usDJI;usIXIC;hkHSI;hkHSCEI;hkHSCCI;sh000001;sz399001;sz399006;sh000300;sh000016;sz399903";
 
     private boolean isRedRise = true;
     private boolean isHiddenMode = false;
