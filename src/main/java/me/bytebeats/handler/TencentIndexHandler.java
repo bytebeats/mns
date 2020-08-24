@@ -114,7 +114,6 @@ public class TencentIndexHandler implements UISettingProvider {
                 String[] columnNames = new String[column_names.length];
                 for (int i = 0; i < columnNames.length; i++) {
                     columnNames[i] = PinyinUtils.toPinyin(column_names[i]);
-                    LogUtil.info(columnNames[i]);
                 }
                 model = new DefaultTableModel(convert2Data(), columnNames);
             } else {
