@@ -5,7 +5,7 @@ public class StringResUtils {
     public static final String HK_STOCK = "港股";
     public static final String SH_STOCK = "上证";
     public static final String SZ_STOCK = "深证";
-    public static final String INDICES = "指数";
+    public static final String INDICES = "重要指数";
     public static final String QT_STOCK_URL = "http://qt.gtimg.cn/q=";//腾讯股票数据接口
     public static final String STOCK_NAME = "股票名称";
     public static final String SYMBOL = "代码";

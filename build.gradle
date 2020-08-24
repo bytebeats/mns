@@ -21,7 +21,7 @@ dependencies {
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
     version '2020.2'
-    intellij.updateSinceUntilBuild false
+    intellij.updateSinceUntilBuild true
     intellij.sameSinceUntilBuild true
 }
 patchPluginXml {
@@ -36,6 +36,8 @@ patchPluginXml {
       v1.4.2 跟随 IdeaIC 2020.2 更新.<br>
       v1.4.3 激活了隐秘模式.<br>
       """
+    sinceBuild '173.*'
+    untilBuild '202.*'
 }
 
 task move(type: Copy) {
