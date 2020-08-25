@@ -22,7 +22,7 @@ import java.util.TimerTask;
 
 public class TencentIndexHandler implements UISettingProvider {
 
-    public static final long REFRESH_INTERVAL = 5L * 1000L;
+    public static final long REFRESH_INTERVAL = 3L * 1000L;
 
     protected List<Index> indices = new ArrayList<>();
     protected JTable jTable;
@@ -73,6 +73,7 @@ public class TencentIndexHandler implements UISettingProvider {
             updateView();
         } catch (Exception e) {
             LogUtil.info(e.getMessage());
+            LogUtil.info("mns stops updating " + jTable.getToolTipText() + " data because of " + e.getMessage());
         }
     }
 
@@ -128,6 +129,11 @@ public class TencentIndexHandler implements UISettingProvider {
 
     private void updateTimestamp() {
         jLabel.setText(String.format(StringResUtils.REFRESH_TIMESTAMP, LocalDateTime.now().format(DateTimeFormatter.ofPattern(StringResUtils.TIMESTAMP_FORMATTER))));
+        if (isInHiddenMode()) {
+            jLabel.setForeground(JBColor.DARK_GRAY);
+        } else {
+            jLabel.setForeground(JBColor.RED);
+        }
     }
 
     private void restoreTabSizes() {

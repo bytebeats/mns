@@ -28,6 +28,8 @@ public class SettingWindow implements Configurable {
     private JLabel consise_mode_desc;
     private JLabel idx_label;
     private JLabel idx_input_noneditable;
+    private JLabel daily_fund;
+    private JTextField daily_fund_input;
 
     @Nls(capitalization = Nls.Capitalization.Title)
     @Override
@@ -73,6 +75,7 @@ public class SettingWindow implements Configurable {
         settingState.setHkStocks(hk_stock_input.getText());
         settingState.setShStocks(sh_stock_input.getText());
         settingState.setSzStocks(sz_stock_input.getText());
+        settingState.setDailyFunds(daily_fund_input.getText());
         settingState.setRedRise(red_rise_green_fall.isSelected());
         settingState.setHiddenMode(hide_mode_setting.isSelected());
         settingState.setConciseMode(concise_mode.isSelected());
@@ -100,6 +103,7 @@ public class SettingWindow implements Configurable {
         hk_stock_input.setText(settings.getHkStocks());
         sh_stock_input.setText(settings.getShStocks());
         sz_stock_input.setText(settings.getSzStocks());
+        daily_fund_input.setText(settings.getDailyFunds());
         red_rise_green_fall.setSelected(settings.isRedRise());
         red_fall_green_rise.setSelected(!settings.isRedRise());
         boolean isHidden = settings.isHiddenMode();

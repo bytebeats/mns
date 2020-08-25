@@ -1,8 +1,11 @@
 package me.bytebeats.handler;
 
 import com.intellij.ui.JBColor;
+import me.bytebeats.HttpClientPool;
+import me.bytebeats.LogUtil;
 import me.bytebeats.UISettingProvider;
-import me.bytebeats.meta.Stock;
+import me.bytebeats.meta.Fund;
+import me.bytebeats.tool.GsonUtils;
 import me.bytebeats.tool.PinyinUtils;
 import me.bytebeats.tool.StringResUtils;
 import me.bytebeats.ui.AppSettingState;
@@ -15,21 +18,25 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
-public abstract class AbsStockHandler implements UISettingProvider {
-    public static final long REFRESH_INTERVAL = 3L * 1000L;
+public class TianTianFundHandler implements UISettingProvider {
 
-    protected List<Stock> stocks = new ArrayList<>();
-    protected JTable jTable;
-    private JLabel jLabel;
-    private int[] tab_sizes = {0, 0, 0, 0, 0, 0, 0, 0};
-    private String[] column_names = {StringResUtils.STOCK_NAME, StringResUtils.SYMBOL, StringResUtils.STOCK_LATEST_PRICE,
-            StringResUtils.RISE_AND_FALL, StringResUtils.RISE_AND_FALL_RATIO, StringResUtils.STOCK_VOLUME,
-            StringResUtils.TURNOVER, StringResUtils.STOCK_MKT_VALUE};
+    public static final long REFRESH_INTERVAL = 10L * 1000L;
+
+    protected List<Fund> funds = new ArrayList<>();
+    protected final JTable jTable;
+    private final JLabel jLabel;
+    private int[] tab_sizes = {0, 0, 0, 0, 0, 0};
+    private String[] column_names = {StringResUtils.FUND_NAME, StringResUtils.FUND_CODE, StringResUtils.FUND_NET_VALUE_DATE,
+            StringResUtils.FUND_NET_VALUE_ESTIMATED, StringResUtils.RISE_AND_FALL_RATIO, StringResUtils.FUND_NET_VALUE_ESTIMATED_DATE};
 
     private int[] numColumnIdx = {3, 4};
 
-    public AbsStockHandler(JTable table, JLabel label) {
+    private Timer timer = new Timer();
+
+    public TianTianFundHandler(JTable table, JLabel label) {
         this.jTable = table;
         this.jLabel = label;
         jTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -37,7 +44,52 @@ public abstract class AbsStockHandler implements UISettingProvider {
         jTable.setRowHeight(Math.max(jTable.getRowHeight(), metrics.getHeight()));
     }
 
-    public abstract void load(List<String> symbols);
+    public void load(List<String> symbols) {
+        funds.clear();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                fetch(symbols);
+            }
+        }, 0, REFRESH_INTERVAL);
+        LogUtil.info("mns starts updating " + jTable.getToolTipText() + " data");
+    }
+
+    private void fetch(List<String> symbols) {
+        if (symbols.isEmpty()) {
+            return;
+        }
+        for (String symbol : symbols) {
+            try {
+                String entity = HttpClientPool.getInstance().get(getFundUrl(symbol));
+                parse(entity);
+            } catch (Exception e) {
+                LogUtil.info(e.getMessage());
+                timer.cancel();
+                LogUtil.info("mns stops updating " + jTable.getToolTipText() + " data because of " + e.getMessage());
+            }
+        }
+        updateView();
+    }
+
+    /**
+     * @param entity jsonpgz (
+     *               {
+     *               "fundcode": "001186",
+     *               "name": "瀵屽浗鏂囦綋鍋ュ悍鑲＄エ",
+     *               "jzrq": "2020-08-24",
+     *               "dwjz": "2.0380",
+     *               "gsz": "2.0393",
+     *               "gszzl": "0.07",
+     *               "gztime": "2020-08-25 10:54"
+     *               }
+     *               )
+     */
+
+    private void parse(String entity) {
+        String json = entity.substring(8, entity.length() - 2);
+        updateFund(GsonUtils.fromJson(json, Fund.class));
+    }
 
     protected void updateView() {
         SwingUtilities.invokeLater(() -> {
@@ -87,21 +139,21 @@ public abstract class AbsStockHandler implements UISettingProvider {
     }
 
     private Object[][] convert2Data() {
-        Object[][] data = new Object[stocks.size()][column_names.length];
-        for (int i = 0; i < stocks.size(); i++) {
-            Stock stock = stocks.get(i);
-            data[i] = new Object[]{stock.getName(), stock.getSymbol(), stock.getLatestPrice(), stock.getChange(),
-                    stock.getChangeRatioString(), stock.getVolumeString(), stock.getTurnoverString(), stock.getMarketValueString()};
+        Object[][] data = new Object[funds.size()][column_names.length];
+        for (int i = 0; i < funds.size(); i++) {
+            Fund index = funds.get(i);
+            data[i] = new Object[]{index.getName(), index.getFundcode(), index.getNetValueAndDate(),
+                    index.getGsz(), index.getEstimateNetValueRatio(), index.getGztime()};
         }
         return data;
     }
 
-    protected void updateStock(Stock stock) {
-        int idx = stocks.indexOf(stock);
-        if (idx > -1 && idx < stocks.size()) {
-            stocks.set(idx, stock);
+    protected void updateFund(Fund fund) {
+        int idx = funds.indexOf(fund);
+        if (idx > -1 && idx < funds.size()) {
+            funds.set(idx, fund);
         } else {
-            stocks.add(stock);
+            funds.add(fund);
         }
     }
 
@@ -145,8 +197,8 @@ public abstract class AbsStockHandler implements UISettingProvider {
         }
     }
 
-    public String appendParams(String params) {
-        return StringResUtils.QT_STOCK_URL + params;
+    public String getFundUrl(String code) {
+        return String.format(StringResUtils.TIANTIAN_FUND_URL, code, System.currentTimeMillis());
     }
 
     @Override

@@ -30,16 +30,18 @@ public class UsStockWindow implements ToolWindowFactory, SymbolParser {
     private ShStockWindow shStockWindow = new ShStockWindow();
     private SzStockWindow szStockWindow = new SzStockWindow();
     private CoreIndicesWindow indciesWindow = new CoreIndicesWindow();
+    private FundWindow fundWindow = new FundWindow();
 
     @Override
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
         LogUtil.init(project);
         ContentFactory contentFactory = ContentFactory.SERVICE.getInstance();
-        Content usStock = contentFactory.createContent(us_stock_window, StringResUtils.US_STOCK, false);
-        Content hkStock = contentFactory.createContent(hkStockWindow.getJPanel(), StringResUtils.HK_STOCK, false);
-        Content shStock = contentFactory.createContent(shStockWindow.getJPanel(), StringResUtils.SH_STOCK, false);
-        Content szStock = contentFactory.createContent(szStockWindow.getJPanel(), StringResUtils.SZ_STOCK, false);
-        Content indicesContent = contentFactory.createContent(indciesWindow.getJPanel(), StringResUtils.INDICES, false);
+        Content usStock = contentFactory.createContent(us_stock_window, StringResUtils.US_STOCK, true);
+        Content hkStock = contentFactory.createContent(hkStockWindow.getJPanel(), StringResUtils.HK_STOCK, true);
+        Content shStock = contentFactory.createContent(shStockWindow.getJPanel(), StringResUtils.SH_STOCK, true);
+        Content szStock = contentFactory.createContent(szStockWindow.getJPanel(), StringResUtils.SZ_STOCK, true);
+        Content indicesContent = contentFactory.createContent(indciesWindow.getJPanel(), StringResUtils.INDICES, true);
+        Content fundContent = contentFactory.createContent(fundWindow.getJPanel(), StringResUtils.FUND, true);
 
         //add us stock
         toolWindow.getContentManager().addContent(usStock);
@@ -47,6 +49,7 @@ public class UsStockWindow implements ToolWindowFactory, SymbolParser {
         toolWindow.getContentManager().addContent(shStock);
         toolWindow.getContentManager().addContent(szStock);
         toolWindow.getContentManager().addContent(indicesContent);
+        toolWindow.getContentManager().addContent(fundContent);
         us_refresh.addActionListener(e -> refreshHandler());
     }
 
@@ -80,6 +83,7 @@ public class UsStockWindow implements ToolWindowFactory, SymbolParser {
         shStockWindow.onInit();
         szStockWindow.onInit();
         indciesWindow.onInit();
+        fundWindow.onInit();
     }
 
     private void refreshHandler() {

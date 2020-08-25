@@ -2,7 +2,7 @@
     <id>me.bytebeats.mns</id>
     <name>Money Never Sleeps</name>
     <vendor email="happychinapc@gmail.com" url="https://github.com/bytebeats">bytebeats</vendor>
-    <version>1.4.3</version>
+    <version>1.5.0</version>
     <idea-version since-build="173.*" until-build="202.*" />
 
     <description><![CDATA[
@@ -12,7 +12,7 @@
     Money never sleeps, NEITHER do We!<br>
     金钱永不眠, 我们也不睡!<br>
     Good luck!<br>
-    Instruction/使用说明: https://github.com/bytebeats/mns
+    使用说明: https://github.com/bytebeats/mns
     ]]></description>
 
     <change-notes><![CDATA[
@@ -25,6 +25,7 @@
       v1.4.1 更新了 plugin.xml 以上传 Marketplace.<br>
       v1.4.2 跟随 IdeaIC 2020.2 更新.<br>
       v1.4.3 激活了隐秘模式.<br>
+      v1.5.0 新增了基金数据.<br>
     ]]></change-notes>
 
     <depends>com.intellij.modules.platform</depends>

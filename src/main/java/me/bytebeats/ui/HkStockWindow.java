@@ -50,6 +50,7 @@ public class HkStockWindow implements SymbolParser {
     public List<String> parse() {
         List<String> symbols = new ArrayList<>();
         String raw = raw();
+        assert raw != null;
         if (!raw.isEmpty()) {
             Arrays.stream(raw.split("[,; ]")).filter(s -> !s.isEmpty()).forEach(s -> symbols.add(prefix() + s));
         }

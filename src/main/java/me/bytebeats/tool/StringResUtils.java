@@ -25,4 +25,12 @@ public class StringResUtils {
     public static final String INDEX_LOWEST = "最低";
     public static final String INDEX_HIGHEST = "最高";
     public static final String INDEX_DAILY_RATIO = "日振幅";
+
+    public static final String TIANTIAN_FUND_URL = "http://fundgz.1234567.com.cn/js/%s.js?rt=%d";//天天基金数据接口
+    public static final String FUND = "基金";
+    public static final String FUND_NAME = "名称";
+    public static final String FUND_CODE = "代码";
+    public static final String FUND_NET_VALUE_DATE = "单位净值";
+    public static final String FUND_NET_VALUE_ESTIMATED = "最新估值";
+    public static final String FUND_NET_VALUE_ESTIMATED_DATE = "估值时间";
 }
