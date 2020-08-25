@@ -18,6 +18,7 @@ public class AppSettingState implements PersistentStateComponent<AppSettingState
     public final static String HK_STOCKS = "00981;09988;09618";
     public final static String SH_STOCKS = "600036";
     public final static String SZ_STOCKS = "002352";
+    public final static String DAILY_FUNDS = "320003;002621;519674";
     public final static String ALL_INDICES = "usDJI;usIXIC;hkHSI;hkHSCEI;hkHSCCI;sh000001;sz399001;sz399006;sh000300;sh000016;sz399903";
 
     private boolean isRedRise = true;
@@ -27,6 +28,7 @@ public class AppSettingState implements PersistentStateComponent<AppSettingState
     private String hkStocks = "00981;09988;09618";
     private String shStocks = "600036";
     private String szStocks = "002352";
+    private String dailyFunds = "320003;002621;519674";
 
     public static AppSettingState getInstance() {
         return ServiceManager.getService(AppSettingState.class);
@@ -44,6 +46,7 @@ public class AppSettingState implements PersistentStateComponent<AppSettingState
             hkStocks = instance.hkStocks;
             shStocks = instance.shStocks;
             szStocks = instance.szStocks;
+            dailyFunds = instance.dailyFunds;
             return true;
         }
     }
@@ -56,6 +59,7 @@ public class AppSettingState implements PersistentStateComponent<AppSettingState
         setHkStocks(HK_STOCKS);
         setShStocks(SH_STOCKS);
         setSzStocks(SZ_STOCKS);
+        setDailyFunds(DAILY_FUNDS);
     }
 
     @Nullable
@@ -123,5 +127,13 @@ public class AppSettingState implements PersistentStateComponent<AppSettingState
 
     public void setSzStocks(String szStocks) {
         this.szStocks = szStocks;
+    }
+
+    public String getDailyFunds() {
+        return dailyFunds;
+    }
+
+    public void setDailyFunds(String dailyFunds) {
+        this.dailyFunds = dailyFunds;
     }
 }

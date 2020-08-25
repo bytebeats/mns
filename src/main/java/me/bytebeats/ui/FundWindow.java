@@ -1,33 +1,37 @@
 package me.bytebeats.ui;
 
 import me.bytebeats.SymbolParser;
-import me.bytebeats.handler.AbsStockHandler;
-import me.bytebeats.handler.TencentStockHandler;
+import me.bytebeats.handler.TianTianFundHandler;
 
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class SzStockWindow implements SymbolParser {
-    private JPanel sz_stock_window;
-    private JScrollPane sz_stock_scroll;
-    private JTable sz_stock_table;
-    private JLabel sz_stock_timestamp;
-    private JButton sz_sync;
+/**
+ * @author <a href="https://github.com/bytebeats">bytebeats</a>
+ * @email <happychinapc@gmail.com>
+ * @since 2020/8/25 11:32
+ */
+public class FundWindow implements SymbolParser {
+    private JPanel fund_window;
+    private JScrollPane fund_scroll;
+    private JTable fund_table;
+    private JLabel fund_timestamp;
+    private JButton fund_sync;
 
-    private AbsStockHandler handler;
+    private final TianTianFundHandler handler;
 
-    public SzStockWindow() {
-        handler = new TencentStockHandler(sz_stock_table, sz_stock_timestamp);
+    public FundWindow() {
+        handler = new TianTianFundHandler(fund_table, fund_timestamp);
     }
 
     public JPanel getJPanel() {
-        return sz_stock_window;
+        return fund_window;
     }
 
     public void onInit() {
-        sz_sync.addActionListener(e -> syncRefresh());
+        fund_sync.addActionListener(e -> syncRefresh());
         syncRefresh();
     }
 
@@ -37,13 +41,12 @@ public class SzStockWindow implements SymbolParser {
 
     @Override
     public String prefix() {
-        return "sz";//实时数据
-//        return "s_sz";//简要信息
+        return "";
     }
 
     @Override
     public String raw() {
-        return AppSettingState.getInstance().getSzStocks();
+        return AppSettingState.getInstance().getDailyFunds();
     }
 
     @Override

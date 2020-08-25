@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'me.bytebeats'
-version '1.4.3'
+version '1.5.0'
 
 sourceCompatibility = 1.8
 
@@ -35,6 +35,7 @@ patchPluginXml {
       v1.4.1 更新了 plugin.xml 以上传 Marketplace.<br>
       v1.4.2 跟随 IdeaIC 2020.2 更新.<br>
       v1.4.3 激活了隐秘模式.<br>
+      v1.5.0 新增了基金数据.<br>
       """
     sinceBuild '173.*'
     untilBuild '202.*'

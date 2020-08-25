@@ -46,6 +46,7 @@ public class TencentStockHandler extends AbsStockHandler {
             updateView();
         } catch (Exception e) {
             LogUtil.info(e.getMessage());
+            LogUtil.info("mns stops updating " + jTable.getToolTipText() + " data because of " + e.getMessage());
         }
     }
 
