@@ -44,6 +44,8 @@ Core indices:
   * 激活了隐秘模式.<br>
 * V1.5.0
   * 新增了基金数据.<br>
+* V1.5.1
+  * 添加了plugin icon.<br>
   
 # TODO
 * **<s>基金</s>**
