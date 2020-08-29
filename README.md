@@ -46,6 +46,8 @@ Core indices:
   * 新增了基金数据.<br>
 * V1.5.1
   * 添加了plugin icon.<br>
+* V1.5.2
+   * 代码优化, 以及 Android Studio 上面中文乱码的问题.<br>
   
 # TODO
 * **<s>基金</s>**

@@ -5,7 +5,9 @@
     <constraints>
       <xy x="20" y="20" width="500" height="400"/>
     </constraints>
-    <properties/>
+    <properties>
+      <toolTipText value="上证"/>
+    </properties>
     <border type="none"/>
     <children>
       <scrollpane id="9d6e3" binding="sh_stock_scroll">
@@ -18,7 +20,7 @@
           <component id="4dca8" class="javax.swing.JTable" binding="sh_stock_table">
             <constraints/>
             <properties>
-              <toolTipText resource-bundle="strings_cn" key="sh_stock"/>
+              <toolTipText value="上证"/>
             </properties>
           </component>
         </children>
@@ -40,7 +42,7 @@
           <hideActionText value="false"/>
           <horizontalAlignment value="0"/>
           <icon value="refresh.png"/>
-          <text resource-bundle="strings_cn" key="sync"/>
+          <text value="同步"/>
         </properties>
       </component>
     </children>

@@ -2,7 +2,7 @@
     <id>me.bytebeats.mns</id>
     <name>Money Never Sleeps</name>
     <vendor email="happychinapc@gmail.com" url="https://github.com/bytebeats">bytebeats</vendor>
-    <version>1.5.1</version>
+    <version>1.5.2</version>
     <idea-version since-build="173.*" until-build="202.*" />
 
     <description><![CDATA[
@@ -27,6 +27,7 @@
       v1.4.3 激活了隐秘模式.<br>
       v1.5.0 新增了基金数据.<br>
       v1.5.1 添加了plugin icon.<br>
+      v1.5.2 代码优化, 以及 Android Studio 上面中文乱码的问题.<br>
     ]]></change-notes>
 
     <depends>com.intellij.modules.platform</depends>

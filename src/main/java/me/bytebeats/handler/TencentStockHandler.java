@@ -10,16 +10,23 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class TencentStockHandler extends AbsStockHandler {
-
-    private Timer timer = new Timer();
+    public static final long REFRESH_INTERVAL = 3L * 1000L;
 
     public TencentStockHandler(JTable table, JLabel label) {
         super(table, label);
     }
 
     @Override
+   public String[] getColumnNames() {
+        return handleColumnNames(stockColumnNames);
+    }
+
+    @Override
     public void load(List<String> symbols) {
         stocks.clear();
+        if (timer == null) {
+            timer = new Timer();
+        }
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -46,6 +53,8 @@ public class TencentStockHandler extends AbsStockHandler {
             updateView();
         } catch (Exception e) {
             LogUtil.info(e.getMessage());
+            timer.cancel();
+            timer = null;
             LogUtil.info("mns stops updating " + jTable.getToolTipText() + " data because of " + e.getMessage());
         }
     }

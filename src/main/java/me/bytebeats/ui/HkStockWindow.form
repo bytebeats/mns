@@ -5,7 +5,9 @@
     <constraints>
       <xy x="20" y="20" width="500" height="400"/>
     </constraints>
-    <properties/>
+    <properties>
+      <toolTipText value="港股"/>
+    </properties>
     <border type="none"/>
     <children>
       <scrollpane id="9d6e3" binding="hk_stock_scroll">
@@ -18,7 +20,7 @@
           <component id="4dca8" class="javax.swing.JTable" binding="hk_stock_table">
             <constraints/>
             <properties>
-              <toolTipText resource-bundle="strings_cn" key="hk_stock"/>
+              <toolTipText value="港股"/>
             </properties>
           </component>
         </children>
@@ -40,7 +42,7 @@
           <hideActionText value="false"/>
           <horizontalAlignment value="0"/>
           <icon value="refresh.png"/>
-          <text resource-bundle="strings_cn" key="sync"/>
+          <text value="同步"/>
         </properties>
       </component>
     </children>

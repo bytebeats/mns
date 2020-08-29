@@ -1,52 +1,42 @@
 package me.bytebeats.handler;
 
-import com.intellij.ui.JBColor;
 import me.bytebeats.HttpClientPool;
 import me.bytebeats.LogUtil;
-import me.bytebeats.UISettingProvider;
 import me.bytebeats.meta.Index;
-import me.bytebeats.tool.PinyinUtils;
 import me.bytebeats.tool.StringResUtils;
-import me.bytebeats.ui.AppSettingState;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
-import java.awt.*;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class TencentIndexHandler implements UISettingProvider {
+public class TencentIndexHandler extends AbstractHandler {
 
-    public static final long REFRESH_INTERVAL = 3L * 1000L;
+    public static final long REFRESH_INTERVAL = 5L * 1000L;
 
     protected List<Index> indices = new ArrayList<>();
-    protected JTable jTable;
-    private JLabel jLabel;
-    private int[] tab_sizes = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    private String[] column_names = {StringResUtils.INDEX_NAME, StringResUtils.SYMBOL, StringResUtils.INDEX_LATEST,
+    private final int[] IndexTabWidths = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    private final String[] indexColumnNames = {StringResUtils.INDEX_NAME, StringResUtils.SYMBOL, StringResUtils.INDEX_LATEST,
             StringResUtils.RISE_AND_FALL, StringResUtils.RISE_AND_FALL_RATIO, StringResUtils.INDEX_HIGHEST,
             StringResUtils.INDEX_LOWEST, StringResUtils.INDEX_OPEN, StringResUtils.INDEX_CLOSE,
             StringResUtils.INDEX_DAILY_RATIO, StringResUtils.TURNOVER};
 
-    private int[] numColumnIdx = {3, 4};
-
-    private Timer timer = new Timer();
-
     public TencentIndexHandler(JTable table, JLabel label) {
-        this.jTable = table;
-        this.jLabel = label;
-        jTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        FontMetrics metrics = jTable.getFontMetrics(jTable.getFont());
-        jTable.setRowHeight(Math.max(jTable.getRowHeight(), metrics.getHeight()));
+        super(table, label);
     }
 
+    @Override
+    public String[] getColumnNames() {
+        return handleColumnNames(indexColumnNames);
+    }
+
+    @Override
     public void load(List<String> symbols) {
         indices.clear();
+        if (timer == null) {
+            timer = new Timer();
+        }
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -72,7 +62,8 @@ public class TencentIndexHandler implements UISettingProvider {
             parse(entity);
             updateView();
         } catch (Exception e) {
-            LogUtil.info(e.getMessage());
+            timer.cancel();
+            timer = null;
             LogUtil.info("mns stops updating " + jTable.getToolTipText() + " data because of " + e.getMessage());
         }
     }
@@ -107,55 +98,29 @@ public class TencentIndexHandler implements UISettingProvider {
         }
     }
 
-    protected void updateView() {
-        SwingUtilities.invokeLater(() -> {
-            restoreTabSizes();
-            DefaultTableModel model = null;
-            if (isInHiddenMode()) {
-                String[] columnNames = new String[column_names.length];
-                for (int i = 0; i < columnNames.length; i++) {
-                    columnNames[i] = PinyinUtils.toPinyin(column_names[i]);
-                }
-                model = new DefaultTableModel(convert2Data(), columnNames);
-            } else {
-                model = new DefaultTableModel(convert2Data(), column_names);
-            }
-            jTable.setModel(model);
-            resetTabSize();
-            updateRowTextColors();
-            updateTimestamp();
-        });
-    }
-
-    private void updateTimestamp() {
-        jLabel.setText(String.format(StringResUtils.REFRESH_TIMESTAMP, LocalDateTime.now().format(DateTimeFormatter.ofPattern(StringResUtils.TIMESTAMP_FORMATTER))));
-        if (isInHiddenMode()) {
-            jLabel.setForeground(JBColor.DARK_GRAY);
-        } else {
-            jLabel.setForeground(JBColor.RED);
-        }
-    }
-
-    private void restoreTabSizes() {
+    @Override
+    public void restoreTabSizes() {
         if (jTable.getColumnModel().getColumnCount() == 0) {
             return;
         }
-        for (int i = 0; i < column_names.length; i++) {
-            tab_sizes[i] = jTable.getColumnModel().getColumn(i).getWidth();
+        for (int i = 0; i < indexColumnNames.length; i++) {
+            IndexTabWidths[i] = jTable.getColumnModel().getColumn(i).getWidth();
         }
     }
 
-    private void resetTabSize() {
-        for (int i = 0; i < column_names.length; i++) {
-            if (tab_sizes[i] > 0) {
-                jTable.getColumnModel().getColumn(i).setWidth(tab_sizes[i]);
-                jTable.getColumnModel().getColumn(i).setPreferredWidth(tab_sizes[i]);
+    @Override
+    public void resetTabSize() {
+        for (int i = 0; i < indexColumnNames.length; i++) {
+            if (IndexTabWidths[i] > 0) {
+                jTable.getColumnModel().getColumn(i).setWidth(IndexTabWidths[i]);
+                jTable.getColumnModel().getColumn(i).setPreferredWidth(IndexTabWidths[i]);
             }
         }
     }
 
-    private Object[][] convert2Data() {
-        Object[][] data = new Object[indices.size()][column_names.length];
+    @Override
+    public Object[][] convert2Data() {
+        Object[][] data = new Object[indices.size()][indexColumnNames.length];
         for (int i = 0; i < indices.size(); i++) {
             Index index = indices.get(i);
             data[i] = new Object[]{index.getName(), index.getSymbol(), index.getLatest(), index.getChange(),
@@ -174,66 +139,7 @@ public class TencentIndexHandler implements UISettingProvider {
         }
     }
 
-    private void updateRowTextColors() {
-        for (int idx : numColumnIdx) {
-            jTable.getColumn(jTable.getColumnName(idx)).setCellRenderer(new DefaultTableCellRenderer() {
-                @Override
-                public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                    double chg = 0.0;
-                    try {
-                        String chgRaw = value.toString();
-                        if (column == 4) {
-                            chgRaw = chgRaw.substring(0, chgRaw.length() - 1);
-                        }
-                        chg = Double.parseDouble(chgRaw);
-                    } catch (NumberFormatException e) {
-                        chg = 0.0;
-                    }
-                    if (!isInHiddenMode()) {
-                        if (chg == 0) {
-                            setForeground(JBColor.DARK_GRAY);
-                        } else if (isRedRise()) {
-                            if (chg > 0) {
-                                setForeground(JBColor.RED);
-                            } else {
-                                setForeground(JBColor.GREEN);
-                            }
-                        } else {
-                            if (chg > 0) {
-                                setForeground(JBColor.GREEN);
-                            } else {
-                                setForeground(JBColor.RED);
-                            }
-                        }
-                    } else {
-                        setForeground(JBColor.DARK_GRAY);
-                    }
-                    return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                }
-            });
-        }
-    }
-
     public String appendParams(String params) {
         return StringResUtils.QT_STOCK_URL + params;
-    }
-
-    @Override
-    public boolean isInHiddenMode() {
-        return AppSettingState.getInstance().isHiddenMode();
-    }
-
-    @Override
-    public boolean isRedRise() {
-        return AppSettingState.getInstance().isRedRise();
-    }
-
-    @Override
-    public boolean isConciseMode() {
-        if (AppSettingState.getInstance() != null) {
-            return AppSettingState.getInstance().isConciseMode();
-        } else {
-            return false;
-        }
     }
 }
