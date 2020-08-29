@@ -61,7 +61,7 @@ public class Fund {
     }
 
     public String getEstimateNetValueRatio() {
-        return gszzl +"%";
+        return gszzl + "%";
     }
 
     public void setGszzl(String gszzl) {
@@ -74,10 +74,6 @@ public class Fund {
 
     public void setGztime(String gztime) {
         this.gztime = gztime;
-    }
-
-    public String getNetValueAndDate() {
-        return dwjz + " 更新于" + jzrq.substring(5);
     }
 
     @Override

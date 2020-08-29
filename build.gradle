@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'me.bytebeats'
-version '1.5.1'
+version '1.5.2'
 
 sourceCompatibility = 1.8
 
@@ -37,6 +37,7 @@ patchPluginXml {
       v1.4.3 激活了隐秘模式.<br>
       v1.5.0 新增了基金数据.<br>
       v1.5.1 添加了plugin icon.<br>
+      v1.5.2 代码优化, 以及 Android Studio 上面中文乱码的问题.<br>
       """
     sinceBuild '173.*'
     untilBuild '202.*'
