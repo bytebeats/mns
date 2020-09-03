@@ -26,11 +26,11 @@ public class UsStockWindow implements ToolWindowFactory, SymbolParser {
 
     private AbsStockHandler handler;
 
-    private HkStockWindow hkStockWindow = new HkStockWindow();
-    private ShStockWindow shStockWindow = new ShStockWindow();
-    private SzStockWindow szStockWindow = new SzStockWindow();
-    private CoreIndicesWindow indciesWindow = new CoreIndicesWindow();
-    private FundWindow fundWindow = new FundWindow();
+    private final HkStockWindow hkStockWindow = new HkStockWindow();
+    private final ShStockWindow shStockWindow = new ShStockWindow();
+    private final SzStockWindow szStockWindow = new SzStockWindow();
+    private final CoreIndicesWindow indciesWindow = new CoreIndicesWindow();
+    private final FundWindow fundWindow = new FundWindow();
 
     @Override
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
@@ -43,7 +43,7 @@ public class UsStockWindow implements ToolWindowFactory, SymbolParser {
         Content indicesContent = contentFactory.createContent(indciesWindow.getJPanel(), StringResUtils.INDICES, true);
         Content fundContent = contentFactory.createContent(fundWindow.getJPanel(), StringResUtils.FUND, true);
 
-        //add us stock
+        //add stocks
         toolWindow.getContentManager().addContent(usStock);
         toolWindow.getContentManager().addContent(hkStock);
         toolWindow.getContentManager().addContent(shStock);

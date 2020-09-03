@@ -2,6 +2,7 @@ package me.bytebeats.handler;
 
 import me.bytebeats.UISettingProvider;
 import me.bytebeats.meta.Stock;
+import me.bytebeats.tool.PinyinUtils;
 import me.bytebeats.tool.StringResUtils;
 
 import javax.swing.*;
@@ -55,8 +56,20 @@ public abstract class AbsStockHandler extends AbstractHandler implements UISetti
         Object[][] data = new Object[stocks.size()][stockColumnNames.length];
         for (int i = 0; i < stocks.size(); i++) {
             Stock stock = stocks.get(i);
-            data[i] = new Object[]{stock.getName(), stock.getSymbol(), stock.getLatestPrice(), stock.getChange(),
-                    stock.getChangeRatioString(), stock.getVolumeString(), stock.getTurnoverString(), stock.getMarketValueString()};
+            String name = stock.getName();
+            String volume = stock.getVolumeString();
+            String turnover = stock.getTurnoverString();
+            String mktVal = stock.getMarketValueString();
+            if (isInHiddenMode()) {
+                name = PinyinUtils.toPinyin(name);
+            }
+            if (isConciseMode()) {
+                volume = StringResUtils.STR_PLACE_HOLDER;
+                turnover = StringResUtils.STR_PLACE_HOLDER;
+                mktVal = StringResUtils.STR_PLACE_HOLDER;
+            }
+            data[i] = new Object[]{name, stock.getSymbol(), stock.getLatestPrice(), stock.getChange(),
+                    stock.getChangeRatioString(), volume, turnover, mktVal};
         }
         return data;
     }

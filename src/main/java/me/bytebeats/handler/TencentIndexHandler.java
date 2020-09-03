@@ -3,6 +3,7 @@ package me.bytebeats.handler;
 import me.bytebeats.HttpClientPool;
 import me.bytebeats.LogUtil;
 import me.bytebeats.meta.Index;
+import me.bytebeats.tool.PinyinUtils;
 import me.bytebeats.tool.StringResUtils;
 
 import javax.swing.*;
@@ -10,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TencentIndexHandler extends AbstractHandler {
 
@@ -28,7 +31,13 @@ public class TencentIndexHandler extends AbstractHandler {
 
     @Override
     public String[] getColumnNames() {
-        return handleColumnNames(indexColumnNames);
+        String[] columns = handleColumnNames(indexColumnNames);
+        if (isConciseMode()) {
+            for (int i = columns.length - 6; i < columns.length; i++) {
+                columns[i] = StringResUtils.STR_PLACE_HOLDER;
+            }
+        }
+        return columns;
     }
 
     @Override
@@ -59,7 +68,7 @@ public class TencentIndexHandler extends AbstractHandler {
         }
         try {
             String entity = HttpClientPool.getInstance().get(appendParams(params.toString()));
-            parse(entity);
+            parse(symbols, entity);
             updateView();
         } catch (Exception e) {
             timer.cancel();
@@ -68,33 +77,51 @@ public class TencentIndexHandler extends AbstractHandler {
         }
     }
 
-    private void parse(String entity) {
+    /**
+     * 股票详情
+     * v_usAAPL="200~苹果~AAPL.OQ~134.18~129.04~132.76~152470142~29222201081093~29258751598320~134.99~36~0~0~0~0~0~0~0~0~135.00~91~0~0~0~0~0~0~0~0~~2020-09-01 16:00:01~5.14~3.98~134.80~130.53~USD~152470142~20266788153~0.89~40.69~~45.14~~3.31~~22948.18280~Apple Inc~3.30~134.80~50.26~-55~31.75~0.59~22948.18280~84.29~~SHARE~69.25~18.27~";
+     * 股票简要信息
+     * v_s_usAAPL="200~苹果~AAPL.OQ~134.18~5.14~3.98~152470142~20266788153~22948.18280~";
+     *
+     * @param symbols
+     * @param entity
+     */
+    private void parse(List<String> symbols, String entity) {
         String[] raws = entity.split("\n");
-        for (String raw : raws) {
-            //实时数据
-            String[] metas = raw.substring(raw.indexOf('=') + 2, raw.length() - 2).split("~");
-            Index index = new Index();
-            String symbol = raw.substring(2, raw.indexOf("="));
-            index.setSymbol(symbol);
-            index.setName(metas[1]);
-            index.setLatest(Double.parseDouble(metas[3]));
-            index.setClose(Double.parseDouble(metas[4]));
-            index.setOpen(Double.parseDouble(metas[5]));
-            index.setTurnover(Double.parseDouble(metas[6]));
-            index.setChange(Double.parseDouble(metas[31]));
-            index.setChangeRatio(Double.parseDouble(metas[32]));
-            index.setHighest(Double.parseDouble(metas[33]));
-            index.setLowest(Double.parseDouble(metas[34]));
-            index.setTurnover(Double.parseDouble(metas[36]));
-            index.setDailyRatio(Double.parseDouble(metas[43]));
-            //简要信息
-//            String symbol = raw.substring(2, raw.indexOf("="));
+        if (symbols.size() != raws.length) {
+            return;
+        }
+        for (int i = 0; i < symbols.size(); i++) {
+            String symbol = symbols.get(i);
+            String raw = raws[i];
+//            简要信息接口解析的断言
+//            String assertion = String.format("(?<=v_s_%s=\").*?(?=\";)", symbol);
+            String assertion = String.format("(?<=v_%s=\").*?(?=\";)", symbol);
+            Pattern pattern = Pattern.compile(assertion);
+            Matcher matcher = pattern.matcher(raw);
+            while (matcher.find()) {
+                String[] metas = matcher.group().split("~");
+                Index index = new Index();
+                index.setSymbol(symbol);
+                index.setName(metas[1]);
+                index.setLatest(Double.parseDouble(metas[3]));
+                index.setClose(Double.parseDouble(metas[4]));
+                index.setOpen(Double.parseDouble(metas[5]));
+                index.setTurnover(Double.parseDouble(metas[6]));
+                index.setChange(Double.parseDouble(metas[31]));
+                index.setChangeRatio(Double.parseDouble(metas[32]));
+                index.setHighest(Double.parseDouble(metas[33]));
+                index.setLowest(Double.parseDouble(metas[34]));
+                index.setTurnover(Double.parseDouble(metas[36]));
+                index.setDailyRatio(Double.parseDouble(metas[43]));
+                //简要信息
 //            index.setSymbol(symbol);
 //            index.setName(metas[1]);
 //            index.setLatest(Double.parseDouble(metas[3]));
 //            index.setChange(Double.parseDouble(metas[4]));
 //            index.setChangeRatio(Double.parseDouble(metas[5]));
-            updateIndex(index);
+                updateIndex(index);
+            }
         }
     }
 
@@ -123,9 +150,26 @@ public class TencentIndexHandler extends AbstractHandler {
         Object[][] data = new Object[indices.size()][indexColumnNames.length];
         for (int i = 0; i < indices.size(); i++) {
             Index index = indices.get(i);
-            data[i] = new Object[]{index.getName(), index.getSymbol(), index.getLatest(), index.getChange(),
-                    index.getChangeRatioString(), index.getHighest(), index.getLowest(), index.getOpen(), index.getClose(),
-                    index.getDailyRatioString(), index.getTurnoverString()};
+            String name = index.getName();
+            String highest = index.getHighestString();
+            String lowest = index.getLowestString();
+            String open = index.getOpenString();
+            String close = index.getCloseString();
+            String dailyRatio = index.getDailyRatioString();
+            String turnover = index.getTurnoverString();
+            if (isInHiddenMode()) {
+                name = PinyinUtils.toPinyin(name);
+            }
+            if (isConciseMode()) {
+                highest = StringResUtils.STR_PLACE_HOLDER;
+                lowest = StringResUtils.STR_PLACE_HOLDER;
+                open = StringResUtils.STR_PLACE_HOLDER;
+                close = StringResUtils.STR_PLACE_HOLDER;
+                dailyRatio = StringResUtils.STR_PLACE_HOLDER;
+                turnover = StringResUtils.STR_PLACE_HOLDER;
+            }
+            data[i] = new Object[]{name, index.getSymbol(), index.getLatest(), index.getChange(),
+                    index.getChangeRatioString(), highest, lowest, open, close, dailyRatio, turnover};
         }
         return data;
     }

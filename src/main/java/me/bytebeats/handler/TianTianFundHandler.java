@@ -4,6 +4,7 @@ import me.bytebeats.HttpClientPool;
 import me.bytebeats.LogUtil;
 import me.bytebeats.meta.Fund;
 import me.bytebeats.tool.GsonUtils;
+import me.bytebeats.tool.PinyinUtils;
 import me.bytebeats.tool.StringResUtils;
 
 import javax.swing.*;
@@ -11,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TianTianFundHandler extends AbstractHandler {
 
@@ -27,7 +30,13 @@ public class TianTianFundHandler extends AbstractHandler {
 
     @Override
     public String[] getColumnNames() {
-        return handleColumnNames(fundColumnNames);
+        String[] columns = handleColumnNames(fundColumnNames);
+        if (isConciseMode()) {
+            for (int i = columns.length - 1; i < columns.length; i++) {
+                columns[i] = StringResUtils.STR_PLACE_HOLDER;
+            }
+        }
+        return columns;
     }
 
     @Override
@@ -77,8 +86,12 @@ public class TianTianFundHandler extends AbstractHandler {
      */
 
     private void parse(String entity) {
-        String json = entity.substring(8, entity.length() - 2);
-        updateFund(GsonUtils.fromJson(json, Fund.class));
+        String regExp = "(?<=jsonpgz\\()[^)]+";//正则表达式中的零宽断言, 该语句表示匹配 jsonpgz(xxx) 中的 xxx
+        Pattern pattern = Pattern.compile(regExp);
+        Matcher matcher = pattern.matcher(entity);
+        while (matcher.find()) {
+            updateFund(GsonUtils.fromJson(matcher.group(), Fund.class));
+        }
     }
 
     @Override
@@ -105,9 +118,17 @@ public class TianTianFundHandler extends AbstractHandler {
     public Object[][] convert2Data() {
         Object[][] data = new Object[funds.size()][fundColumnNames.length];
         for (int i = 0; i < funds.size(); i++) {
-            Fund index = funds.get(i);
-            data[i] = new Object[]{index.getName(), index.getFundcode(), index.getDwjz(),
-                    index.getGsz(), index.getEstimateNetValueRatio(), index.getGztime()};
+            Fund fund = funds.get(i);
+            String name = fund.getName();
+            String time = fund.getGztime();
+            if (isInHiddenMode()) {
+                name = PinyinUtils.toPinyin(name);
+            }
+            if (isConciseMode()) {
+                time = StringResUtils.STR_PLACE_HOLDER;
+            }
+            data[i] = new Object[]{name, fund.getFundcode(), fund.getDwjz(), fund.getGsz(),
+                    fund.getEstimateNetValueRatio(), time};
         }
         return data;
     }

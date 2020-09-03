@@ -1,11 +1,11 @@
 package me.bytebeats.tool;
 
 public class StringResUtils {
-    public static final String US_STOCK = "美股";
-    public static final String HK_STOCK = "港股";
-    public static final String SH_STOCK = "上证";
-    public static final String SZ_STOCK = "深证";
-    public static final String INDICES = "重要指数";
+    public static final String US_STOCK = "US";
+    public static final String HK_STOCK = "HK";
+    public static final String SH_STOCK = "SH";
+    public static final String SZ_STOCK = "SZ";
+    public static final String INDICES = "Index";
     public static final String QT_STOCK_URL = "http://qt.gtimg.cn/q=";//腾讯股票数据接口
     public static final String STOCK_NAME = "股票名称";
     public static final String SYMBOL = "代码";
@@ -27,10 +27,13 @@ public class StringResUtils {
     public static final String INDEX_DAILY_RATIO = "日振幅";
 
     public static final String TIANTIAN_FUND_URL = "http://fundgz.1234567.com.cn/js/%s.js?rt=%d";//天天基金数据接口
-    public static final String FUND = "基金";
+    public static final String FUND = "Fund";
     public static final String FUND_NAME = "名称";
     public static final String FUND_CODE = "代码";
     public static final String FUND_NET_VALUE_DATE = "单位净值";
     public static final String FUND_NET_VALUE_ESTIMATED = "最新估值";
     public static final String FUND_NET_VALUE_ESTIMATED_DATE = "估值时间";
+
+
+    public static final String STR_PLACE_HOLDER = "--";
 }
