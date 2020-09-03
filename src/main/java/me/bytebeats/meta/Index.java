@@ -74,12 +74,20 @@ public class Index {
         return open;
     }
 
+    public String getOpenString() {
+        return String.valueOf(open);
+    }
+
     public void setOpen(double open) {
         this.open = open;
     }
 
     public double getClose() {
         return close;
+    }
+
+    public String getCloseString() {
+        return String.valueOf(close);
     }
 
     public void setClose(double close) {
@@ -90,12 +98,20 @@ public class Index {
         return lowest;
     }
 
+    public String getLowestString() {
+        return String.valueOf(lowest);
+    }
+
     public void setLowest(double lowest) {
         this.lowest = lowest;
     }
 
     public double getHighest() {
         return highest;
+    }
+
+    public String getHighestString() {
+        return String.valueOf(highest);
     }
 
     public void setHighest(double highest) {

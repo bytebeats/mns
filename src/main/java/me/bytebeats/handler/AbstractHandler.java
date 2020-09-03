@@ -117,7 +117,7 @@ public abstract class AbstractHandler implements UISettingProvider {
             }
             return columns;
         } else {
-            return columnNames;
+            return columnNames.clone();
         }
     }
 
