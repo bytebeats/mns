@@ -12,15 +12,23 @@ IntelliJ IDEA平台插件. 支持查看股票实时行情. 支持美股, 港股,
 
 Settings:
 
-![Setting](/mns_screen_shot_settings.png)
+![Setting](screenshots/mns_screenshot_3.png)
 
 US stocks:
 
-![Detail](/mns_screen_shot_us.png)
+![Detail](screenshots/mns_screenshot_2.png)
 
 Core indices:
 
-![Index](/mns_screen_shot_index.png)
+![Index](screenshots/mns_screenshot_1.png)
+
+Funds:
+
+![Index](screenshots/mns_screenshot_5.png)
+
+Concise Mode & Hidden Mode:
+
+![Index](screenshots/mns_screenshot_4.png)
 
 
 # Changes
@@ -53,9 +61,9 @@ Core indices:
   
 # TODO
 * **<s>基金</s>**
-* **股票盘口数据**
-* **股票实时资金流向**
-* **基金行情图**
-* **查看基金公司**
-* **搜索基金**
+* **<b>股票盘口数据</b>**
+* **<b>股票实时资金流向</b>**
+* **<b>基金行情图</b>**
+* **<b>查看基金公司</b>**
+* **<b>搜索基金</b>**
 * **<b>...</b>**

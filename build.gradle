@@ -7,6 +7,7 @@ group 'me.bytebeats'
 version '1.5.3'
 
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
     mavenCentral()
@@ -15,14 +16,14 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
-    compile 'com.github.promeg:tinypinyin:2.0.3'
+    implementation 'com.github.promeg:tinypinyin:2.0.3'
 }
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
     version '2020.2'
-    intellij.updateSinceUntilBuild true
-    intellij.sameSinceUntilBuild true
+    updateSinceUntilBuild false
+//    intellij.sameSinceUntilBuild true
 }
 patchPluginXml {
     changeNotes """
@@ -40,8 +41,8 @@ patchPluginXml {
       v1.5.2 代码优化, 以及 Android Studio 上面中文乱码的问题.<br>
       v1.5.3 使用零宽断言解析jsonp, 并激活了简洁模式.<br>
       """
-    sinceBuild '173.*'
-    untilBuild '202.*'
+//    sinceBuild '173.*'
+//    untilBuild '202.*'
 }
 
 task move(type: Copy) {
