@@ -20,9 +20,9 @@ public class TianTianFundHandler extends AbstractHandler {
     public static final long REFRESH_INTERVAL = 10L * 1000L;
 
     protected List<Fund> funds = new ArrayList<>();
-    private final int[] fundTabWidths = {0, 0, 0, 0, 0, 0};
-    private final String[] fundColumnNames = {StringResUtils.FUND_NAME, StringResUtils.FUND_CODE, StringResUtils.FUND_NET_VALUE_DATE,
-            StringResUtils.FUND_NET_VALUE_ESTIMATED, StringResUtils.RISE_AND_FALL_RATIO, StringResUtils.FUND_NET_VALUE_ESTIMATED_DATE};
+    private final int[] fundTabWidths = {0, 0, 0, 0, 0};
+    private final String[] fundColumnNames = {StringResUtils.FUND_NAME, StringResUtils.FUND_CODE,
+            StringResUtils.FUND_NET_VALUE_DATE, StringResUtils.FUND_NET_VALUE_ESTIMATED, StringResUtils.RISE_AND_FALL_RATIO};
 
     public TianTianFundHandler(JTable table, JLabel label) {
         super(table, label);
@@ -30,13 +30,7 @@ public class TianTianFundHandler extends AbstractHandler {
 
     @Override
     public String[] getColumnNames() {
-        String[] columns = handleColumnNames(fundColumnNames);
-        if (isConciseMode()) {
-            for (int i = columns.length - 1; i < columns.length; i++) {
-                columns[i] = StringResUtils.STR_PLACE_HOLDER;
-            }
-        }
-        return columns;
+        return handleColumnNames(fundColumnNames);
     }
 
     @Override
@@ -120,15 +114,11 @@ public class TianTianFundHandler extends AbstractHandler {
         for (int i = 0; i < funds.size(); i++) {
             Fund fund = funds.get(i);
             String name = fund.getName();
-            String time = fund.getGztime();
             if (isInHiddenMode()) {
                 name = PinyinUtils.toPinyin(name);
             }
-            if (isConciseMode()) {
-                time = StringResUtils.STR_PLACE_HOLDER;
-            }
             data[i] = new Object[]{name, fund.getFundcode(), fund.getDwjz(), fund.getGsz(),
-                    fund.getEstimateNetValueRatio(), time};
+                    fund.getEstimateNetValueRatio()};
         }
         return data;
     }

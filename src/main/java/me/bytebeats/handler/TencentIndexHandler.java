@@ -19,11 +19,9 @@ public class TencentIndexHandler extends AbstractHandler {
     public static final long REFRESH_INTERVAL = 5L * 1000L;
 
     protected List<Index> indices = new ArrayList<>();
-    private final int[] IndexTabWidths = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    private final String[] indexColumnNames = {StringResUtils.INDEX_NAME, StringResUtils.SYMBOL, StringResUtils.INDEX_LATEST,
-            StringResUtils.RISE_AND_FALL, StringResUtils.RISE_AND_FALL_RATIO, StringResUtils.INDEX_HIGHEST,
-            StringResUtils.INDEX_LOWEST, StringResUtils.INDEX_OPEN, StringResUtils.INDEX_CLOSE,
-            StringResUtils.INDEX_DAILY_RATIO, StringResUtils.TURNOVER};
+    private final int[] IndexTabWidths = {0, 0, 0, 0, 0};
+    private final String[] indexColumnNames = {StringResUtils.INDEX_NAME, StringResUtils.SYMBOL,
+            StringResUtils.INDEX_LATEST, StringResUtils.RISE_AND_FALL, StringResUtils.RISE_AND_FALL_RATIO};
 
     public TencentIndexHandler(JTable table, JLabel label) {
         super(table, label);
@@ -31,13 +29,7 @@ public class TencentIndexHandler extends AbstractHandler {
 
     @Override
     public String[] getColumnNames() {
-        String[] columns = handleColumnNames(indexColumnNames);
-        if (isConciseMode()) {
-            for (int i = columns.length - 6; i < columns.length; i++) {
-                columns[i] = StringResUtils.STR_PLACE_HOLDER;
-            }
-        }
-        return columns;
+        return handleColumnNames(indexColumnNames);
     }
 
     @Override
@@ -94,32 +86,30 @@ public class TencentIndexHandler extends AbstractHandler {
         for (int i = 0; i < symbols.size(); i++) {
             String symbol = symbols.get(i);
             String raw = raws[i];
-//            简要信息接口解析的断言
-//            String assertion = String.format("(?<=v_s_%s=\").*?(?=\";)", symbol);
             String assertion = String.format("(?<=v_%s=\").*?(?=\";)", symbol);
             Pattern pattern = Pattern.compile(assertion);
             Matcher matcher = pattern.matcher(raw);
             while (matcher.find()) {
                 String[] metas = matcher.group().split("~");
                 Index index = new Index();
-                index.setSymbol(symbol);
-                index.setName(metas[1]);
-                index.setLatest(Double.parseDouble(metas[3]));
-                index.setClose(Double.parseDouble(metas[4]));
-                index.setOpen(Double.parseDouble(metas[5]));
-                index.setTurnover(Double.parseDouble(metas[6]));
-                index.setChange(Double.parseDouble(metas[31]));
-                index.setChangeRatio(Double.parseDouble(metas[32]));
-                index.setHighest(Double.parseDouble(metas[33]));
-                index.setLowest(Double.parseDouble(metas[34]));
-                index.setTurnover(Double.parseDouble(metas[36]));
-                index.setDailyRatio(Double.parseDouble(metas[43]));
+//                index.setSymbol(symbol);
+//                index.setName(metas[1]);
+//                index.setLatest(Double.parseDouble(metas[3]));
+//                index.setClose(Double.parseDouble(metas[4]));
+//                index.setOpen(Double.parseDouble(metas[5]));
+//                index.setTurnover(Double.parseDouble(metas[6]));
+//                index.setChange(Double.parseDouble(metas[31]));
+//                index.setChangeRatio(Double.parseDouble(metas[32]));
+//                index.setHighest(Double.parseDouble(metas[33]));
+//                index.setLowest(Double.parseDouble(metas[34]));
+//                index.setTurnover(Double.parseDouble(metas[36]));
+//                index.setDailyRatio(Double.parseDouble(metas[43]));
                 //简要信息
-//            index.setSymbol(symbol);
-//            index.setName(metas[1]);
-//            index.setLatest(Double.parseDouble(metas[3]));
-//            index.setChange(Double.parseDouble(metas[4]));
-//            index.setChangeRatio(Double.parseDouble(metas[5]));
+                index.setName(metas[1]);
+                index.setSymbol(symbol);
+                index.setLatest(Double.parseDouble(metas[3]));
+                index.setChange(Double.parseDouble(metas[4]));
+                index.setChangeRatio(Double.parseDouble(metas[5]));
                 updateIndex(index);
             }
         }
@@ -169,7 +159,7 @@ public class TencentIndexHandler extends AbstractHandler {
                 turnover = StringResUtils.STR_PLACE_HOLDER;
             }
             data[i] = new Object[]{name, index.getSymbol(), index.getLatest(), index.getChange(),
-                    index.getChangeRatioString(), highest, lowest, open, close, dailyRatio, turnover};
+                    index.getChangeRatioString()};//, highest, lowest, open, close, dailyRatio, turnover
         }
         return data;
     }
