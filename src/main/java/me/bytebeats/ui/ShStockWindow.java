@@ -37,8 +37,8 @@ public class ShStockWindow implements SymbolParser {
 
     @Override
     public String prefix() {
-        return "sh";//实时数据
-//        return "s_sh";//简要信息
+//        return "sh";//实时数据
+        return "s_sh";//简要信息
     }
 
     @Override

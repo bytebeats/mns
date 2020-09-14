@@ -37,8 +37,8 @@ public class SzStockWindow implements SymbolParser {
 
     @Override
     public String prefix() {
-        return "sz";//实时数据
-//        return "s_sz";//简要信息
+//        return "sz";//实时数据
+        return "s_sz";//简要信息
     }
 
     @Override

@@ -55,8 +55,8 @@ public class UsStockWindow implements ToolWindowFactory, SymbolParser {
 
     @Override
     public String prefix() {
-        return "us";//实时数据
-//        return "s_us";//简要信息
+//        return "us";//实时数据
+        return "s_us";//简要信息
     }
 
     @Override

@@ -36,8 +36,8 @@ public class CoreIndicesWindow implements SymbolParser {
 
     @Override
     public String prefix() {
-        return "";//实时数据
-//        return "s_";//简要信息
+//        return "";//实时数据
+        return "s_";//简要信息
     }
 
     @Override

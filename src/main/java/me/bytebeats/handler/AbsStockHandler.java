@@ -22,10 +22,9 @@ public abstract class AbsStockHandler extends AbstractHandler implements UISetti
 
     protected final List<Stock> stocks = new ArrayList<>();
 
-    protected final int[] stockTabWidths = {0, 0, 0, 0, 0, 0, 0, 0};
-    protected final String[] stockColumnNames = {StringResUtils.STOCK_NAME, StringResUtils.SYMBOL, StringResUtils.STOCK_LATEST_PRICE,
-            StringResUtils.RISE_AND_FALL, StringResUtils.RISE_AND_FALL_RATIO, StringResUtils.STOCK_VOLUME,
-            StringResUtils.TURNOVER, StringResUtils.STOCK_MKT_VALUE};
+    protected final int[] stockTabWidths = {0, 0, 0, 0, 0};
+    protected final String[] stockColumnNames = {StringResUtils.STOCK_NAME, StringResUtils.SYMBOL,
+            StringResUtils.STOCK_LATEST_PRICE, StringResUtils.RISE_AND_FALL, StringResUtils.RISE_AND_FALL_RATIO};
 
     public AbsStockHandler(JTable table, JLabel label) {
         super(table, label);
@@ -57,19 +56,11 @@ public abstract class AbsStockHandler extends AbstractHandler implements UISetti
         for (int i = 0; i < stocks.size(); i++) {
             Stock stock = stocks.get(i);
             String name = stock.getName();
-            String volume = stock.getVolumeString();
-            String turnover = stock.getTurnoverString();
-            String mktVal = stock.getMarketValueString();
             if (isInHiddenMode()) {
                 name = PinyinUtils.toPinyin(name);
             }
-            if (isConciseMode()) {
-                volume = StringResUtils.STR_PLACE_HOLDER;
-                turnover = StringResUtils.STR_PLACE_HOLDER;
-                mktVal = StringResUtils.STR_PLACE_HOLDER;
-            }
             data[i] = new Object[]{name, stock.getSymbol(), stock.getLatestPrice(), stock.getChange(),
-                    stock.getChangeRatioString(), volume, turnover, mktVal};
+                    stock.getChangeRatioString()};
         }
         return data;
     }

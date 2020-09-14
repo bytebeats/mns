@@ -1,5 +1,5 @@
 # mns: Money Never Sleeps!
-IntelliJ IDEA平台插件. 支持查看股票实时行情. 支持美股, 港股, A股.
+IntelliJ IDEA平台插件. 支持查看股票实时行情. 支持美股, 港股, A股和基金.
 
 # Installation:
 * IntelliJ IDEA -> Preferences -> Plugins -> Install Plugin From Disk..., 从本项目中下载 `lib/mns-x.x.x.jar`文件并选中, 安装.
@@ -58,6 +58,8 @@ Concise Mode & Hidden Mode:
    * 代码优化, 以及 Android Studio 上面中文乱码的问题.<br>
 * V1.5.3
    * 使用零宽断言解析jsonp, 并激活了简洁模式.<br>
+* V1.6.0
+   * 添加了股票详情.<br>
   
 # TODO
 * **<s>基金</s>**

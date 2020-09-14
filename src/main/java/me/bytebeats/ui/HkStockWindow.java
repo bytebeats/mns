@@ -37,8 +37,8 @@ public class HkStockWindow implements SymbolParser {
 
     @Override
     public String prefix() {
-        return "hk";//实时数据
-//        return "s_hk";//简要信息
+//        return "hk";//实时数据
+        return "s_hk";//简要信息
     }
 
     @Override
