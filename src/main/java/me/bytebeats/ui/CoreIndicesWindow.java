@@ -1,5 +1,6 @@
 package me.bytebeats.ui;
 
+import me.bytebeats.OnSymbolSelectedListener;
 import me.bytebeats.SymbolParser;
 import me.bytebeats.handler.TencentIndexHandler;
 
@@ -19,6 +20,10 @@ public class CoreIndicesWindow implements SymbolParser {
 
     public CoreIndicesWindow() {
         handler = new TencentIndexHandler(indices_table, indices_timestamp);
+    }
+
+    public void setOnSymbolSelectedListener(OnSymbolSelectedListener listener) {
+        handler.setOnSymbolSelectedListener(listener);
     }
 
     public JPanel getJPanel() {

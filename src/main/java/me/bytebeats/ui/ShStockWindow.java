@@ -1,5 +1,6 @@
 package me.bytebeats.ui;
 
+import me.bytebeats.OnSymbolSelectedListener;
 import me.bytebeats.SymbolParser;
 import me.bytebeats.handler.AbsStockHandler;
 import me.bytebeats.handler.TencentStockHandler;
@@ -20,6 +21,10 @@ public class ShStockWindow implements SymbolParser {
 
     public ShStockWindow() {
         handler = new TencentStockHandler(sh_stock_table, sh_stock_timestamp);
+    }
+
+    public void setOnSymbolSelectedListener(OnSymbolSelectedListener listener) {
+        handler.setOnSymbolSelectedListener(listener);
     }
 
     public JPanel getJPanel() {

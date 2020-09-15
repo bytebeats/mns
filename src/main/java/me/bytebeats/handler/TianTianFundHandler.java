@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 
 public class TianTianFundHandler extends AbstractHandler {
 
-    public static final long REFRESH_INTERVAL = 10L * 1000L;
+    private static final long REFRESH_INTERVAL = 10L * 1000L;
 
     protected List<Fund> funds = new ArrayList<>();
     private final int[] fundTabWidths = {0, 0, 0, 0, 0};

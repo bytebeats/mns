@@ -12,7 +12,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TencentStockHandler extends AbsStockHandler {
-    public static final long REFRESH_INTERVAL = 3L * 1000L;
+    private static final long REFRESH_INTERVAL = 3L * 1000L;
 
     public TencentStockHandler(JTable table, JLabel label) {
         super(table, label);

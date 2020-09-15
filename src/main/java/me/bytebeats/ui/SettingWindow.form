@@ -18,6 +18,8 @@
     <rowspec value="center:max(d;4px):noGrow"/>
     <rowspec value="top:3dlu:noGrow"/>
     <rowspec value="center:max(d;4px):noGrow"/>
+    <rowspec value="top:3dlu:noGrow"/>
+    <rowspec value="center:max(d;4px):noGrow"/>
     <colspec value="fill:d:noGrow"/>
     <colspec value="left:4dlu:noGrow"/>
     <colspec value="fill:d:grow"/>
@@ -178,7 +180,7 @@
         </constraints>
         <properties>
           <horizontalTextPosition value="10"/>
-          <text value="简洁模式"/>
+          <text value="简洁模式(废弃)"/>
         </properties>
       </component>
       <component id="49501" class="javax.swing.JLabel" binding="consise_mode_desc">
@@ -225,6 +227,15 @@
           <forms defaultalign-horz="false"/>
         </constraints>
         <properties/>
+      </component>
+      <component id="3c94e" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="18" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <forms/>
+        </constraints>
+        <properties>
+          <text value="更新: 点击列表项更新详情窗口"/>
+        </properties>
       </component>
     </children>
   </grid>

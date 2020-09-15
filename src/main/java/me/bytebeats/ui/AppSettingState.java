@@ -20,6 +20,8 @@ public class AppSettingState implements PersistentStateComponent<AppSettingState
     public final static String SZ_STOCKS = "002352";
     public final static String DAILY_FUNDS = "320003;002621;519674";
     public final static String ALL_INDICES = "usDJI;usIXIC;hkHSI;hkHSCEI;hkHSCCI;sh000001;sz399001;sz399006;sh000300;sh000016;sz399903";
+    public final static String STOCK_SYMBOL = "sh600519";
+    public final static String FUND_SYMBOL = "570008";
 
     private boolean isRedRise = true;
     private boolean isHiddenMode = false;
@@ -29,6 +31,8 @@ public class AppSettingState implements PersistentStateComponent<AppSettingState
     private String shStocks = "600036";
     private String szStocks = "002352";
     private String dailyFunds = "320003;002621;519674";
+    private String stockSymbol = "usTSLA";
+    private String fundSymbol = "570008";
 
     public static AppSettingState getInstance() {
         return ServiceManager.getService(AppSettingState.class);
@@ -47,6 +51,8 @@ public class AppSettingState implements PersistentStateComponent<AppSettingState
             shStocks = instance.shStocks;
             szStocks = instance.szStocks;
             dailyFunds = instance.dailyFunds;
+            stockSymbol = instance.stockSymbol;
+            fundSymbol = instance.fundSymbol;
             return true;
         }
     }
@@ -60,6 +66,8 @@ public class AppSettingState implements PersistentStateComponent<AppSettingState
         setShStocks(SH_STOCKS);
         setSzStocks(SZ_STOCKS);
         setDailyFunds(DAILY_FUNDS);
+        setStockSymbol(STOCK_SYMBOL);
+        setFundSymbol(FUND_SYMBOL);
     }
 
     @Nullable
@@ -135,5 +143,21 @@ public class AppSettingState implements PersistentStateComponent<AppSettingState
 
     public void setDailyFunds(String dailyFunds) {
         this.dailyFunds = dailyFunds;
+    }
+
+    public String getStockSymbol() {
+        return stockSymbol;
+    }
+
+    public void setStockSymbol(String stockSymbol) {
+        this.stockSymbol = stockSymbol;
+    }
+
+    public String getFundSymbol() {
+        return fundSymbol;
+    }
+
+    public void setFundSymbol(String fundSymbol) {
+        this.fundSymbol = fundSymbol;
     }
 }

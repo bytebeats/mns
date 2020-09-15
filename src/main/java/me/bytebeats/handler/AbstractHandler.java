@@ -1,6 +1,7 @@
 package me.bytebeats.handler;
 
 import com.intellij.ui.JBColor;
+import me.bytebeats.OnSymbolSelectedListener;
 import me.bytebeats.UISettingProvider;
 import me.bytebeats.tool.PinyinUtils;
 import me.bytebeats.tool.StringResUtils;
@@ -75,25 +76,7 @@ public abstract class AbstractHandler implements UISettingProvider {
                     } catch (NumberFormatException e) {
                         chg = 0.0;
                     }
-                    if (!isInHiddenMode()) {
-                        if (chg == 0) {
-                            setForeground(JBColor.DARK_GRAY);
-                        } else if (isRedRise()) {
-                            if (chg > 0) {
-                                setForeground(JBColor.RED);
-                            } else {
-                                setForeground(JBColor.GREEN);
-                            }
-                        } else {
-                            if (chg > 0) {
-                                setForeground(JBColor.GREEN);
-                            } else {
-                                setForeground(JBColor.RED);
-                            }
-                        }
-                    } else {
-                        setForeground(JBColor.DARK_GRAY);
-                    }
+                    setForeground(getTextColor(chg));
                     return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
                 }
             });
