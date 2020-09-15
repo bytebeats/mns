@@ -90,7 +90,7 @@ Concise Mode & Hidden Mode:
 <br>使用支付宝/微信支付捐赠后请留言或者通过邮件提供您的名字/昵称和网站，格式为：</br>
 <br>名字/昵称 [<网站>][：留言]（网站与留言为可选部分，例子：bytebeats <github.com/bytebeats>：加油！）</br>
 <br>您提供的名字、网站和捐赠总额将会被添加到捐赠者列表中。</br>
-<br>邮箱地址：[happychinapc@gmail.com](happychinapc@gmail.com)</br>
+<br>邮箱地址：<a href="mailto:happychinapc@gmail.com?subject=mns捐赠&body=你做的工作很有意义, 加油!">happychinapc@gmail.com</a></br>
 <br>感谢您的支持！</br>
 
 # More plugins
