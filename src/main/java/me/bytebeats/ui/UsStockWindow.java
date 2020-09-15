@@ -6,6 +6,7 @@ import com.intellij.openapi.wm.ToolWindowFactory;
 import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentFactory;
 import me.bytebeats.LogUtil;
+import me.bytebeats.OnSymbolSelectedListener;
 import me.bytebeats.SymbolParser;
 import me.bytebeats.handler.AbsStockHandler;
 import me.bytebeats.handler.TencentStockHandler;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class UsStockWindow implements ToolWindowFactory, SymbolParser {
+public class UsStockWindow implements ToolWindowFactory, SymbolParser, OnSymbolSelectedListener {
     private JPanel us_stock_window;
     private JScrollPane us_stock_scroll;
     private JTable us_stock_table;
@@ -31,6 +32,7 @@ public class UsStockWindow implements ToolWindowFactory, SymbolParser {
     private final SzStockWindow szStockWindow = new SzStockWindow();
     private final CoreIndicesWindow indciesWindow = new CoreIndicesWindow();
     private final FundWindow fundWindow = new FundWindow();
+    private final StockDetailWindow stockDetailWindow = new StockDetailWindow();
 
     @Override
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
@@ -42,6 +44,7 @@ public class UsStockWindow implements ToolWindowFactory, SymbolParser {
         Content szStock = contentFactory.createContent(szStockWindow.getJPanel(), StringResUtils.SZ_STOCK, true);
         Content indicesContent = contentFactory.createContent(indciesWindow.getJPanel(), StringResUtils.INDICES, true);
         Content fundContent = contentFactory.createContent(fundWindow.getJPanel(), StringResUtils.FUND, true);
+        Content stockDetailContent = contentFactory.createContent(stockDetailWindow.getJPanel(), StringResUtils.STOCK_DETAIL, true);
 
         //add stocks
         toolWindow.getContentManager().addContent(usStock);
@@ -50,6 +53,7 @@ public class UsStockWindow implements ToolWindowFactory, SymbolParser {
         toolWindow.getContentManager().addContent(szStock);
         toolWindow.getContentManager().addContent(indicesContent);
         toolWindow.getContentManager().addContent(fundContent);
+        toolWindow.getContentManager().addContent(stockDetailContent);
         us_refresh.addActionListener(e -> refreshHandler());
     }
 
@@ -78,12 +82,26 @@ public class UsStockWindow implements ToolWindowFactory, SymbolParser {
     @Override
     public void init(@NotNull ToolWindow toolWindow) {
         handler = new TencentStockHandler(us_stock_table, us_stock_timestamp);
+        handler.setOnSymbolSelectedListener(this);
+        hkStockWindow.setOnSymbolSelectedListener(this);
+        shStockWindow.setOnSymbolSelectedListener(this);
+        szStockWindow.setOnSymbolSelectedListener(this);
+        indciesWindow.setOnSymbolSelectedListener(this);
         refreshHandler();
         hkStockWindow.onInit();
         shStockWindow.onInit();
         szStockWindow.onInit();
         indciesWindow.onInit();
         fundWindow.onInit();
+        stockDetailWindow.onInit();
+    }
+
+    @Override
+    public void onSelected(String symbol) {
+        if (symbol != null && symbol.equals(stockDetailWindow.getSymbol())) {
+            return;
+        }
+        stockDetailWindow.setSymbol(symbol);
     }
 
     private void refreshHandler() {

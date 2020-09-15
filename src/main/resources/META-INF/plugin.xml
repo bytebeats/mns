@@ -29,7 +29,7 @@
       v1.5.1 添加了plugin icon.<br>
       v1.5.2 代码优化, 以及 Android Studio 上面中文乱码的问题.<br>
       v1.5.3 使用零宽断言解析jsonp, 并激活了简洁模式.<br>
-      v1.6.0 添加了股票详情.<br>
+      v1.6.0 添加了股票详情窗口.<br>
     ]]></change-notes>
 
     <depends>com.intellij.modules.platform</depends>

@@ -19,7 +19,11 @@ public class Stock {
     }
 
     public String getSymbol() {
-        return symbol;
+        if (symbol.contains("_")) {
+            return symbol.substring(symbol.indexOf("_") + 1);
+        } else {
+            return symbol;
+        }
     }
 
     public void setSymbol(String symbol) {

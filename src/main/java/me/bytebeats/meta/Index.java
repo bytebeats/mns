@@ -23,6 +23,9 @@ public class Index {
     private double dailyRatio = 0.0;//日振幅
 
     public String getSymbol() {
+        if (symbol.contains("_")) {
+            return symbol.substring(symbol.indexOf("_") + 1);
+        }
         return symbol;
     }
 

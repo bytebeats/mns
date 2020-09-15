@@ -2,6 +2,7 @@ package me.bytebeats.handler;
 
 import me.bytebeats.HttpClientPool;
 import me.bytebeats.LogUtil;
+import me.bytebeats.OnSymbolSelectedListener;
 import me.bytebeats.meta.Index;
 import me.bytebeats.tool.PinyinUtils;
 import me.bytebeats.tool.StringResUtils;
@@ -23,8 +24,23 @@ public class TencentIndexHandler extends AbstractHandler {
     private final String[] indexColumnNames = {StringResUtils.INDEX_NAME, StringResUtils.SYMBOL,
             StringResUtils.INDEX_LATEST, StringResUtils.RISE_AND_FALL, StringResUtils.RISE_AND_FALL_RATIO};
 
+    private OnSymbolSelectedListener listener;
+
     public TencentIndexHandler(JTable table, JLabel label) {
         super(table, label);
+    }
+
+    public void setOnSymbolSelectedListener(OnSymbolSelectedListener listener) {
+        this.listener = listener;
+        jTable.setCellSelectionEnabled(true);
+        ListSelectionModel model = jTable.getSelectionModel();
+        model.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        model.addListSelectionListener(e -> {
+            int selectedRowIdx = jTable.getSelectedRow();
+            if (selectedRowIdx > -1 && listener != null) {
+                listener.onSelected(indices.get(selectedRowIdx).getSymbol());
+            }
+        });
     }
 
     @Override

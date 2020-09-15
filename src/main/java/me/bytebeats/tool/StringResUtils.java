@@ -36,4 +36,5 @@ public class StringResUtils {
 
 
     public static final String STR_PLACE_HOLDER = "--";
+    public static final String STOCK_DETAIL = "Details";
 }

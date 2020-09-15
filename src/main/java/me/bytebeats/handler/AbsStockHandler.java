@@ -1,5 +1,6 @@
 package me.bytebeats.handler;
 
+import me.bytebeats.OnSymbolSelectedListener;
 import me.bytebeats.UISettingProvider;
 import me.bytebeats.meta.Stock;
 import me.bytebeats.tool.PinyinUtils;
@@ -26,8 +27,27 @@ public abstract class AbsStockHandler extends AbstractHandler implements UISetti
     protected final String[] stockColumnNames = {StringResUtils.STOCK_NAME, StringResUtils.SYMBOL,
             StringResUtils.STOCK_LATEST_PRICE, StringResUtils.RISE_AND_FALL, StringResUtils.RISE_AND_FALL_RATIO};
 
+    private OnSymbolSelectedListener listener;
+
     public AbsStockHandler(JTable table, JLabel label) {
         super(table, label);
+    }
+
+    public OnSymbolSelectedListener getListener() {
+        return listener;
+    }
+
+    public void setOnSymbolSelectedListener(OnSymbolSelectedListener listener) {
+        this.listener = listener;
+        jTable.setCellSelectionEnabled(true);
+        ListSelectionModel model = jTable.getSelectionModel();
+        model.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        model.addListSelectionListener(e -> {
+            int selectedRowIdx = jTable.getSelectedRow();
+            if (selectedRowIdx > -1 && listener != null) {
+                listener.onSelected(stocks.get(selectedRowIdx).getSymbol());
+            }
+        });
     }
 
     @Override
