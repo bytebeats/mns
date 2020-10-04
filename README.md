@@ -96,7 +96,7 @@ Concise Mode & Hidden Mode:
 # More plugins
 * [Polyglot](https://github.com/bytebeats/polyglot) Translators
 * [kfiglet](https://github.com/bytebeats/kfiglet) Ascii Arts
-* JsonParser
+* Json Master
 
 # Contributors
 
