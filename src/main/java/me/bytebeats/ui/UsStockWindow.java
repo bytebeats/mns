@@ -5,7 +5,6 @@ import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowFactory;
 import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentFactory;
-import me.bytebeats.LogUtil;
 import me.bytebeats.OnSymbolSelectedListener;
 import me.bytebeats.SymbolParser;
 import me.bytebeats.handler.AbsStockHandler;
@@ -36,7 +35,6 @@ public class UsStockWindow implements ToolWindowFactory, SymbolParser, OnSymbolS
 
     @Override
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
-        LogUtil.init(project);
         ContentFactory contentFactory = ContentFactory.SERVICE.getInstance();
         Content usStock = contentFactory.createContent(us_stock_window, StringResUtils.US_STOCK, true);
         Content hkStock = contentFactory.createContent(hkStockWindow.getJPanel(), StringResUtils.HK_STOCK, true);
