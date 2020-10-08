@@ -2,6 +2,8 @@ package me.bytebeats.tool;
 
 import com.google.gson.Gson;
 
+import java.lang.reflect.Type;
+
 /**
  * @author <a href="https://github.com/bytebeats">bytebeats</a>
  * @email <happychinapc@gmail.com>
@@ -32,6 +34,10 @@ public class GsonUtils {
 
     public static <T> T fromJson(String json, Class<T> tClass) {
         return getInstance().fromJson(json, tClass);
+    }
+
+    public static <T> T fromJson(String json, Type type) {
+        return getInstance().fromJson(json, type);
     }
 
 }

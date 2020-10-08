@@ -19,8 +19,11 @@ public class FundWindow implements SymbolParser {
     private JTable fund_table;
     private JLabel fund_timestamp;
     private JButton fund_sync;
+    private JButton fund_search;
 
     private final TianTianFundHandler handler;
+
+    private FundSearchDialog fundSearchDialog;
 
     public FundWindow() {
         handler = new TianTianFundHandler(fund_table, fund_timestamp);
@@ -32,6 +35,7 @@ public class FundWindow implements SymbolParser {
 
     public void onInit() {
         fund_sync.addActionListener(e -> syncRefresh());
+        fund_search.addActionListener(e -> popSearchDialog());
         syncRefresh();
     }
 
@@ -58,5 +62,15 @@ public class FundWindow implements SymbolParser {
             Arrays.stream(raw.split("[,; ]")).filter(s -> !s.isEmpty()).forEach(s -> symbols.add(prefix() + s));
         }
         return symbols;
+    }
+
+    private void popSearchDialog() {
+        if (fundSearchDialog == null) {
+            fundSearchDialog = new FundSearchDialog();
+            fundSearchDialog.setCallback(() -> syncRefresh());
+            fundSearchDialog.setLocationRelativeTo(null);
+        }
+        fundSearchDialog.pack();
+        fundSearchDialog.setVisible(true);
     }
 }

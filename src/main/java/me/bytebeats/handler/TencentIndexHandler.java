@@ -166,14 +166,6 @@ public class TencentIndexHandler extends AbstractHandler {
             if (isInHiddenMode()) {
                 name = PinyinUtils.toPinyin(name);
             }
-            if (isConciseMode()) {
-                highest = StringResUtils.STR_PLACE_HOLDER;
-                lowest = StringResUtils.STR_PLACE_HOLDER;
-                open = StringResUtils.STR_PLACE_HOLDER;
-                close = StringResUtils.STR_PLACE_HOLDER;
-                dailyRatio = StringResUtils.STR_PLACE_HOLDER;
-                turnover = StringResUtils.STR_PLACE_HOLDER;
-            }
             data[i] = new Object[]{name, index.getSymbol(), index.getLatest(), index.getChange(),
                     index.getChangeRatioString()};//, highest, lowest, open, close, dailyRatio, turnover
         }
