@@ -7,8 +7,6 @@ public interface UISettingProvider {
 
     boolean isRedRise();
 
-    boolean isConciseMode();
-
     default JBColor getTextColor(Double offset) {
         if (isInHiddenMode() || offset == 0.0) {
             return JBColor.DARK_GRAY;

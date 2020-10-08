@@ -1,7 +1,6 @@
 package me.bytebeats.handler;
 
 import com.intellij.ui.JBColor;
-import me.bytebeats.OnSymbolSelectedListener;
 import me.bytebeats.UISettingProvider;
 import me.bytebeats.tool.PinyinUtils;
 import me.bytebeats.tool.StringResUtils;
@@ -112,14 +111,5 @@ public abstract class AbstractHandler implements UISettingProvider {
     @Override
     public boolean isRedRise() {
         return AppSettingState.getInstance().isRedRise();
-    }
-
-    @Override
-    public boolean isConciseMode() {
-        if (AppSettingState.getInstance() != null) {
-            return AppSettingState.getInstance().isConciseMode();
-        } else {
-            return false;
-        }
     }
 }

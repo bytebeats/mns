@@ -171,7 +171,7 @@
           <forms/>
         </constraints>
         <properties>
-          <text value="usDJI;usIXIC;hkHSI;hkHSCEI;hkHSCCI;sh000001;sz399001;sz399006;sh000300;sh000016;sz399903"/>
+          <text value="usDJI;usIXIC;usINX;hkHSI;hkHSCEI;hkHSCCI;sh000001;sz399001;sz399006;sh000300;sh000016;sz399903;sh000011;sz399103;sz399905"/>
         </properties>
       </component>
       <component id="a9502" class="javax.swing.JLabel" binding="daily_fund">

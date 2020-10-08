@@ -2,9 +2,6 @@ package me.bytebeats.ui;
 
 import com.intellij.openapi.options.Configurable;
 import com.intellij.openapi.options.ConfigurationException;
-import me.bytebeats.HttpClientPool;
-import me.bytebeats.LogUtil;
-import me.bytebeats.tool.StringResUtils;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.Nullable;
 
@@ -26,7 +23,6 @@ public class SettingWindow implements Configurable {
     private JCheckBox hide_mode_setting;
     private JLabel sz_stock;
     private JTextField sz_stock_input;
-    private JCheckBox concise_mode;
     private JLabel idx_label;
     private JLabel idx_input_noneditable;
     private JLabel daily_fund;
@@ -76,13 +72,6 @@ public class SettingWindow implements Configurable {
         settingState.setDailyFunds(daily_fund_input.getText());
         settingState.setRedRise(red_rise_green_fall.isSelected());
         settingState.setHiddenMode(hide_mode_setting.isSelected());
-        settingState.setConciseMode(concise_mode.isSelected());
-    }
-
-    @Nullable
-    @Override
-    public String getHelpTopic() {
-        return "Help Topic";
     }
 
     @Override
@@ -108,7 +97,6 @@ public class SettingWindow implements Configurable {
         red_rise_green_fall.setEnabled(!isHidden);
         red_fall_green_rise.setEnabled(!isHidden);
         hide_mode_setting.setSelected(isHidden);
-        concise_mode.setSelected(settings.isConciseMode());
     }
 
     @Override
@@ -120,19 +108,4 @@ public class SettingWindow implements Configurable {
     public void cancel() {
 
     }
-
-//    private void search() {
-//        String keyword = (String) search_cb.getSelectedItem();
-//        try {
-//            if (search_cb.getSelectedIndex() == 0) {//search funds
-//                String entity = HttpClientPool.getInstance().get(StringResUtils.URL_SEARCH_FUND_FIRM);
-//                LogUtil.info(entity);
-//            } else {//search fund firms
-//                String entity = HttpClientPool.getInstance().get(StringResUtils.URL_SEARCH_FUND);
-//                LogUtil.info(entity);
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
 }

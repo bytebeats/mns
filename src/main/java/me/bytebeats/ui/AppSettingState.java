@@ -13,19 +13,17 @@ public class AppSettingState implements PersistentStateComponent<AppSettingState
 
     public final static boolean IS_RED_RISE = true;
     public final static boolean IS_HIDDEN_MODE = false;
-    public final static boolean IS_CONCISE_MODE = false;
     public final static String US_STOCKS = "AAPL;TWTR;TSLA;NFLX;MSFT";
     public final static String HK_STOCKS = "00981;09988;09618";
     public final static String SH_STOCKS = "600036";
     public final static String SZ_STOCKS = "002352";
     public final static String DAILY_FUNDS = "320003;002621;519674";
-    public final static String ALL_INDICES = "usDJI;usIXIC;hkHSI;hkHSCEI;hkHSCCI;sh000001;sz399001;sz399006;sh000300;sh000016;sz399903";
+    public final static String ALL_INDICES = "usDJI;usIXIC;usINX;hkHSI;hkHSCEI;hkHSCCI;sh000001;sz399001;sz399006;sh000300;sh000016;sz399903;sh000011;sz399103;sz399905";
     public final static String STOCK_SYMBOL = "sh600519";
     public final static String FUND_SYMBOL = "570008";
 
     private boolean isRedRise = true;
     private boolean isHiddenMode = false;
-    private boolean isConciseMode = false;
     private String usStocks = "AAPL;TWTR;TSLA;NFLX;MSFT";
     private String hkStocks = "00981;09988;09618";
     private String shStocks = "600036";
@@ -38,29 +36,9 @@ public class AppSettingState implements PersistentStateComponent<AppSettingState
         return ServiceManager.getService(AppSettingState.class);
     }
 
-    public boolean deepCopy(@Nullable AppSettingState instance) {
-        if (instance == null) {
-//            reset();
-            return false;
-        } else {
-            isRedRise = instance.isRedRise;
-            isHiddenMode = instance.isHiddenMode;
-            isConciseMode = instance.isConciseMode;
-            usStocks = instance.usStocks;
-            hkStocks = instance.hkStocks;
-            shStocks = instance.shStocks;
-            szStocks = instance.szStocks;
-            dailyFunds = instance.dailyFunds;
-            stockSymbol = instance.stockSymbol;
-            fundSymbol = instance.fundSymbol;
-            return true;
-        }
-    }
-
     public void reset() {
         setRedRise(IS_RED_RISE);
         setHiddenMode(IS_HIDDEN_MODE);
-        setConciseMode(IS_CONCISE_MODE);
         setUsStocks(US_STOCKS);
         setHkStocks(HK_STOCKS);
         setShStocks(SH_STOCKS);
@@ -95,14 +73,6 @@ public class AppSettingState implements PersistentStateComponent<AppSettingState
 
     public void setHiddenMode(boolean hiddenMode) {
         isHiddenMode = hiddenMode;
-    }
-
-    public boolean isConciseMode() {
-        return isConciseMode;
-    }
-
-    public void setConciseMode(boolean conciseMode) {
-        isConciseMode = conciseMode;
     }
 
     public String getUsStocks() {
@@ -159,5 +129,29 @@ public class AppSettingState implements PersistentStateComponent<AppSettingState
 
     public void setFundSymbol(String fundSymbol) {
         this.fundSymbol = fundSymbol;
+    }
+
+    public boolean addFundSymbol(String fundSymbol) {
+        if (getDailyFunds().contains(fundSymbol)) {
+            return false;
+        }
+        if (getDailyFunds().trim().endsWith(";")) {
+            setDailyFunds(getDailyFunds().trim() + fundSymbol);
+        } else {
+            setDailyFunds(getDailyFunds().trim() + ";" + fundSymbol);
+        }
+        return true;
+    }
+
+    public boolean deleteFundSymbol(String fundSymbol) {
+        if (!getDailyFunds().contains(fundSymbol)) {
+            return false;
+        }
+        if (getDailyFunds().trim().startsWith(fundSymbol)) {
+            setDailyFunds(getDailyFunds().trim().replace(fundSymbol, ""));
+        } else {
+            setDailyFunds(getDailyFunds().trim().replace(";" + fundSymbol, ""));
+        }
+        return true;
     }
 }

@@ -384,13 +384,4 @@ public class StockDetailWindow implements UISettingProvider {
     public boolean isRedRise() {
         return AppSettingState.getInstance().isRedRise();
     }
-
-    @Override
-    public boolean isConciseMode() {
-        if (AppSettingState.getInstance() != null) {
-            return AppSettingState.getInstance().isConciseMode();
-        } else {
-            return false;
-        }
-    }
 }
