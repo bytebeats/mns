@@ -2,8 +2,8 @@
     <id>me.bytebeats.mns</id>
     <name>Money Never Sleeps</name>
     <vendor email="happychinapc@gmail.com" url="https://github.com/bytebeats">bytebeats</vendor>
-    <version>1.6.0</version>
-    <idea-version since-build="173.*" until-build="202.*" />
+    <version>1.7.0</version>
+    <idea-version since-build="173.*"/>
 
     <description><![CDATA[
     mns: Money Never Sleeps!
@@ -35,10 +35,10 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="me.bytebeats.ui.AppSettingState" />
-        <toolWindow icon="/icon_mns.png" anchor="left" id="mns" factoryClass="me.bytebeats.ui.UsStockWindow" />
+        <applicationService serviceImplementation="me.bytebeats.ui.AppSettingState"/>
+        <toolWindow icon="/icon_mns.png" anchor="left" id="mns" factoryClass="me.bytebeats.ui.UsStockWindow"/>
         <applicationConfigurable id="mns_setting" instance="me.bytebeats.ui.SettingWindow"
-            displayName="Money Never Sleeps" />
+                                 displayName="Money Never Sleeps"/>
     </extensions>
 
     <actions>

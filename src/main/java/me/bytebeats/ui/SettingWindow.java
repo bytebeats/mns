@@ -2,6 +2,9 @@ package me.bytebeats.ui;
 
 import com.intellij.openapi.options.Configurable;
 import com.intellij.openapi.options.ConfigurationException;
+import me.bytebeats.HttpClientPool;
+import me.bytebeats.LogUtil;
+import me.bytebeats.tool.StringResUtils;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.Nullable;
 
@@ -16,7 +19,6 @@ public class SettingWindow implements Configurable {
     private JLabel us_stock;
     private JLabel hk_stock;
     private JLabel sh_stock;
-    private JCheckBox mkt_setting;
     private JRadioButton red_rise_green_fall;
     private JRadioButton red_fall_green_rise;
     private JPanel mkt_setting_radio;
@@ -25,11 +27,11 @@ public class SettingWindow implements Configurable {
     private JLabel sz_stock;
     private JTextField sz_stock_input;
     private JCheckBox concise_mode;
-    private JLabel consise_mode_desc;
     private JLabel idx_label;
     private JLabel idx_input_noneditable;
     private JLabel daily_fund;
     private JTextField daily_fund_input;
+    private JLabel mkt_setting_label;
 
     @Nls(capitalization = Nls.Capitalization.Title)
     @Override
@@ -53,12 +55,8 @@ public class SettingWindow implements Configurable {
         });
         hide_mode_setting.addItemListener(e -> {
             boolean hidden = e.getStateChange() == ItemEvent.SELECTED;
-            mkt_setting.setEnabled(!hidden);
             red_rise_green_fall.setEnabled(!hidden);
             red_fall_green_rise.setEnabled(!hidden);
-        });
-        mkt_setting.addItemListener(e -> {
-            //do nothing here, it should be a JLabel other than a JCheckBox.
         });
         return mns_setting;
     }
@@ -122,4 +120,19 @@ public class SettingWindow implements Configurable {
     public void cancel() {
 
     }
+
+//    private void search() {
+//        String keyword = (String) search_cb.getSelectedItem();
+//        try {
+//            if (search_cb.getSelectedIndex() == 0) {//search funds
+//                String entity = HttpClientPool.getInstance().get(StringResUtils.URL_SEARCH_FUND_FIRM);
+//                LogUtil.info(entity);
+//            } else {//search fund firms
+//                String entity = HttpClientPool.getInstance().get(StringResUtils.URL_SEARCH_FUND);
+//                LogUtil.info(entity);
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

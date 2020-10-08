@@ -37,4 +37,9 @@ public class StringResUtils {
 
     public static final String STR_PLACE_HOLDER = "--";
     public static final String STOCK_DETAIL = "Details";
+
+    public static final String FUND_SEARCH_NAME = "基金";
+    public static final String FUND_SEARCH_FIRM = "基金公司";
+    public static final String URL_SEARCH_FUND_FIRM = "http://fund.eastmoney.com/js/jjjz_gs.js";
+    public static final String URL_SEARCH_FUND = "http://fund.eastmoney.com/js/fundcode_search.js";
 }
