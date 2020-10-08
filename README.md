@@ -60,6 +60,8 @@ Concise Mode & Hidden Mode:
    * 使用零宽断言解析jsonp, 并激活了简洁模式.<br>
 * V1.6.0
    * 添加了股票详情窗口.<br>
+* V1.7.0
+   * 添加了基金详情窗口.<br>
   
 # TODO
 * **<b><s>基金</s></b>**
