@@ -87,7 +87,7 @@ Concise Mode & Hidden Mode:
 
     Open Collective | 支付宝/Alipay | 微信/Wechat
     -------------- | -------------- | --------------
-    To-Do | ![alipay](screenshots/alipay_receipt.bmp) | ![wechat](screenshots/wechat_receipt.bmp)
+    To-Do | ![alipay](screenshots/alipay_receipt.png) | ![wechat](screenshots/wechat_receipt.png)
 
 <br>使用支付宝/微信支付捐赠后请留言或者通过邮件提供您的名字/昵称和网站，格式为：</br>
 <br>名字/昵称 [<网站>][：留言]（网站与留言为可选部分，例子：bytebeats <github.com/bytebeats>：加油！）</br>
