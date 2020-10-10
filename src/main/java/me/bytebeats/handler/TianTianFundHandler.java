@@ -58,9 +58,11 @@ public class TianTianFundHandler extends AbstractHandler {
                 parse(entity);
                 updateView();
             } catch (Exception e) {
-                timer.cancel();
-                timer = null;
-                LogUtil.info("mns stops updating " + jTable.getToolTipText() + " data because of " + e.getMessage());
+                if (timer != null) {
+                    timer.cancel();
+                    timer = null;
+                    LogUtil.info("mns stops updating " + jTable.getToolTipText() + " data because of " + e.getMessage());
+                }
             }
         }
     }
