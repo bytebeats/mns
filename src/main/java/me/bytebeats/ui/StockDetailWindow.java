@@ -165,7 +165,7 @@ public class StockDetailWindow implements UISettingProvider {
                 fetchMoneyFlow();
             }
         }, 0, REFRESH_INTERVAL);
-        LogUtil.info("mns starts updating " + symbol + " detail data");
+        LogUtil.info("starts updating " + symbol + " detail data");
     }
 
     private void fetchStockDetails() {
@@ -183,7 +183,7 @@ public class StockDetailWindow implements UISettingProvider {
             LogUtil.info(e.getMessage());
             detailTimer.cancel();
             detailTimer = null;
-            LogUtil.info("mns stops updating " + symbol + " detail data because of " + e.getMessage());
+            LogUtil.info("stops updating " + symbol + " detail data because of " + e.getMessage());
         }
     }
 
@@ -267,7 +267,7 @@ public class StockDetailWindow implements UISettingProvider {
             LogUtil.info(e.getMessage());
             handicapTimer.cancel();
             handicapTimer = null;
-            LogUtil.info("mns stops updating " + symbol + " handicap data because of " + e.getMessage());
+            LogUtil.info("stops updating " + symbol + " handicap data because of " + e.getMessage());
         }
     }
 
@@ -304,7 +304,7 @@ public class StockDetailWindow implements UISettingProvider {
             LogUtil.info(e.getMessage());
             moneyFlowTimer.cancel();
             moneyFlowTimer = null;
-            LogUtil.info("mns stops updating " + symbol + " money flow data because of " + e.getMessage());
+            LogUtil.info("stops updating " + symbol + " money flow data because of " + e.getMessage());
         }
     }
 
