@@ -35,7 +35,7 @@ public class TencentStockHandler extends AbsStockHandler {
                 fetch(symbols);
             }
         }, 0, REFRESH_INTERVAL);
-        LogUtil.info("mns starts updating " + jTable.getToolTipText() + " data");
+        LogUtil.info("starts updating " + jTable.getToolTipText() + " data");
     }
 
     private void fetch(List<String> symbols) {
@@ -57,7 +57,7 @@ public class TencentStockHandler extends AbsStockHandler {
             LogUtil.info(e.getMessage());
             timer.cancel();
             timer = null;
-            LogUtil.info("mns stops updating " + jTable.getToolTipText() + " data because of " + e.getMessage());
+            LogUtil.info("stops updating " + jTable.getToolTipText() + " data because of " + e.getMessage());
         }
     }
 

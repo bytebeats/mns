@@ -11,7 +11,6 @@ public class LogUtil {
     }
 
     public static void info(String message) {
-        System.out.println(message);
-//        Notifications.Bus.notify(new Notification("mns_log", message, message, NotificationType.INFORMATION), project);
+        Notifications.Bus.notify(new Notification("mns_log", "Mns", message, NotificationType.INFORMATION), project);
     }
 }

@@ -3,8 +3,7 @@ package me.bytebeats.tool;
 public class StringResUtils {
     public static final String US_STOCK = "US";
     public static final String HK_STOCK = "HK";
-    public static final String SH_STOCK = "SH";
-    public static final String SZ_STOCK = "SZ";
+    public static final String A_STOCK = "CN";
     public static final String INDICES = "Index";
     public static final String QT_STOCK_URL = "http://qt.gtimg.cn/q=";//腾讯股票数据接口
     public static final String STOCK_NAME = "股票名称";

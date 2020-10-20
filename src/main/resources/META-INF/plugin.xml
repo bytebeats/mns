@@ -2,7 +2,7 @@
     <id>me.bytebeats.mns</id>
     <name>Money Never Sleeps</name>
     <vendor email="happychinapc@gmail.com" url="https://github.com/bytebeats">bytebeats</vendor>
-    <version>1.7.1</version>
+    <version>1.7.2</version>
     <idea-version since-build="173.*" />
 
     <description><![CDATA[
@@ -31,6 +31,7 @@
       v1.5.3 使用零宽断言解析jsonp, 并激活了简洁模式.<br>
       v1.6.0 添加了股票详情窗口.<br>
       v1.7.1 添加了基金和基金公司的搜索和基金的自动添加.<br>
+      v1.7.2 bugs fixed and merge sh and sz.<br>
     ]]></change-notes>
 
     <depends>com.intellij.modules.platform</depends>

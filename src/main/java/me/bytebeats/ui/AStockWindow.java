@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ShStockWindow implements SymbolParser {
+public class AStockWindow implements SymbolParser {
     private JPanel sh_stock_window;
     private JScrollPane sh_stock_scroll;
     private JTable sh_stock_table;
@@ -19,7 +19,7 @@ public class ShStockWindow implements SymbolParser {
 
     private AbsStockHandler handler;
 
-    public ShStockWindow() {
+    public AStockWindow() {
         handler = new TencentStockHandler(sh_stock_table, sh_stock_timestamp);
     }
 
@@ -54,10 +54,14 @@ public class ShStockWindow implements SymbolParser {
     @Override
     public List<String> parse() {
         List<String> symbols = new ArrayList<>();
-        String raw = raw();
-        assert raw != null;
-        if (!raw.isEmpty()) {
-            Arrays.stream(raw.split("[,; ]")).filter(s -> !s.isEmpty()).forEach(s -> symbols.add(prefix() + s));
+        String sh = raw();
+        assert sh != null;
+        if (!sh.isEmpty()) {
+            Arrays.stream(sh.split("[,; ]")).filter(s -> !s.isEmpty()).forEach(s -> symbols.add(prefix() + s));
+        }
+        String sz = AppSettingState.getInstance().getSzStocks();
+        if (!sz.isEmpty()) {
+            Arrays.stream(sz.split("[,; ]")).filter(s -> !s.isEmpty()).forEach(s -> symbols.add("s_sz" + s));
         }
         return symbols;
     }
