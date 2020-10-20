@@ -12,7 +12,7 @@ IntelliJ IDEA平台插件. 支持查看股票实时行情. 支持美股, 港股,
 
 Settings:
 
-![Setting](screenshots/mns_screenshot_3.png)
+![Setting](screenshots/mns_screenshot_6.png)
 
 US stocks:
 
@@ -24,11 +24,15 @@ Core indices:
 
 Funds:
 
-![Index](screenshots/mns_screenshot_5.png)
+![Index](screenshots/mns_screenshot_3.png)
 
-Concise Mode & Hidden Mode:
+Stock Details:
 
 ![Index](screenshots/mns_screenshot_4.png)
+
+Fund Query:
+
+![Index](screenshots/mns_screenshot_5.png)
 
 
 # Changes
@@ -87,7 +91,7 @@ Concise Mode & Hidden Mode:
 
     Open Collective | 支付宝/Alipay | 微信/Wechat | PayPal
     -------------- | -------------- | -------------- | --------------
-    Incoming | ![alipay](screenshots/alipay_receipt.png) | ![wechat](screenshots/wechat_receipt.png) | <a href=https://www.paypal.me/bytesbeat>Support</a>
+    Incoming | ![alipay](screenshots/alipay_receipt.png) | ![wechat](screenshots/wechat_receipt.png) | <a href=https://www.paypal.me/bytesbeat>Donate</a>
 
 <br>使用支付宝/微信支付捐赠后请留言或者通过邮件提供您的名字/昵称和网站，格式为：</br>
 <br>名字/昵称 [<网站>][：留言]（网站与留言为可选部分，例子：bytebeats <github.com/bytebeats>：加油！）</br>
@@ -103,3 +107,4 @@ Concise Mode & Hidden Mode:
 # Contributors
 
 # Donates
+* <a href="mailto:vip-cyq@qq.com">小鱼</a>
