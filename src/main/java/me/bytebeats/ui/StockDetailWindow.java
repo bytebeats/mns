@@ -4,14 +4,14 @@ import com.intellij.ui.JBColor;
 import me.bytebeats.HttpClientPool;
 import me.bytebeats.LogUtil;
 import me.bytebeats.UISettingProvider;
+import me.bytebeats.tool.PinyinUtils;
 import me.bytebeats.tool.StringResUtils;
 
 import javax.swing.*;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.TimerTask;
 import java.util.Timer;
 import java.util.regex.Matcher;
@@ -31,7 +31,7 @@ public class StockDetailWindow implements UISettingProvider {
     //ui
     private JPanel stock_detail_panel;
     private JPanel stock_detail_ask_bid_panel;
-    private JLabel stock_detail_ask_bid_label;
+    private JLabel stock_detail_handicap_label;
     private JPanel stock_detail_ask_bid_label_panel;
     private JLabel stock_detail_ask_big;
     private JLabel stock_detail_ask_small;
@@ -86,11 +86,9 @@ public class StockDetailWindow implements UISettingProvider {
     private JLabel stock_detail_exchange_rate;
     private JLabel stock_detail_per;
     private JLabel stock_detail_pbr;
-    private JLabel stock_detail_ask_1_label;
     private JPanel stock_detail_flow_label_panel;
     private JPanel stock_detail_flow_main_force_panel;
     private JPanel stock_detail_flow_individual_panel;
-    private JPanel stock_detail_ask_bid_price_panel;
     private JPanel stock_detail_timestamp_panel;
     private JButton stock_detail_sync;
     private JLabel stock_detail_timestamp;
@@ -100,18 +98,39 @@ public class StockDetailWindow implements UISettingProvider {
     private JLabel stock_detail_rise_fall_rate;
     private JPanel stock_detail_base_panel;
     private JLabel stock_detail_flow_sum;
-    private JLabel stock_detail_ask_1_price;
-    private JLabel stock_detail_bid_1_label;
-    private JLabel stock_detail_bid_1_price;
     private JLabel stock_detail_volume_label;
     private JLabel stock_detail_volume_val;
     private JLabel stock_detail_turnover_label;
     private JLabel stock_detail_turnover_val;
+    private JPanel stock_ask_bid_5_panel;
+    private JLabel ask_bid_unit;
+    private JLabel ask_bid_label_1;
+    private JLabel ask_bid_label_2;
+    private JLabel ask_bid_label_3;
+    private JLabel ask_bid_label_5;
+    private JLabel ask_bid_label_4;
+    private JPanel bid_5_panel;
+    private JPanel ask_5_panel;
+    private JLabel bid_5_label;
+    private JLabel bid_1;
+    private JLabel bid_2;
+    private JLabel bid_3;
+    private JLabel bid_4;
+    private JLabel bid_5;
+    private JLabel ask_5_label;
+    private JLabel ask_1;
+    private JLabel ask_2;
+    private JLabel ask_3;
+    private JLabel ask_4;
+    private JLabel ask_5;
+    private JLabel ask_bid_5_label;
 
     private String symbol = "";
     private Timer detailTimer;
     private Timer handicapTimer;
     private Timer moneyFlowTimer;
+
+    private final List<JLabel> labels = new ArrayList<>();
 
     public StockDetailWindow() {
 
@@ -165,6 +184,7 @@ public class StockDetailWindow implements UISettingProvider {
                 fetchMoneyFlow();
             }
         }, 0, REFRESH_INTERVAL);
+        updateLabels();
         LogUtil.info("starts updating " + symbol + " detail data");
     }
 
@@ -193,13 +213,26 @@ public class StockDetailWindow implements UISettingProvider {
         Matcher matcher = pattern.matcher(entity);
         if (matcher.find()) {
             String[] metas = matcher.group().split("~");
-            stock_detail_name.setText(metas[1]);
+            if (isInHiddenMode()) {
+                stock_detail_name.setText(PinyinUtils.toPinyin(metas[1]));
+            } else {
+                stock_detail_name.setText(metas[1]);
+            }
             stock_detail_symbol.setText(symbol);
             stock_detail_latest_price.setText(metas[3]);
             stock_detail_rise_fall.setText(metas[31]);
             stock_detail_rise_fall_rate.setText(metas[32] + "%");
-            stock_detail_ask_1_price.setText(String.format("%s/%s", metas[9], metas[10] + "(手)"));
-            stock_detail_bid_1_price.setText(String.format("%s/%s", metas[19], metas[20] + "(手)"));
+            bid_1.setText(String.format("%s/%s", metas[9], metas[10]));
+            bid_2.setText(String.format("%s/%s", metas[11], metas[12]));
+            bid_3.setText(String.format("%s/%s", metas[13], metas[14]));
+            bid_4.setText(String.format("%s/%s", metas[15], metas[16]));
+            bid_5.setText(String.format("%s/%s", metas[17], metas[18]));
+
+            ask_1.setText(String.format("%s/%s", metas[19], metas[20]));
+            ask_2.setText(String.format("%s/%s", metas[21], metas[22]));
+            ask_3.setText(String.format("%s/%s", metas[23], metas[24]));
+            ask_4.setText(String.format("%s/%s", metas[25], metas[26]));
+            ask_5.setText(String.format("%s/%s", metas[27], metas[28]));
             stock_detail_open.setText(metas[5]);
             stock_detail_close.setText(metas[4]);
             stock_detail_highest.setText(metas[33]);
@@ -220,8 +253,16 @@ public class StockDetailWindow implements UISettingProvider {
                 double latestPrice = Double.parseDouble(metas[3]);
                 stock_detail_rise_fall.setForeground(getTextColor(Double.parseDouble(metas[31])));
                 stock_detail_rise_fall_rate.setForeground(getTextColor(Double.parseDouble(metas[32])));
-                stock_detail_ask_1_price.setForeground(getTextColor(Double.parseDouble(metas[9]) - latestPrice));
-                stock_detail_bid_1_price.setForeground(getTextColor(Double.parseDouble(metas[19]) - latestPrice));
+                bid_1.setForeground(getTextColor(Double.parseDouble(metas[9]) - latestPrice));
+                bid_2.setForeground(getTextColor(Double.parseDouble(metas[11]) - latestPrice));
+                bid_3.setForeground(getTextColor(Double.parseDouble(metas[13]) - latestPrice));
+                bid_4.setForeground(getTextColor(Double.parseDouble(metas[15]) - latestPrice));
+                bid_5.setForeground(getTextColor(Double.parseDouble(metas[17]) - latestPrice));
+                ask_1.setForeground(getTextColor(Double.parseDouble(metas[19]) - latestPrice));
+                ask_2.setForeground(getTextColor(Double.parseDouble(metas[21]) - latestPrice));
+                ask_3.setForeground(getTextColor(Double.parseDouble(metas[23]) - latestPrice));
+                ask_4.setForeground(getTextColor(Double.parseDouble(metas[25]) - latestPrice));
+                ask_5.setForeground(getTextColor(Double.parseDouble(metas[27]) - latestPrice));
                 stock_detail_open.setForeground(getTextColor(Double.parseDouble(metas[5]) - latestPrice));
                 stock_detail_close.setForeground(getTextColor(Double.parseDouble(metas[4]) - latestPrice));
                 stock_detail_highest.setForeground(getTextColor(Double.parseDouble(metas[33]) - latestPrice));
@@ -235,8 +276,16 @@ public class StockDetailWindow implements UISettingProvider {
             stock_detail_latest_price.setText("--");
             stock_detail_rise_fall.setText("--");
             stock_detail_rise_fall_rate.setText("-- %");
-            stock_detail_ask_1_price.setText(String.format("%s/%s", "--", "--" + "(手)"));
-            stock_detail_bid_1_price.setText(String.format("%s/%s", "--", "--" + "(手)"));
+            bid_1.setText(String.format("%s/%s", "--", "--"));
+            bid_2.setText(String.format("%s/%s", "--", "--"));
+            bid_3.setText(String.format("%s/%s", "--", "--"));
+            bid_4.setText(String.format("%s/%s", "--", "--"));
+            bid_5.setText(String.format("%s/%s", "--", "--"));
+            ask_1.setText(String.format("%s/%s", "--", "--"));
+            ask_2.setText(String.format("%s/%s", "--", "--"));
+            ask_3.setText(String.format("%s/%s", "--", "--"));
+            ask_4.setText(String.format("%s/%s", "--", "--"));
+            ask_5.setText(String.format("%s/%s", "--", "--"));
             stock_detail_open.setText("--");
             stock_detail_close.setText("--");
             stock_detail_highest.setText("--");
@@ -372,6 +421,57 @@ public class StockDetailWindow implements UISettingProvider {
             stock_detail_timestamp.setForeground(JBColor.DARK_GRAY);
         } else {
             stock_detail_timestamp.setForeground(JBColor.RED);
+        }
+    }
+
+    private void updateLabels() {
+        if (labels.isEmpty()) {
+            labels.add(stock_detail_handicap_label);
+            labels.add(stock_detail_volume_label);
+            labels.add(stock_detail_turnover_label);
+            labels.add(stock_detail_ask_big);
+            labels.add(stock_detail_ask_small);
+            labels.add(stock_detail_bid_big);
+            labels.add(stock_detail_bid_small);
+            labels.add(stock_detail_money_flow_label);
+            labels.add(stock_detail_money_flow_sum_label);
+            labels.add(stock_detail_flow_in_label);
+            labels.add(stock_detail_flow_out_label);
+            labels.add(stock_detail_flow_in_sum_label);
+            labels.add(stock_detail_in_rate_label);
+            labels.add(stock_detail_flow_main_force_label);
+            labels.add(stock_detail_flow_individual_label);
+            labels.add(stock_detail_label);
+            labels.add(stock_detail_close_label);
+            labels.add(stock_detail_open_label);
+            labels.add(stock_detail_highest_price_label);
+            labels.add(stock_detail_lowest_price_label);
+            labels.add(stock_detail_amplitude_label);
+            labels.add(stock_detail_total_mkt_val_label);
+            labels.add(stock_detail_circulation_mkt_val_label);
+            labels.add(stock_detail_exchange_rate_label);
+            labels.add(stock_detail_per_label);
+            labels.add(stock_detail_pbr_label);
+            labels.add(ask_bid_5_label);
+            labels.add(ask_bid_unit);
+            labels.add(ask_bid_label_1);
+            labels.add(ask_bid_label_2);
+            labels.add(ask_bid_label_3);
+            labels.add(ask_bid_label_4);
+            labels.add(ask_bid_label_5);
+            labels.add(bid_5_label);
+            labels.add(ask_5_label);
+        }
+        //toolTipText始终保持为汉字不变
+        boolean different = !stock_detail_handicap_label.getText().equals(stock_detail_handicap_label.getToolTipText());
+        if (isInHiddenMode() && !different) {
+            for (JLabel label : labels) {
+                label.setText(PinyinUtils.toPinyin(label.getToolTipText()));
+            }
+        } else if (!isInHiddenMode() && different) {
+            for (JLabel label : labels) {
+                label.setText(label.getToolTipText());
+            }
         }
     }
 
