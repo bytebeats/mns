@@ -21,11 +21,10 @@ public class FundSearchDialog extends JDialog {
     private JButton fund_cancel;
     private JPanel fund_content_panel;
     private JLabel fund_brief_info;
-    private JComboBox fund_type_cb;
-    private JButton fund_check;
+    private JComboBox<String> fund_type_cb;
+    private JButton fund_search;
     private JTable fund_table;
     private JScrollPane fund_scroll_panel;
-    private JButton fund_filter;
     private JTextField fund_keyword;
     private JButton fund_delete;
 
@@ -63,7 +62,7 @@ public class FundSearchDialog extends JDialog {
 
         // call onCancel() on ESCAPE
         contentPane.registerKeyboardAction(e -> onCancel(), KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-        fund_keyword.registerKeyboardAction(e -> search(true), KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        fund_keyword.registerKeyboardAction(e -> search(), KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 
         fund_type_cb.addItem(StringResUtils.FUND_SEARCH_NAME);
         fund_type_cb.addItem(StringResUtils.FUND_SEARCH_FIRM);
@@ -76,8 +75,7 @@ public class FundSearchDialog extends JDialog {
             }
         });
 
-        fund_check.addActionListener(e -> search(false));
-        fund_filter.addActionListener(e -> search(true));
+        fund_search.addActionListener(e -> search());
     }
 
 
@@ -109,9 +107,9 @@ public class FundSearchDialog extends JDialog {
         dispose();
     }
 
-    private void search(boolean filtered) {
-        this.filtered = filtered;
+    private void search() {
         this.keyword = fund_keyword.getText().trim();
+        this.filtered = !keyword.isEmpty();
         try {
             if (fund_type_cb.getSelectedIndex() == 0) {//search fund briefs
                 String entity = HttpClientPool.getInstance().get(StringResUtils.URL_SEARCH_FUND);
@@ -188,8 +186,6 @@ public class FundSearchDialog extends JDialog {
             if (filtered) {
                 if (firm.contains(keyword)) {
                     filteredFirms.add(firm);
-                } else {
-                    continue;
                 }
             } else {
                 filteredFirms.add(firm);
@@ -220,8 +216,6 @@ public class FundSearchDialog extends JDialog {
             if (filtered) {
                 if (brief.contains(keyword)) {
                     filteredBriefs.add(brief);
-                } else {
-                    continue;
                 }
             } else {
                 filteredBriefs.add(brief);

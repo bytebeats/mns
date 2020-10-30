@@ -4,6 +4,7 @@ import me.bytebeats.SymbolParser;
 import me.bytebeats.handler.TianTianFundHandler;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -67,10 +68,13 @@ public class FundWindow implements SymbolParser {
     private void popSearchDialog() {
         if (fundSearchDialog == null) {
             fundSearchDialog = new FundSearchDialog();
-            fundSearchDialog.setCallback(() -> syncRefresh());
-            fundSearchDialog.setLocationRelativeTo(null);
+            fundSearchDialog.setCallback(this::syncRefresh);
         }
         fundSearchDialog.pack();
+        Dimension screenerSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (int) (screenerSize.getWidth() / 2 - fundSearchDialog.getWidth() / 2);
+        int y = (int) (screenerSize.getHeight() / 2 - fundSearchDialog.getHeight() / 2);
+        fundSearchDialog.setLocation(x, y);
         fundSearchDialog.setVisible(true);
     }
 }

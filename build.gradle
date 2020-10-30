@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'me.bytebeats'
-version '1.7.2'
+version '1.7.3'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -45,6 +45,7 @@ patchPluginXml {
       v1.6.0 添加了股票详情窗口.<br>
       v1.7.1 添加了基金和基金公司的搜索和基金的自动添加.<br>
       v1.7.2 bugs fixed and merge sh and sz.<br>
+      v1.7.3 added ask&bid 5.<br>
       """
 }
 
