@@ -1,5 +1,6 @@
 package me.bytebeats.ui;
 
+import me.bytebeats.OnSymbolSelectedListener;
 import me.bytebeats.SymbolParser;
 import me.bytebeats.handler.AbsStockHandler;
 import me.bytebeats.handler.TencentStockHandler;
@@ -22,6 +23,10 @@ public class HkStockWindow implements SymbolParser {
         handler = new TencentStockHandler(hk_stock_table, hk_stock_timestamp);
     }
 
+    public void setOnSymbolSelectedListener(OnSymbolSelectedListener listener) {
+        handler.setOnSymbolSelectedListener(listener);
+    }
+
     public JPanel getJPanel() {
         return hk_stock_window;
     }
@@ -37,8 +42,8 @@ public class HkStockWindow implements SymbolParser {
 
     @Override
     public String prefix() {
-        return "hk";//实时数据
-//        return "s_hk";//简要信息
+//        return "hk";//实时数据
+        return "s_hk";//简要信息
     }
 
     @Override
@@ -50,6 +55,7 @@ public class HkStockWindow implements SymbolParser {
     public List<String> parse() {
         List<String> symbols = new ArrayList<>();
         String raw = raw();
+        assert raw != null;
         if (!raw.isEmpty()) {
             Arrays.stream(raw.split("[,; ]")).filter(s -> !s.isEmpty()).forEach(s -> symbols.add(prefix() + s));
         }

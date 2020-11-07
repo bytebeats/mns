@@ -8,25 +8,34 @@ import javax.swing.*;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TencentStockHandler extends AbsStockHandler {
-
-    private Timer timer = new Timer();
+    private static final long REFRESH_INTERVAL = 3L * 1000L;
 
     public TencentStockHandler(JTable table, JLabel label) {
         super(table, label);
     }
 
     @Override
+    public String[] getColumnNames() {
+        return handleColumnNames(stockColumnNames);
+    }
+
+    @Override
     public void load(List<String> symbols) {
         stocks.clear();
+        if (timer == null) {
+            timer = new Timer();
+        }
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 fetch(symbols);
             }
         }, 0, REFRESH_INTERVAL);
-        LogUtil.info("mns starts updating " + jTable.getToolTipText() + " data");
+        LogUtil.info("starts updating " + jTable.getToolTipText() + " data");
     }
 
     private void fetch(List<String> symbols) {
@@ -35,47 +44,53 @@ public class TencentStockHandler extends AbsStockHandler {
         }
         StringBuilder params = new StringBuilder();
         for (int i = 0; i < symbols.size(); i++) {
-            params.append(symbols.get(i));
-            if (i != symbols.size() - 1) {
+            if (params.length() != 0) {
                 params.append(',');
             }
+            params.append(symbols.get(i));
         }
         try {
             String entity = HttpClientPool.getInstance().get(appendParams(params.toString()));
-            parse(entity);
+            parse(symbols, entity);
             updateView();
         } catch (Exception e) {
             LogUtil.info(e.getMessage());
+            timer.cancel();
+            timer = null;
+            LogUtil.info("stops updating " + jTable.getToolTipText() + " data because of " + e.getMessage());
         }
     }
 
-    private void parse(String entity) {
+    private void parse(List<String> symbols, String entity) {
         String[] raws = entity.split("\n");
-        for (String raw : raws) {
-            //实时数据
-            String[] metas = raw.substring(raw.indexOf('=') + 2, raw.length() - 2).split("~");
-            Stock stock = new Stock();
-            String symbol = raw.substring(2, raw.indexOf("="));
-            stock.setSymbol(symbol);
-            stock.setName(metas[1]);
-            stock.setLatestPrice(Double.parseDouble(metas[3]));
-            stock.setChange(Double.parseDouble(metas[31]));
-            stock.setChangeRatio(Double.parseDouble(metas[32]));
-            stock.setVolume(Double.parseDouble(metas[36]));
-            stock.setTurnover(Double.parseDouble(metas[37]));
-            stock.setMarketValue(Double.parseDouble(metas[45]));
-            //简要信息
-//            String symbol = raw.substring(2, raw.indexOf("="));
-//            stock.setSymbol(symbol);
-//            stock.setName(metas[1]);
-//            stock.setSymbol(metas[2]);
-//            stock.setLatestPrice(Double.parseDouble(metas[3]));
-//            stock.setChange(Double.parseDouble(metas[4]));
-//            stock.setChangeRatio(Double.parseDouble(metas[5]));
-//            stock.setVolume(Double.parseDouble(metas[6]));
-//            stock.setTurnover(Double.parseDouble(metas[7]));
-//            stock.setMarketValue(Double.parseDouble(metas[8]));
-            updateStock(stock);
+        if (symbols.size() != raws.length) {
+            return;
+        }
+        for (int i = 0; i < symbols.size(); i++) {
+            String symbol = symbols.get(i);
+            String raw = raws[i];
+            String assertion = String.format("(?<=v_%s=\").*?(?=\";)", symbol);
+            Pattern pattern = Pattern.compile(assertion);
+            Matcher matcher = pattern.matcher(raw);
+            while (matcher.find()) {
+                String[] metas = matcher.group().split("~");
+                Stock stock = new Stock();
+//                stock.setSymbol(symbol);
+//                stock.setName(metas[1]);
+//                stock.setLatestPrice(Double.parseDouble(metas[3]));
+//                stock.setChange(Double.parseDouble(metas[31]));
+//                stock.setChangeRatio(Double.parseDouble(metas[32]));
+//                stock.setVolume(Double.parseDouble(metas[36]));
+//                stock.setTurnover(Double.parseDouble(metas[37]));
+//                stock.setMarketValue(Double.parseDouble(metas[45]));
+                //简要信息
+                stock.setSymbol(symbol);
+                stock.setName(metas[1]);
+                stock.setLatestPrice(Double.parseDouble(metas[3]));
+                stock.setChange(Double.parseDouble(metas[4]));
+                stock.setChangeRatio(Double.parseDouble(metas[5]));
+                updateStock(stock);
+            }
         }
     }
 }

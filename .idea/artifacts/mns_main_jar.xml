@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="mns.main:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/mns_main_jar</output-path>
+    <root id="archive" name="mns.main.jar">
+      <element id="module-output" name="mns.main" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.ahocorasick/ahocorasick/0.3.0/cdad5220a78701f2c37b4c4fdd20e148393ee178/ahocorasick-0.3.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.promeg/tinypinyin/2.0.3/22120540c46a70cddb4067eee499edc50a429f44/tinypinyin-2.0.3.jar" path-in-jar="/" />
+      <element id="module-source" name="mns.main" />
+    </root>
+  </artifact>
+</component>

@@ -16,7 +16,6 @@ public class SettingWindow implements Configurable {
     private JLabel us_stock;
     private JLabel hk_stock;
     private JLabel sh_stock;
-    private JCheckBox mkt_setting;
     private JRadioButton red_rise_green_fall;
     private JRadioButton red_fall_green_rise;
     private JPanel mkt_setting_radio;
@@ -24,10 +23,11 @@ public class SettingWindow implements Configurable {
     private JCheckBox hide_mode_setting;
     private JLabel sz_stock;
     private JTextField sz_stock_input;
-    private JCheckBox concise_mode;
-    private JLabel consise_mode_desc;
     private JLabel idx_label;
     private JLabel idx_input_noneditable;
+    private JLabel daily_fund;
+    private JTextField daily_fund_input;
+    private JLabel mkt_setting_label;
 
     @Nls(capitalization = Nls.Capitalization.Title)
     @Override
@@ -51,12 +51,8 @@ public class SettingWindow implements Configurable {
         });
         hide_mode_setting.addItemListener(e -> {
             boolean hidden = e.getStateChange() == ItemEvent.SELECTED;
-            mkt_setting.setEnabled(!hidden);
             red_rise_green_fall.setEnabled(!hidden);
             red_fall_green_rise.setEnabled(!hidden);
-        });
-        mkt_setting.addItemListener(e -> {
-            //do nothing here, it should be a JLabel other than a JCheckBox.
         });
         return mns_setting;
     }
@@ -73,15 +69,9 @@ public class SettingWindow implements Configurable {
         settingState.setHkStocks(hk_stock_input.getText());
         settingState.setShStocks(sh_stock_input.getText());
         settingState.setSzStocks(sz_stock_input.getText());
+        settingState.setDailyFunds(daily_fund_input.getText());
         settingState.setRedRise(red_rise_green_fall.isSelected());
         settingState.setHiddenMode(hide_mode_setting.isSelected());
-        settingState.setConciseMode(concise_mode.isSelected());
-    }
-
-    @Nullable
-    @Override
-    public String getHelpTopic() {
-        return "Help Topic";
     }
 
     @Override
@@ -100,13 +90,13 @@ public class SettingWindow implements Configurable {
         hk_stock_input.setText(settings.getHkStocks());
         sh_stock_input.setText(settings.getShStocks());
         sz_stock_input.setText(settings.getSzStocks());
+        daily_fund_input.setText(settings.getDailyFunds());
         red_rise_green_fall.setSelected(settings.isRedRise());
         red_fall_green_rise.setSelected(!settings.isRedRise());
         boolean isHidden = settings.isHiddenMode();
         red_rise_green_fall.setEnabled(!isHidden);
         red_fall_green_rise.setEnabled(!isHidden);
         hide_mode_setting.setSelected(isHidden);
-        concise_mode.setSelected(settings.isConciseMode());
     }
 
     @Override

@@ -4,6 +4,11 @@ import me.bytebeats.tool.NumberFormatUtils;
 
 import java.util.Objects;
 
+/**
+ * @author <a href="https://github.com/bytebeats">bytebeats</a>
+ * @email <happychinapc@gmail.com>
+ * @since 2020/8/24 20:39
+ */
 public class Index {
     private String symbol = "";//股票代码
     private String name = "";//股票名称
@@ -18,6 +23,9 @@ public class Index {
     private double dailyRatio = 0.0;//日振幅
 
     public String getSymbol() {
+        if (symbol.contains("_")) {
+            return symbol.substring(symbol.indexOf("_") + 1);
+        }
         return symbol;
     }
 
@@ -69,12 +77,20 @@ public class Index {
         return open;
     }
 
+    public String getOpenString() {
+        return String.valueOf(open);
+    }
+
     public void setOpen(double open) {
         this.open = open;
     }
 
     public double getClose() {
         return close;
+    }
+
+    public String getCloseString() {
+        return String.valueOf(close);
     }
 
     public void setClose(double close) {
@@ -85,12 +101,20 @@ public class Index {
         return lowest;
     }
 
+    public String getLowestString() {
+        return String.valueOf(lowest);
+    }
+
     public void setLowest(double lowest) {
         this.lowest = lowest;
     }
 
     public double getHighest() {
         return highest;
+    }
+
+    public String getHighestString() {
+        return String.valueOf(highest);
     }
 
     public void setHighest(double highest) {

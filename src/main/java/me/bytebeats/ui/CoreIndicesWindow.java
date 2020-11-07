@@ -1,5 +1,6 @@
 package me.bytebeats.ui;
 
+import me.bytebeats.OnSymbolSelectedListener;
 import me.bytebeats.SymbolParser;
 import me.bytebeats.handler.TencentIndexHandler;
 
@@ -21,6 +22,10 @@ public class CoreIndicesWindow implements SymbolParser {
         handler = new TencentIndexHandler(indices_table, indices_timestamp);
     }
 
+    public void setOnSymbolSelectedListener(OnSymbolSelectedListener listener) {
+        handler.setOnSymbolSelectedListener(listener);
+    }
+
     public JPanel getJPanel() {
         return indices_window;
     }
@@ -36,8 +41,8 @@ public class CoreIndicesWindow implements SymbolParser {
 
     @Override
     public String prefix() {
-        return "";//实时数据
-//        return "s_";//简要信息
+//        return "";//实时数据
+        return "s_";//简要信息
     }
 
     @Override
@@ -49,6 +54,7 @@ public class CoreIndicesWindow implements SymbolParser {
     public List<String> parse() {
         List<String> symbols = new ArrayList<>();
         String raw = raw();
+        assert raw != null;
         if (!raw.isEmpty()) {
             Arrays.stream(raw.split("[,; ]")).filter(s -> !s.isEmpty()).forEach(s -> symbols.add(prefix() + s));
         }
