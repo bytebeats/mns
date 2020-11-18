@@ -108,3 +108,7 @@ Fund Query:
 
 # Donates
 * <a href="mailto:vip-cyq@qq.com">小鱼</a>
+
+## Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/bytebeats/mns.svg)](https://starchart.cc/bytebeats/mns)
