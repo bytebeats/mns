@@ -82,9 +82,40 @@ public class TianTianFundHandler extends AbstractHandler {
      */
 
     private void parse(String entity) {
-        String regExp = "(?<=jsonpgz\\()[^)]+";//正则表达式中的零宽断言, 该语句表示匹配 jsonpgz(xxx) 中的 xxx
-        Pattern pattern = Pattern.compile(regExp);
-        Matcher matcher = pattern.matcher(entity);
+        String src = entity;
+        int leftBracketCount = 0;
+        int rightBracketCount = 0;
+        for (int i = 0; i < src.length(); i++) {
+            if (src.charAt(i) == '(') {
+                leftBracketCount++;
+            } else if (src.charAt(i) == ')') {
+                rightBracketCount++;
+            }
+        }
+        if (leftBracketCount > 1 || rightBracketCount > 1) {
+            StringBuilder sb = new StringBuilder();
+            boolean is1stLeftBracket = true;
+            for (int i = 0; i < src.length(); i++) {
+                char ch = src.charAt(i);
+                if (ch != '(' && ch != ')') {
+                    sb.append(ch);
+                } else if (ch == '(') {
+                    if (is1stLeftBracket) {
+                        sb.append(ch);
+                        is1stLeftBracket = false;
+                    }
+                } else {
+                    if (rightBracketCount == 1) {
+                        sb.append(ch);
+                    }
+                    rightBracketCount--;
+                }
+            }
+            src = sb.toString();
+        }
+        final String regExp = "(?<=jsonpgz\\()[^)]+";//正则表达式中的零宽断言, 该语句表示匹配 jsonpgz(xxx) 中的 xxx
+        final Pattern pattern = Pattern.compile(regExp);
+        final Matcher matcher = pattern.matcher(src);
         while (matcher.find()) {
             updateFund(GsonUtils.fromJson(matcher.group(), Fund.class));
         }
