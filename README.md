@@ -66,6 +66,12 @@ Fund Query:
    * 添加了股票详情窗口.<br>
 * V1.7.1
    * 添加了基金和基金公司的搜索和基金的自动添加.<br>
+* V1.7.2
+    * bugs fixed and merge sh and sz.<br>
+* V1.7.3
+    * added ask&bid 5.<br>
+* V1.7.4
+    * bugs fixed.<br>
   
 # TODO
 * **<b><s>基金</s></b>**
