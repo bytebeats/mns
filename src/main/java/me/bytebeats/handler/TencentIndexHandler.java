@@ -157,12 +157,12 @@ public class TencentIndexHandler extends AbstractHandler {
         for (int i = 0; i < indices.size(); i++) {
             Index index = indices.get(i);
             String name = index.getName();
-            String highest = index.getHighestString();
-            String lowest = index.getLowestString();
-            String open = index.getOpenString();
-            String close = index.getCloseString();
-            String dailyRatio = index.getDailyRatioString();
-            String turnover = index.getTurnoverString();
+//            String highest = index.getHighestString();
+//            String lowest = index.getLowestString();
+//            String open = index.getOpenString();
+//            String close = index.getCloseString();
+//            String dailyRatio = index.getDailyRatioString();
+//            String turnover = index.getTurnoverString();
             if (isInHiddenMode()) {
                 name = PinyinUtils.toPinyin(name);
             }
