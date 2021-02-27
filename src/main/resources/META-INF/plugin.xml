@@ -2,7 +2,7 @@
     <id>me.bytebeats.mns</id>
     <name>Money Never Sleeps</name>
     <vendor email="happychinapc@gmail.com" url="https://github.com/bytebeats">bytebeats</vendor>
-    <version>1.7.4</version>
+    <version>1.7.5</version>
     <idea-version since-build="173.*" />
 
     <description><![CDATA[
@@ -33,7 +33,7 @@
       v1.7.1 添加了基金和基金公司的搜索和基金的自动添加.<br>
       v1.7.2 bugs fixed and merge sh and sz.<br>
       v1.7.3 added ask&bid 5.<br>
-      v1.7.4 bugs fixed.<br>
+      v1.7.4, 1.7.5 bugs fixed.<br>
     ]]></change-notes>
 
     <depends>com.intellij.modules.platform</depends>

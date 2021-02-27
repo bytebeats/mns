@@ -70,7 +70,7 @@ Fund Query:
     * bugs fixed and merge sh and sz.<br>
 * V1.7.3
     * added ask&bid 5.<br>
-* V1.7.4
+* V1.7.4, 1.7.5
     * bugs fixed.<br>
   
 # TODO

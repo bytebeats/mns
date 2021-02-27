@@ -43,16 +43,15 @@ public class TencentStockHandler extends AbsStockHandler {
             return;
         }
         StringBuilder params = new StringBuilder();
-        for (int i = 0; i < symbols.size(); i++) {
+        for (String symbol : symbols) {
             if (params.length() != 0) {
                 params.append(',');
             }
-            params.append(symbols.get(i));
+            params.append(symbol);
         }
         try {
             String entity = HttpClientPool.getInstance().get(appendParams(params.toString()));
             parse(symbols, entity);
-            updateView();
         } catch (Exception e) {
             LogUtil.info(e.getMessage());
             timer.cancel();
@@ -90,6 +89,7 @@ public class TencentStockHandler extends AbsStockHandler {
                 stock.setChange(Double.parseDouble(metas[4]));
                 stock.setChangeRatio(Double.parseDouble(metas[5]));
                 updateStock(stock);
+                updateView();
             }
         }
     }
