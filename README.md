@@ -122,3 +122,5 @@ Fund Query:
 ## Stargazers over time
 
 [![Stargazers over time](https://starchart.cc/bytebeats/mns.svg)](https://starchart.cc/bytebeats/mns)
+
+[![bytebeats's GitHub stats](https://github-readme-stats.vercel.app/api?username=bytebeats&count_private=true&show_icons=ture&theme=radical)](https://github.com/anuraghazra/github-readme-stats)
