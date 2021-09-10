@@ -76,11 +76,12 @@ public class SettingWindow implements Configurable {
 
     @Override
     public JComponent getPreferredFocusedComponent() {
-        return mns_setting;
+        return us_stock_input;
     }
 
     @Override
     public void reset() {
+        AppSettingState.getInstance().reset();
         initSettingUI();
     }
 
