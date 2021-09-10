@@ -3,7 +3,7 @@
     <name>Money Never Sleeps</name>
     <vendor email="happychinapc@gmail.com" url="https://github.com/bytebeats">bytebeats</vendor>
     <version>1.7.5</version>
-    <idea-version since-build="173.*" />
+    <idea-version since-build="190.*" />
 
     <description><![CDATA[
     mns: Money Never Sleeps!

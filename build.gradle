@@ -3,7 +3,7 @@ plugins {
     id 'org.jetbrains.intellij' version '0.4.21'
 }
 
-group 'me.bytebeats'
+group 'io.github.bytebeats'
 version '1.7.5'
 
 sourceCompatibility = 1.8
@@ -14,7 +14,6 @@ repositories {
     maven { url 'https://maven.aliyun.com/repository/central' }
     maven { url 'https://maven.aliyun.com/repository/jcenter' }
     mavenCentral()
-    jcenter()
 }
 
 dependencies {
@@ -24,7 +23,7 @@ dependencies {
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
-    version '2020.3.1'
+    version '2021.2'
     updateSinceUntilBuild false
 }
 patchPluginXml {
@@ -55,7 +54,7 @@ task move(type: Copy) {
         include '*.jar'
     }
     from 'out/artifacts/mns_main_jar/'
-    into 'lib/'
+    into 'plugins/'
     rename "mns.main.jar", "mns-${project.version}.jar"
 }
 
