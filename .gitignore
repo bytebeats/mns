@@ -53,6 +53,8 @@ cmake-build-*/
 .gradle/
 out/
 build/
+.idea/
+lib/
 local.properties
 
 # mpeltonen/sbt-idea plugin
