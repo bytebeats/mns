@@ -12,27 +12,27 @@ IntelliJ IDEA平台插件. 支持查看股票实时行情. 支持美股, 港股,
 
 Settings:
 
-![Setting](screenshots/mns_screenshot_6.png)
+![Setting](media/mns_screenshot_6.png)
 
 US stocks:
 
-![Detail](screenshots/mns_screenshot_2.png)
+![Detail](media/mns_screenshot_2.png)
 
 Core indices:
 
-![Index](screenshots/mns_screenshot_1.png)
+![Index](media/mns_screenshot_1.png)
 
 Funds:
 
-![Index](screenshots/mns_screenshot_3.png)
+![Index](media/mns_screenshot_3.png)
 
 Stock Details:
 
-![Index](screenshots/mns_screenshot_4.png)
+![Index](media/mns_screenshot_4.png)
 
 Fund Query:
 
-![Index](screenshots/mns_screenshot_5.png)
+<img src="/media/mns_screenshot_5.png" width="470" height="540"/>
 
 
 # Changes
@@ -101,7 +101,7 @@ Fund Query:
 
     Open Collective | 支付宝/Alipay | 微信/Wechat | PayPal
     -------------- | -------------- | -------------- | --------------
-    <a href=https://opencollective.com/mns-collective>mns Collective</a> | ![alipay](screenshots/alipay_receipt.png) | ![wechat](screenshots/wechat_receipt.png) | <a href=https://www.paypal.me/bytesbeat>Donate</a>
+    <a href=https://opencollective.com/mns-collective>mns Collective</a> | ![alipay](media/alipay_receipt.png) | ![wechat](media/wechat_receipt.png) | <a href=https://www.paypal.me/bytesbeat>Donate</a>
 
 <br>使用支付宝/微信支付捐赠后请留言或者通过邮件提供您的名字/昵称和网站，格式为：</br>
 <br>名字/昵称 [<网站>][：留言]（网站与留言为可选部分，例子：bytebeats <github.com/bytebeats>：加油！）</br>
