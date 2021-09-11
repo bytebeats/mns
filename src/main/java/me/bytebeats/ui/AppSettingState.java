@@ -13,12 +13,12 @@ public class AppSettingState implements PersistentStateComponent<AppSettingState
 
     public final static boolean IS_RED_RISE = true;
     public final static boolean IS_HIDDEN_MODE = false;
-    public final static String US_STOCKS = "AAPL;TWTR;TSLA;NFLX;MSFT";
+    public final static String US_STOCKS = "AAPL;TSLA;NFLX;MSFT";
     public final static String HK_STOCKS = "00981;09988;09618";
     public final static String SH_STOCKS = "600036";
     public final static String SZ_STOCKS = "002352";
     public final static String DAILY_FUNDS = "320003;002621;519674";
-    public final static String ALL_INDICES = "usDJI;usIXIC;usINX;hkHSI;hkHSCEI;hkHSCCI;sh000001;sz399001;sz399006;sh000300;sh000016;sz399903;sh000011;sz399103;sz399905";
+    public final static String ALL_INDICES = "usDJI;usIXIC;usINX;usNDX;hkHSI;hkHSTECH;hkHSCEI;hkHSCCI;sh000001;sz399001;sz399006;sh000300;sh000016;sz399903;sh000011;sz399103;sz399330";
     public final static String STOCK_SYMBOL = "sh600519";
     public final static String FUND_SYMBOL = "570008";
 
