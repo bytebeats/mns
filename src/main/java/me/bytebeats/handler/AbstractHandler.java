@@ -52,6 +52,15 @@ public abstract class AbstractHandler implements UISettingProvider {
 
     public abstract void load(List<String> symbols);
 
+    public void stop() {
+        if (timer != null) {
+            timer.cancel();
+            timer = null;
+        }
+    }
+
+    protected abstract String getTipText();
+
     public abstract Object[][] convert2Data();
 
     public abstract String[] getColumnNames();

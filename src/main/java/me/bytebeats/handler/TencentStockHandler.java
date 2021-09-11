@@ -35,13 +35,19 @@ public class TencentStockHandler extends AbsStockHandler {
                 fetch(symbols);
             }
         }, 0, REFRESH_INTERVAL);
-        LogUtil.info("starts updating " + jTable.getToolTipText() + " data");
+        LogUtil.info("starts updating " + getTipText() + " stocks");
+    }
+
+    @Override
+    protected String getTipText() {
+        return jTable.getToolTipText();
     }
 
     private void fetch(List<String> symbols) {
         if (symbols.isEmpty()) {
             return;
         }
+
         StringBuilder params = new StringBuilder();
         for (String symbol : symbols) {
             if (params.length() != 0) {

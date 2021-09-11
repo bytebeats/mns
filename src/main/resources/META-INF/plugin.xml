@@ -41,7 +41,7 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <applicationService serviceImplementation="me.bytebeats.ui.AppSettingState" />
-        <toolWindow icon="/icon_mns.png" anchor="left" id="mns" factoryClass="me.bytebeats.ui.UsStockWindow" />
+        <toolWindow icon="/icon_mns.png" anchor="left" id="mns" factoryClass="me.bytebeats.ui.MainWindow" />
         <applicationConfigurable id="mns_setting" instance="me.bytebeats.ui.SettingWindow"
             displayName="Money Never Sleeps" />
     </extensions>

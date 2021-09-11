@@ -60,7 +60,12 @@ public class TencentIndexHandler extends AbstractHandler {
                 fetch(symbols);
             }
         }, 0, REFRESH_INTERVAL);
-        LogUtil.info("starts updating " + jTable.getToolTipText() + " data");
+        LogUtil.info("starts updating " + getTipText() + " indices");
+    }
+
+    @Override
+    protected String getTipText() {
+        return jTable.getToolTipText();
     }
 
     private void fetch(List<String> symbols) {
