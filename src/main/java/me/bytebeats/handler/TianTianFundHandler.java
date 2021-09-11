@@ -45,7 +45,12 @@ public class TianTianFundHandler extends AbstractHandler {
                 fetch(symbols);
             }
         }, 0, REFRESH_INTERVAL);
-        LogUtil.info("starts updating " + jTable.getToolTipText() + " data");
+        LogUtil.info("starts updating " + getTipText() + " funds");
+    }
+
+    @Override
+    protected String getTipText() {
+        return jTable.getToolTipText();
     }
 
     private void fetch(List<String> symbols) {
