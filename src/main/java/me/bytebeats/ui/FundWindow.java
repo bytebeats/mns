@@ -5,6 +5,8 @@ import me.bytebeats.handler.TianTianFundHandler;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -68,7 +70,51 @@ public class FundWindow implements SymbolParser {
     private void popSearchDialog() {
         if (fundSearchDialog == null) {
             fundSearchDialog = new FundSearchDialog();
-            fundSearchDialog.setCallback(this::syncRefresh);
+            fundSearchDialog.setCallback(new FundSearchDialog.OnFundChangeListener() {
+                @Override
+                public void onChange() {
+                    // do nothing here
+                }
+            });
+            fundSearchDialog.addWindowListener(new WindowListener() {
+                @Override
+                public void windowOpened(WindowEvent e) {
+                    handler.stop();
+                }
+
+                @Override
+                public void windowClosing(WindowEvent e) {
+
+                }
+
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    syncRefresh();
+                }
+
+                @Override
+                public void windowIconified(WindowEvent e) {
+
+                }
+
+                @Override
+                public void windowDeiconified(WindowEvent e) {
+
+                }
+
+                @Override
+                public void windowActivated(WindowEvent e) {
+
+                }
+
+                @Override
+                public void windowDeactivated(WindowEvent e) {
+
+                }
+            });
+        }
+        if (fundSearchDialog.isVisible()) {
+            return;
         }
         fundSearchDialog.pack();
         Dimension screenerSize = Toolkit.getDefaultToolkit().getScreenSize();

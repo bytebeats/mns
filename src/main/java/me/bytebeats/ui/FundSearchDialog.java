@@ -8,6 +8,7 @@ import me.bytebeats.meta.FundFirm;
 import me.bytebeats.meta.FundFirmOp;
 import me.bytebeats.tool.GsonUtils;
 import me.bytebeats.tool.StringResUtils;
+import me.bytebeats.ui.swing.JHintTextField;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -238,6 +239,10 @@ public class FundSearchDialog extends JDialog {
 
     public void setCallback(OnFundChangeListener callback) {
         this.callback = callback;
+    }
+
+    private void createUIComponents() {
+        fund_keyword = new JHintTextField("e.g.: 半导体");
     }
 
     public interface OnFundChangeListener {

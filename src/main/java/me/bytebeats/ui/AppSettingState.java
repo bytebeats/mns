@@ -135,10 +135,11 @@ public class AppSettingState implements PersistentStateComponent<AppSettingState
         if (getDailyFunds().contains(fundSymbol)) {
             return false;
         }
-        if (getDailyFunds().trim().endsWith(";")) {
-            setDailyFunds(getDailyFunds().trim() + fundSymbol);
+        String dailyFunds = getDailyFunds().trim();
+        if (dailyFunds.endsWith(";")) {
+            setDailyFunds(dailyFunds + fundSymbol);
         } else {
-            setDailyFunds(getDailyFunds().trim() + ";" + fundSymbol);
+            setDailyFunds(dailyFunds + ";" + fundSymbol);
         }
         return true;
     }
@@ -147,10 +148,11 @@ public class AppSettingState implements PersistentStateComponent<AppSettingState
         if (!getDailyFunds().contains(fundSymbol)) {
             return false;
         }
-        if (getDailyFunds().trim().startsWith(fundSymbol)) {
-            setDailyFunds(getDailyFunds().trim().replace(fundSymbol, ""));
+        String dailyFunds = getDailyFunds().trim();
+        if (dailyFunds.startsWith(fundSymbol)) {
+            setDailyFunds(dailyFunds.replace(fundSymbol, ""));
         } else {
-            setDailyFunds(getDailyFunds().trim().replace(";" + fundSymbol, ""));
+            setDailyFunds(dailyFunds.replace(";" + fundSymbol, ""));
         }
         return true;
     }

@@ -6,6 +6,8 @@
       <xy x="20" y="20" width="500" height="573"/>
     </constraints>
     <properties>
+      <minimumSize width="300" height="553"/>
+      <preferredSize width="400" height="553"/>
       <toolTipText value="Stock Details"/>
     </properties>
     <border type="none"/>
@@ -592,8 +594,8 @@
             </constraints>
             <properties>
               <icon value="refresh.png"/>
-              <text value="同步"/>
-              <toolTipText value="同步"/>
+              <text value="Sync"/>
+              <toolTipText value="Sync"/>
             </properties>
           </component>
         </children>
