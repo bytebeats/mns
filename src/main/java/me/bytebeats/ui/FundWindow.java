@@ -28,6 +28,8 @@ public class FundWindow implements SymbolParser {
 
     private FundSearchDialog fundSearchDialog;
 
+    private String fundSymbols;
+
     public FundWindow() {
         handler = new TianTianFundHandler(fund_table, fund_timestamp);
     }
@@ -37,7 +39,11 @@ public class FundWindow implements SymbolParser {
     }
 
     public void onInit() {
-        fund_sync.addActionListener(e -> syncRefresh());
+        fundSymbols = AppSettingState.getInstance().dailyFunds;
+        fund_sync.addActionListener(e -> {
+            handler.stop();
+            syncRefresh();
+        });
         fund_search.addActionListener(e -> popSearchDialog());
         syncRefresh();
     }
@@ -53,7 +59,7 @@ public class FundWindow implements SymbolParser {
 
     @Override
     public String raw() {
-        return AppSettingState.getInstance().getDailyFunds();
+        return fundSymbols;
     }
 
     @Override
@@ -70,11 +76,8 @@ public class FundWindow implements SymbolParser {
     private void popSearchDialog() {
         if (fundSearchDialog == null) {
             fundSearchDialog = new FundSearchDialog();
-            fundSearchDialog.setCallback(new FundSearchDialog.OnFundChangeListener() {
-                @Override
-                public void onChange() {
-                    // do nothing here
-                }
+            fundSearchDialog.setCallback(() -> {
+                // do nothing here
             });
             fundSearchDialog.addWindowListener(new WindowListener() {
                 @Override
@@ -89,6 +92,7 @@ public class FundWindow implements SymbolParser {
 
                 @Override
                 public void windowClosed(WindowEvent e) {
+                    fundSymbols = AppSettingState.getInstance().dailyFunds;
                     syncRefresh();
                 }
 

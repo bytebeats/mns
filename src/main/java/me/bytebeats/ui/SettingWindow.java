@@ -38,7 +38,6 @@ public class SettingWindow implements Configurable {
     @Nullable
     @Override
     public JComponent createComponent() {
-        initSettingUI();
         red_rise_green_fall.addItemListener(e -> {
             if (e.getStateChange() == ItemEvent.SELECTED) {
                 red_fall_green_rise.setSelected(false);
@@ -64,14 +63,14 @@ public class SettingWindow implements Configurable {
 
     @Override
     public void apply() throws ConfigurationException {
-        AppSettingState settingState = AppSettingState.getInstance();
-        settingState.setUsStocks(us_stock_input.getText());
-        settingState.setHkStocks(hk_stock_input.getText());
-        settingState.setShStocks(sh_stock_input.getText());
-        settingState.setSzStocks(sz_stock_input.getText());
-        settingState.setDailyFunds(daily_fund_input.getText());
-        settingState.setRedRise(red_rise_green_fall.isSelected());
-        settingState.setHiddenMode(hide_mode_setting.isSelected());
+        final AppSettingState settings = AppSettingState.getInstance();
+        settings.usStocks = us_stock_input.getText();
+        settings.hkStocks = hk_stock_input.getText();
+        settings.shStocks = sh_stock_input.getText();
+        settings.szStocks = sz_stock_input.getText();
+        settings.dailyFunds = daily_fund_input.getText();
+        settings.isRedRise = red_rise_green_fall.isSelected();
+        settings.isHiddenMode = hide_mode_setting.isSelected();
     }
 
     @Override
@@ -81,20 +80,19 @@ public class SettingWindow implements Configurable {
 
     @Override
     public void reset() {
-        AppSettingState.getInstance().reset();
         initSettingUI();
     }
 
     private void initSettingUI() {
-        AppSettingState settings = AppSettingState.getInstance();
-        us_stock_input.setText(settings.getUsStocks());
-        hk_stock_input.setText(settings.getHkStocks());
-        sh_stock_input.setText(settings.getShStocks());
-        sz_stock_input.setText(settings.getSzStocks());
-        daily_fund_input.setText(settings.getDailyFunds());
-        red_rise_green_fall.setSelected(settings.isRedRise());
-        red_fall_green_rise.setSelected(!settings.isRedRise());
-        boolean isHidden = settings.isHiddenMode();
+        final AppSettingState settings = AppSettingState.getInstance();
+        us_stock_input.setText(settings.usStocks);
+        hk_stock_input.setText(settings.hkStocks);
+        sh_stock_input.setText(settings.shStocks);
+        sz_stock_input.setText(settings.szStocks);
+        daily_fund_input.setText(settings.dailyFunds);
+        red_rise_green_fall.setSelected(settings.isRedRise);
+        red_fall_green_rise.setSelected(!settings.isRedRise);
+        boolean isHidden = settings.isHiddenMode;
         red_rise_green_fall.setEnabled(!isHidden);
         red_fall_green_rise.setEnabled(!isHidden);
         hide_mode_setting.setSelected(isHidden);

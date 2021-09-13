@@ -114,11 +114,11 @@ public abstract class AbstractHandler implements UISettingProvider {
 
     @Override
     public boolean isInHiddenMode() {
-        return AppSettingState.getInstance().isHiddenMode();
+        return AppSettingState.getInstance().isHiddenMode;
     }
 
     @Override
     public boolean isRedRise() {
-        return AppSettingState.getInstance().isRedRise();
+        return AppSettingState.getInstance().isRedRise;
     }
 }

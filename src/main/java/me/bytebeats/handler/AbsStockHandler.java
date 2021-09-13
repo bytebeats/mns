@@ -1,5 +1,6 @@
 package me.bytebeats.handler;
 
+import me.bytebeats.LogUtil;
 import me.bytebeats.OnSymbolSelectedListener;
 import me.bytebeats.UISettingProvider;
 import me.bytebeats.meta.Stock;
@@ -45,7 +46,9 @@ public abstract class AbsStockHandler extends AbstractHandler implements UISetti
         model.addListSelectionListener(e -> {
             int selectedRowIdx = jTable.getSelectedRow();
             if (selectedRowIdx > -1 && listener != null) {
-                listener.onSelected(stocks.get(selectedRowIdx).getSymbol());
+                String symbol = stocks.get(selectedRowIdx).getSymbol();
+                listener.onSelected(symbol);
+                LogUtil.info(String.format("updating %s in Details Window", symbol));
             }
         });
     }

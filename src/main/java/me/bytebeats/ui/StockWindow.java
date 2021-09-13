@@ -67,7 +67,10 @@ public class StockWindow {
             }
         });
         stock_market_list.setSelectedIndex(0);
-        stock_refresh.addActionListener(e -> syncRefresh());
+        stock_refresh.addActionListener(e -> {
+            handler.stop();
+            syncRefresh();
+        });
         syncRefresh();
     }
 
@@ -79,20 +82,20 @@ public class StockWindow {
         List<String> symbols = new ArrayList<>();
         switch (stock_market_list.getSelectedIndex()) {
             case 1:
-                Arrays.stream(AppSettingState.getInstance().getUsStocks().split("[,; ]")).filter(s -> !s.isEmpty()).forEach(s -> symbols.add("s_us" + s));
+                Arrays.stream(AppSettingState.getInstance().usStocks.split("[,; ]")).filter(s -> !s.isEmpty()).forEach(s -> symbols.add("s_us" + s));
                 break;
             case 2:
-                Arrays.stream(AppSettingState.getInstance().getHkStocks().split("[,; ]")).filter(s -> !s.isEmpty()).forEach(s -> symbols.add("s_hk" + s));
+                Arrays.stream(AppSettingState.getInstance().hkStocks.split("[,; ]")).filter(s -> !s.isEmpty()).forEach(s -> symbols.add("s_hk" + s));
                 break;
             case 3:
-                Arrays.stream(AppSettingState.getInstance().getShStocks().split("[,; ]")).filter(s -> !s.isEmpty()).forEach(s -> symbols.add("s_sh" + s));
-                Arrays.stream(AppSettingState.getInstance().getSzStocks().split("[,; ]")).filter(s -> !s.isEmpty()).forEach(s -> symbols.add("s_sz" + s));
+                Arrays.stream(AppSettingState.getInstance().shStocks.split("[,; ]")).filter(s -> !s.isEmpty()).forEach(s -> symbols.add("s_sh" + s));
+                Arrays.stream(AppSettingState.getInstance().szStocks.split("[,; ]")).filter(s -> !s.isEmpty()).forEach(s -> symbols.add("s_sz" + s));
                 break;
             default:
-                Arrays.stream(AppSettingState.getInstance().getUsStocks().split("[,; ]")).filter(s -> !s.isEmpty()).forEach(s -> symbols.add("s_us" + s));
-                Arrays.stream(AppSettingState.getInstance().getHkStocks().split("[,; ]")).filter(s -> !s.isEmpty()).forEach(s -> symbols.add("s_hk" + s));
-                Arrays.stream(AppSettingState.getInstance().getShStocks().split("[,; ]")).filter(s -> !s.isEmpty()).forEach(s -> symbols.add("s_sh" + s));
-                Arrays.stream(AppSettingState.getInstance().getSzStocks().split("[,; ]")).filter(s -> !s.isEmpty()).forEach(s -> symbols.add("s_sz" + s));
+                Arrays.stream(AppSettingState.getInstance().usStocks.split("[,; ]")).filter(s -> !s.isEmpty()).forEach(s -> symbols.add("s_us" + s));
+                Arrays.stream(AppSettingState.getInstance().hkStocks.split("[,; ]")).filter(s -> !s.isEmpty()).forEach(s -> symbols.add("s_hk" + s));
+                Arrays.stream(AppSettingState.getInstance().shStocks.split("[,; ]")).filter(s -> !s.isEmpty()).forEach(s -> symbols.add("s_sh" + s));
+                Arrays.stream(AppSettingState.getInstance().szStocks.split("[,; ]")).filter(s -> !s.isEmpty()).forEach(s -> symbols.add("s_sz" + s));
                 break;
         }
         return symbols;
