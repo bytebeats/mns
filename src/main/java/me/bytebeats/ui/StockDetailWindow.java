@@ -139,7 +139,7 @@ public class StockDetailWindow implements UISettingProvider {
     public void setSymbol(String symbol) {//like usTSLA, sh603501, sz300661, hk00981
         this.symbol = symbol;
         syncRefresh();
-        AppSettingState.getInstance().setStockSymbol(symbol);
+        AppSettingState.getInstance().stockSymbol = symbol;
     }
 
     public String getSymbol() {
@@ -151,7 +151,7 @@ public class StockDetailWindow implements UISettingProvider {
     }
 
     public void onInit() {
-        symbol = AppSettingState.getInstance().getStockSymbol();
+        symbol = AppSettingState.getInstance().stockSymbol;
         stock_detail_sync.addActionListener(e -> syncRefresh());
         syncRefresh();
     }
@@ -477,11 +477,11 @@ public class StockDetailWindow implements UISettingProvider {
 
     @Override
     public boolean isInHiddenMode() {
-        return AppSettingState.getInstance().isHiddenMode();
+        return AppSettingState.getInstance().isHiddenMode;
     }
 
     @Override
     public boolean isRedRise() {
-        return AppSettingState.getInstance().isRedRise();
+        return AppSettingState.getInstance().isRedRise;
     }
 }

@@ -44,6 +44,8 @@
         <toolWindow icon="/icon_mns.png" anchor="left" id="mns" factoryClass="me.bytebeats.ui.MainWindow" />
         <applicationConfigurable id="mns_setting" instance="me.bytebeats.ui.SettingWindow"
             displayName="Money Never Sleeps" />
+        <notificationGroup displayType="NONE" id="Mns Event" icon="AllIcons.General.Note" key="notification.group.name"
+            toolWindowId="Mns Event" isLogByDefault="true" />
     </extensions>
 
     <actions>
