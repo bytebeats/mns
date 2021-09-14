@@ -18,7 +18,7 @@ public class AppSettingState implements PersistentStateComponent<AppSettingState
     public final static String SH_STOCKS = "600036";
     public final static String SZ_STOCKS = "002352";
     public final static String DAILY_FUNDS = "320003;002621;519674";
-    public final static String ALL_INDICES = "usDJI;usIXIC;usINX;usNDX;hkHSI;hkHSTECH;hkHSCEI;hkHSCCI;sh000001;sz399001;sz399006;sh000300;sh000016;sz399903;sh000011;sz399103;sz399330";
+    public final static String ALL_INDICES = "usDJI;usIXIC;usINX;usNDX;hkHSI;hkHSTECH;hkHSCEI;hkHSCCI;sh000001;sh588090;sz399001;sz399006;sh000300;sh000016;sz399903;sh000011;sz399103;sz399330";
     public final static String STOCK_SYMBOL = "sh600519";
     public final static String FUND_SYMBOL = "570008";
 
