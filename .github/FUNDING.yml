@@ -6,7 +6,7 @@ open_collective: bytebeats # Replace with a single Open Collective username
 ko_fi: bytebeats # Replace with a single Ko-fi username
 tidelift: # Replace with a single Tidelift platform-name/package-name e.g., npm/babel
 community_bridge: # Replace with a single Community Bridge project-name e.g., cloud-foundry
-liberapay: bytebeats# Replace with a single Liberapay username
-issuehunt: bytebeats# Replace with a single IssueHunt username
+liberapay: bytebeats # Replace with a single Liberapay username
+issuehunt: bytebeats # Replace with a single IssueHunt username
 otechie: bytebeats # Replace with a single Otechie username
 custom: https://www.paypal.me/bytesbeat # Replace with up to 4 custom sponsorship URLs e.g., ['link1', 'link2']
