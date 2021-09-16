@@ -1,0 +1,890 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="me.bytebeats.mns.ui.StockDetailWindow">
+  <grid id="27dc6" binding="stock_detail_panel" layout-manager="GridLayoutManager" row-count="19" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="5" left="5" bottom="5" right="5"/>
+    <constraints>
+      <xy x="20" y="20" width="500" height="573"/>
+    </constraints>
+    <properties>
+      <minimumSize width="300" height="553"/>
+      <preferredSize width="400" height="553"/>
+      <toolTipText value="Stock Details"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <grid id="80a68" binding="stock_detail_ask_bid_panel" layout-manager="GridLayoutManager" row-count="1" column-count="6" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="924a4" class="javax.swing.JLabel" binding="stock_detail_handicap_label">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font size="15" style="1"/>
+              <text value="盘口分析"/>
+              <toolTipText value="盘口分析"/>
+            </properties>
+          </component>
+          <component id="77d87" class="javax.swing.JLabel" binding="stock_detail_volume_label">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="成交量(手):"/>
+              <toolTipText value="成交量(手):"/>
+            </properties>
+          </component>
+          <component id="35220" class="javax.swing.JLabel" binding="stock_detail_volume_val">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="--"/>
+            </properties>
+          </component>
+          <component id="4ab38" class="javax.swing.JLabel" binding="stock_detail_turnover_label">
+            <constraints>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="成交额(万):"/>
+              <toolTipText value="成交额(万):"/>
+            </properties>
+          </component>
+          <component id="77e11" class="javax.swing.JLabel" binding="stock_detail_turnover_val">
+            <constraints>
+              <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="--"/>
+            </properties>
+          </component>
+          <hspacer id="7373a">
+            <constraints>
+              <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+        </children>
+      </grid>
+      <grid id="e333c" binding="stock_detail_ask_bid_label_panel" layout-manager="GridLayoutManager" row-count="1" column-count="4" same-size-horizontally="true" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="b092d" class="javax.swing.JLabel" binding="stock_detail_ask_big">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="买盘大单"/>
+              <toolTipText value="买盘大单"/>
+            </properties>
+          </component>
+          <component id="5d495" class="javax.swing.JLabel" binding="stock_detail_ask_small">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="买盘小单"/>
+              <toolTipText value="买盘小单"/>
+            </properties>
+          </component>
+          <component id="1894" class="javax.swing.JLabel" binding="stock_detail_bid_big">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="卖盘大单"/>
+              <toolTipText value="卖盘大单"/>
+            </properties>
+          </component>
+          <component id="5239d" class="javax.swing.JLabel" binding="stock_detail_bid_small">
+            <constraints>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="卖盘小单"/>
+              <toolTipText value="卖盘小单"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="ab858" binding="stock_detail_ask_bid_val_panel" layout-manager="GridLayoutManager" row-count="1" column-count="4" same-size-horizontally="true" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="7a341" class="javax.swing.JLabel" binding="stock_detail_ask_big_val">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="--"/>
+            </properties>
+          </component>
+          <component id="fe826" class="javax.swing.JLabel" binding="stock_detail_ask_small_val">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="--"/>
+            </properties>
+          </component>
+          <component id="8d64d" class="javax.swing.JLabel" binding="stock_detail_bid_big_val">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="--"/>
+            </properties>
+          </component>
+          <component id="34ff0" class="javax.swing.JLabel" binding="stock_detail_bid_small_val">
+            <constraints>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="--"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="41fcc" binding="stock_detail_money_flow_panel" layout-manager="GridLayoutManager" row-count="1" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="7ff59" class="javax.swing.JLabel" binding="stock_detail_money_flow_label">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font size="15" style="1"/>
+              <text value="实时资金流向"/>
+              <toolTipText value="实时资金流向"/>
+            </properties>
+          </component>
+          <hspacer id="cef3f">
+            <constraints>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+          <component id="dc75a" class="javax.swing.JLabel" binding="stock_detail_money_flow_sum_label">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="流入流出总和: "/>
+              <toolTipText value="流入流出总和: "/>
+            </properties>
+          </component>
+          <component id="39dac" class="javax.swing.JLabel" binding="stock_detail_flow_sum">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="----"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="a7d8c" binding="stock_detail_flow_label_panel" layout-manager="GridLayoutManager" row-count="1" column-count="5" same-size-horizontally="true" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="5" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="91f02" class="javax.swing.JLabel" binding="stock_detail_flow_place_holder">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="\\\\"/>
+            </properties>
+          </component>
+          <component id="2671d" class="javax.swing.JLabel" binding="stock_detail_flow_in_label">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="流入额"/>
+              <toolTipText value="流入额"/>
+            </properties>
+          </component>
+          <component id="adfe5" class="javax.swing.JLabel" binding="stock_detail_flow_out_label">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="流出额"/>
+              <toolTipText value="流出额"/>
+            </properties>
+          </component>
+          <component id="ad981" class="javax.swing.JLabel" binding="stock_detail_flow_in_sum_label">
+            <constraints>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="净流入"/>
+              <toolTipText value="净流入"/>
+            </properties>
+          </component>
+          <component id="6f4fc" class="javax.swing.JLabel" binding="stock_detail_in_rate_label">
+            <constraints>
+              <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="百分比"/>
+              <toolTipText value="百分比"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="dda81" binding="stock_detail_flow_main_force_panel" layout-manager="GridLayoutManager" row-count="1" column-count="5" same-size-horizontally="true" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="6" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="2e1b5" class="javax.swing.JLabel" binding="stock_detail_flow_main_force_label">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="主力"/>
+              <toolTipText value="主力"/>
+            </properties>
+          </component>
+          <component id="3002f" class="javax.swing.JLabel" binding="stock_detail_flow_main_force_in">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="----"/>
+            </properties>
+          </component>
+          <component id="80032" class="javax.swing.JLabel" binding="stock_detail_flow_main_force_out">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="----"/>
+            </properties>
+          </component>
+          <component id="3c273" class="javax.swing.JLabel" binding="stock_detail_flow_main_force_in_sum">
+            <constraints>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="----"/>
+            </properties>
+          </component>
+          <component id="fe953" class="javax.swing.JLabel" binding="stock_detail_flow_main_force_in_rate">
+            <constraints>
+              <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="----"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="ef50f" binding="stock_detail_flow_individual_panel" layout-manager="GridLayoutManager" row-count="1" column-count="5" same-size-horizontally="true" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="7" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="4c337" class="javax.swing.JLabel" binding="stock_detail_flow_individual_label">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="散户"/>
+              <toolTipText value="散户"/>
+            </properties>
+          </component>
+          <component id="1e08b" class="javax.swing.JLabel" binding="stock_detail_flow_individual_in">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="----"/>
+            </properties>
+          </component>
+          <component id="32a6d" class="javax.swing.JLabel" binding="stock_detail_flow_individual_out">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="----"/>
+            </properties>
+          </component>
+          <component id="5d276" class="javax.swing.JLabel" binding="stock_detail_flow_individual_in_sum">
+            <constraints>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="----"/>
+            </properties>
+          </component>
+          <component id="9cd21" class="javax.swing.JLabel" binding="stock_detail_flow_individual_in_rate">
+            <constraints>
+              <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="----"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="b696c" binding="stock_detail_label_panel_1" layout-manager="GridLayoutManager" row-count="1" column-count="5" same-size-horizontally="true" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="9" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="ca8b3" class="javax.swing.JLabel" binding="stock_detail_close_label">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="昨收"/>
+              <toolTipText value="昨收"/>
+            </properties>
+          </component>
+          <component id="c7e56" class="javax.swing.JLabel" binding="stock_detail_open_label">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="今开"/>
+              <toolTipText value="今开"/>
+            </properties>
+          </component>
+          <component id="3fd40" class="javax.swing.JLabel" binding="stock_detail_highest_price_label">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="最高"/>
+              <toolTipText value="最高"/>
+            </properties>
+          </component>
+          <component id="4a2bd" class="javax.swing.JLabel" binding="stock_detail_lowest_price_label">
+            <constraints>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="最低"/>
+              <toolTipText value="最低"/>
+            </properties>
+          </component>
+          <component id="873fb" class="javax.swing.JLabel" binding="stock_detail_amplitude_label">
+            <constraints>
+              <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="振幅"/>
+              <toolTipText value="振幅"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="bdb3" binding="stock_detail_val_panel_1" layout-manager="GridLayoutManager" row-count="1" column-count="5" same-size-horizontally="true" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="10" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="c6f91" class="javax.swing.JLabel" binding="stock_detail_close">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="--"/>
+            </properties>
+          </component>
+          <component id="69306" class="javax.swing.JLabel" binding="stock_detail_open">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="--"/>
+            </properties>
+          </component>
+          <component id="f9adb" class="javax.swing.JLabel" binding="stock_detail_highest">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="--"/>
+            </properties>
+          </component>
+          <component id="38258" class="javax.swing.JLabel" binding="stock_detail_lowest">
+            <constraints>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="--"/>
+            </properties>
+          </component>
+          <component id="60bd" class="javax.swing.JLabel" binding="stock_detail_amplitude">
+            <constraints>
+              <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="--"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="ec33c" binding="stock_detail_label_panel_2" layout-manager="GridLayoutManager" row-count="1" column-count="5" same-size-horizontally="true" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="11" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="26c57" class="javax.swing.JLabel" binding="stock_detail_total_mkt_val_label">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="总市值(亿)"/>
+              <toolTipText value="总市值(亿)"/>
+            </properties>
+          </component>
+          <component id="c0bef" class="javax.swing.JLabel" binding="stock_detail_circulation_mkt_val_label">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="流通市值(亿)"/>
+              <toolTipText value="流通市值(亿)"/>
+            </properties>
+          </component>
+          <component id="95a35" class="javax.swing.JLabel" binding="stock_detail_exchange_rate_label">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="换手率"/>
+              <toolTipText value="换手率"/>
+            </properties>
+          </component>
+          <component id="44be2" class="javax.swing.JLabel" binding="stock_detail_per_label">
+            <constraints>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="市盈率"/>
+              <toolTipText value="市盈率"/>
+            </properties>
+          </component>
+          <component id="2eacd" class="javax.swing.JLabel" binding="stock_detail_pbr_label">
+            <constraints>
+              <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="市净率"/>
+              <toolTipText value="市净率"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="5ee9e" binding="stock_detail_val_panel_2" layout-manager="GridLayoutManager" row-count="1" column-count="5" same-size-horizontally="true" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="12" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="be715" class="javax.swing.JLabel" binding="stock_detail_total_mkt_val">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="--"/>
+            </properties>
+          </component>
+          <component id="42cd1" class="javax.swing.JLabel" binding="stock_detail_circulation_mkt_val">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="--"/>
+            </properties>
+          </component>
+          <component id="2ec9" class="javax.swing.JLabel" binding="stock_detail_exchange_rate">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="--"/>
+            </properties>
+          </component>
+          <component id="bb850" class="javax.swing.JLabel" binding="stock_detail_per">
+            <constraints>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="--"/>
+            </properties>
+          </component>
+          <component id="54a96" class="javax.swing.JLabel" binding="stock_detail_pbr">
+            <constraints>
+              <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="--"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="31d5" binding="stock_detail_timestamp_panel" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="18" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="80b45" class="javax.swing.JLabel" binding="stock_detail_timestamp">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="1970-01-01 00:00:00"/>
+            </properties>
+          </component>
+          <hspacer id="3affd">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+          <component id="86b0d" class="javax.swing.JButton" binding="stock_detail_sync">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <icon value="refresh.png"/>
+              <text value="Sync"/>
+              <toolTipText value="Sync"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <vspacer id="d5726">
+        <constraints>
+          <grid row="17" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </vspacer>
+      <grid id="2abd5" binding="stock_detail_base_panel" layout-manager="GridLayoutManager" row-count="1" column-count="5" same-size-horizontally="true" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="5" left="5" bottom="5" right="5"/>
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="2" indent="0" use-parent-layout="false">
+            <minimum-size width="300" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="1baba" class="javax.swing.JLabel" binding="stock_detail_name">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="JetBrains Mono" size="16" style="1"/>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <text value="名称"/>
+              <toolTipText value="名称"/>
+            </properties>
+          </component>
+          <component id="b57a3" class="javax.swing.JLabel" binding="stock_detail_symbol">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="JetBrains Mono" size="16" style="1"/>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <text value="代码"/>
+            </properties>
+          </component>
+          <component id="db1ab" class="javax.swing.JLabel" binding="stock_detail_latest_price">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="JetBrains Mono" size="16" style="1"/>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <text value="最新价"/>
+            </properties>
+          </component>
+          <component id="e3a0f" class="javax.swing.JLabel" binding="stock_detail_rise_fall">
+            <constraints>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="JetBrains Mono" size="16" style="1"/>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <text value="涨跌"/>
+            </properties>
+          </component>
+          <component id="662a6" class="javax.swing.JLabel" binding="stock_detail_rise_fall_rate">
+            <constraints>
+              <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="JetBrains Mono" size="16" style="1"/>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <text value="涨跌幅"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="390e1" binding="stock_ask_bid_5_panel" layout-manager="GridLayoutManager" row-count="1" column-count="6" same-size-horizontally="true" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="14" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="3e81a" class="javax.swing.JLabel" binding="ask_bid_unit">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="(元)/(手)"/>
+              <toolTipText value="(元)/(手)"/>
+            </properties>
+          </component>
+          <component id="326c6" class="javax.swing.JLabel" binding="ask_bid_label_1">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="1档"/>
+              <toolTipText value="1档"/>
+            </properties>
+          </component>
+          <component id="59e8c" class="javax.swing.JLabel" binding="ask_bid_label_2">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="2档"/>
+              <toolTipText value="2档"/>
+            </properties>
+          </component>
+          <component id="b37fb" class="javax.swing.JLabel" binding="ask_bid_label_3">
+            <constraints>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="3档"/>
+              <toolTipText value="3档"/>
+            </properties>
+          </component>
+          <component id="a3e6a" class="javax.swing.JLabel" binding="ask_bid_label_4">
+            <constraints>
+              <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="4档"/>
+              <toolTipText value="4档"/>
+            </properties>
+          </component>
+          <component id="c47b" class="javax.swing.JLabel" binding="ask_bid_label_5">
+            <constraints>
+              <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="5档"/>
+              <toolTipText value="5档"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="80385" binding="bid_5_panel" layout-manager="GridLayoutManager" row-count="1" column-count="6" same-size-horizontally="true" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="15" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="cceda" class="javax.swing.JLabel" binding="bid_5_label">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="买"/>
+              <toolTipText value="买"/>
+            </properties>
+          </component>
+          <component id="96514" class="javax.swing.JLabel" binding="bid_1">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="--"/>
+              <toolTipText value=""/>
+            </properties>
+          </component>
+          <component id="afbc9" class="javax.swing.JLabel" binding="bid_2">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="--"/>
+              <toolTipText value=""/>
+            </properties>
+          </component>
+          <component id="fcc37" class="javax.swing.JLabel" binding="bid_3">
+            <constraints>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="--"/>
+              <toolTipText value="--"/>
+            </properties>
+          </component>
+          <component id="18c9a" class="javax.swing.JLabel" binding="bid_4">
+            <constraints>
+              <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="--"/>
+              <toolTipText value=""/>
+            </properties>
+          </component>
+          <component id="aa24b" class="javax.swing.JLabel" binding="bid_5">
+            <constraints>
+              <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="--"/>
+              <toolTipText value=""/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="9fdb" binding="ask_5_panel" layout-manager="GridLayoutManager" row-count="1" column-count="6" same-size-horizontally="true" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="16" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="27c50" class="javax.swing.JLabel" binding="ask_5_label">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="卖"/>
+              <toolTipText value="卖"/>
+            </properties>
+          </component>
+          <component id="f61fc" class="javax.swing.JLabel" binding="ask_1">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="--"/>
+              <toolTipText value=""/>
+            </properties>
+          </component>
+          <component id="96ecb" class="javax.swing.JLabel" binding="ask_2">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="--"/>
+              <toolTipText value=""/>
+            </properties>
+          </component>
+          <component id="81f0" class="javax.swing.JLabel" binding="ask_3">
+            <constraints>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="--"/>
+              <toolTipText value=""/>
+            </properties>
+          </component>
+          <component id="174df" class="javax.swing.JLabel" binding="ask_4">
+            <constraints>
+              <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="--"/>
+              <toolTipText value=""/>
+            </properties>
+          </component>
+          <component id="4c7be" class="javax.swing.JLabel" binding="ask_5">
+            <constraints>
+              <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="--"/>
+              <toolTipText value=""/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <component id="3f3b3" class="javax.swing.JLabel" binding="ask_bid_5_label">
+        <constraints>
+          <grid row="13" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="15" style="1"/>
+          <text value="买卖5档"/>
+          <toolTipText value="买卖5档"/>
+        </properties>
+      </component>
+      <component id="b934b" class="javax.swing.JLabel" binding="stock_detail_label">
+        <constraints>
+          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="15" style="1"/>
+          <text value="股票详情"/>
+          <toolTipText value="股票详情"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
