@@ -51,27 +51,28 @@ Fund Query:
 * V1.4.1
   * 更新了 plugin.xml 以上传 Marketplace.
 * V1.4.2
-  * 跟随 IdeaIC 2020.2 更新.<br>
+  * 跟随 IdeaIC 2020.2 更新.
 * V1.4.3
-  * 激活了隐秘模式.<br>
+  * 激活了隐秘模式.
 * V1.5.0
-  * 新增了基金数据.<br>
+  * 新增了基金数据.
 * V1.5.1
-  * 添加了plugin icon.<br>
+  * 添加了plugin icon.
 * V1.5.2
-   * 代码优化, 以及 Android Studio 上面中文乱码的问题.<br>
+   * 代码优化, 以及 Android Studio 上面中文乱码的问题.
 * V1.5.3
-   * 使用零宽断言解析jsonp, 并激活了简洁模式.<br>
+   * 使用零宽断言解析jsonp, 并激活了简洁模式.
 * V1.6.0
-   * 添加了股票详情窗口.<br>
+   * 添加了股票详情窗口.
 * V1.7.1
-   * 添加了基金和基金公司的搜索和基金的自动添加.<br>
+   * 添加了基金和基金公司的搜索和基金的自动添加.
 * V1.7.2
-    * bugs fixed and merge sh and sz.<br>
+    * bugs fixed and merge sh and sz.
 * V1.7.3
-    * added ask&bid 5.<br>
+    * added ask&bid 5.
 * V1.7.4, 1.7.5
-    * bugs fixed.<br>
+    * bugs fixed.
+* V1.8.0 merge stock windows for more space for klines.
   
 # TODO
 * **<b><s>基金</s></b>**
@@ -81,7 +82,7 @@ Fund Query:
 * **<b><s>查看基金公司</s></b>**
 * **<b><s>搜索基金</s></b>**
 * **<b>股价提醒功能</b>**
-* **<b>创业版</b>**
+* **<b><s>创业版</s></b>**
 * **<b>股价行情图</b>**
 * **<b>总盈亏估算</b>**
 * **<b>...</b>**
