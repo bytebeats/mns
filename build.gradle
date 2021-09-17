@@ -47,6 +47,7 @@ patchPluginXml {
       v1.7.3 added ask&bid 5.<br>
       v1.7.4, 1.7.5, 1.7.6 bugs fixed.<br>
       v1.8.0 merge stock windows for more space for klines.<br>
+      v1.8.1 crypto currency window.<br>
       """
 }
 

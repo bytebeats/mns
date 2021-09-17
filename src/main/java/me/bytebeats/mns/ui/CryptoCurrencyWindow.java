@@ -1,7 +1,7 @@
 package me.bytebeats.mns.ui;
 
 import me.bytebeats.mns.SymbolParser;
-import me.bytebeats.mns.handler.TianTianFundHandler;
+import me.bytebeats.mns.handler.SinaCryptoCurrencyHandler;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,19 +19,19 @@ import java.util.List;
 public class CryptoCurrencyWindow implements SymbolParser {
     private JPanel crypto_currency_window;
     private JScrollPane crypto_currency_scroll;
-    private JTable fund_table;
+    private JTable crypto_currency_table;
     private JLabel crypto_currency_timestamp;
     private JButton crypto_currency_sync;
     private JButton crypto_currency_search;
 
-    private final TianTianFundHandler handler;
+    private final SinaCryptoCurrencyHandler handler;
 
     private FundSearchDialog fundSearchDialog;
 
     private String fundSymbols;
 
     public CryptoCurrencyWindow() {
-        handler = new TianTianFundHandler(fund_table, crypto_currency_timestamp);
+        handler = new SinaCryptoCurrencyHandler(crypto_currency_table, crypto_currency_timestamp);
     }
 
     public JPanel getJPanel() {
@@ -59,7 +59,7 @@ public class CryptoCurrencyWindow implements SymbolParser {
 
     @Override
     public String raw() {
-        return fundSymbols;
+        return AppSettingState.getInstance().cryptoCurrencies;
     }
 
     @Override

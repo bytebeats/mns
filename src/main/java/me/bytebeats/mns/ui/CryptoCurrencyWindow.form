@@ -22,10 +22,10 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="4dca8" class="javax.swing.JTable" binding="fund_table">
+          <component id="4dca8" class="javax.swing.JTable" binding="crypto_currency_table">
             <constraints/>
             <properties>
-              <toolTipText value="天天基金"/>
+              <toolTipText value="新浪加密货币"/>
             </properties>
           </component>
         </children>
@@ -58,6 +58,7 @@
         <properties>
           <label value="Search"/>
           <text value="Search"/>
+          <visible value="false"/>
         </properties>
       </component>
       <hspacer id="ec856">
