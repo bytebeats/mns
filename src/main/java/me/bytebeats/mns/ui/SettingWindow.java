@@ -28,6 +28,8 @@ public class SettingWindow implements Configurable {
     private JLabel daily_fund;
     private JTextField daily_fund_input;
     private JLabel mkt_setting_label;
+    private JTextField crypto_currency_input;
+    private JLabel crypto_currency;
 
     @Nls(capitalization = Nls.Capitalization.Title)
     @Override
@@ -69,6 +71,7 @@ public class SettingWindow implements Configurable {
         settings.shStocks = sh_stock_input.getText();
         settings.szStocks = sz_stock_input.getText();
         settings.dailyFunds = daily_fund_input.getText();
+        settings.cryptoCurrencies = crypto_currency_input.getText();
         settings.isRedRise = red_rise_green_fall.isSelected();
         settings.isHiddenMode = hide_mode_setting.isSelected();
     }
@@ -90,6 +93,7 @@ public class SettingWindow implements Configurable {
         sh_stock_input.setText(settings.shStocks);
         sz_stock_input.setText(settings.szStocks);
         daily_fund_input.setText(settings.dailyFunds);
+        crypto_currency_input.setText(settings.cryptoCurrencies);
         red_rise_green_fall.setSelected(settings.isRedRise);
         red_fall_green_rise.setSelected(!settings.isRedRise);
         boolean isHidden = settings.isHiddenMode;

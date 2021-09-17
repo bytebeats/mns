@@ -21,14 +21,16 @@ public class AppSettingState implements PersistentStateComponent<AppSettingState
     public final static String ALL_INDICES = "usDJI;usIXIC;usINX;usNDX;hkHSI;hkHSTECH;hkHSCEI;hkHSCCI;sh000001;sh588090;sz399001;sz399006;sh000300;sh000016;sz399903;sh000011;sz399103;sz399330";
     public final static String STOCK_SYMBOL = "sh600519";
     public final static String FUND_SYMBOL = "570008";
+    public final static String CRYPTO_CURRENCIES = "BTC;DOGE";
 
     public boolean isRedRise = true;
     public boolean isHiddenMode = false;
-    public String usStocks = "AAPL;TWTR;TSLA;NFLX;MSFT";
+    public String usStocks = "AAPL;TSLA;NFLX;MSFT";
     public String hkStocks = "00981;09988;09618";
     public String shStocks = "600036";
     public String szStocks = "002352";
     public String dailyFunds = "320003;002621;519674";
+    public String cryptoCurrencies = "BTC;DOGE";
     public String stockSymbol = "usTSLA";
     public String fundSymbol = "570008";
 
@@ -44,6 +46,7 @@ public class AppSettingState implements PersistentStateComponent<AppSettingState
         shStocks = SH_STOCKS;
         szStocks = SZ_STOCKS;
         dailyFunds = DAILY_FUNDS;
+        cryptoCurrencies = CRYPTO_CURRENCIES;
         stockSymbol = STOCK_SYMBOL;
         fundSymbol = FUND_SYMBOL;
     }

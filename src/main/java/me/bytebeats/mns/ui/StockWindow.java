@@ -21,7 +21,7 @@ public class StockWindow {
     private JButton stock_refresh;
     private JComboBox<String> stock_market_list;
 
-    private AbsStockHandler handler;
+    private final AbsStockHandler handler;
 
     private static final String[] markets = {StringResUtils.STOCK_ALL, StringResUtils.STOCK_US, StringResUtils.STOCK_HK, StringResUtils.STOCK_CN};
 
