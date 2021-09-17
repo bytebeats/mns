@@ -13,7 +13,7 @@ import java.awt.event.FocusListener;
  * @Github https://github.com/bytebeats
  * @Created on 2021/9/11 18:53
  * @Version 1.0
- * @Description TO-DO
+ * @Description JTextField with hint supported.
  */
 
 public class JHintTextField extends JTextField implements FocusListener {
