@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="me.bytebeats.mns.ui.CryptoCurrencyWindow">
-  <grid id="27dc6" binding="crypto_currency_window" layout-manager="GridLayoutManager" row-count="2" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="me.bytebeats.mns.ui.DigitalCurrencyWindow">
+  <grid id="27dc6" binding="digital_currency_window" layout-manager="GridLayoutManager" row-count="2" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
       <xy x="20" y="20" width="500" height="400"/>
@@ -12,7 +12,7 @@
     </properties>
     <border type="none"/>
     <children>
-      <scrollpane id="9d6e3" binding="crypto_currency_scroll">
+      <scrollpane id="9d6e3" binding="digital_currency_scroll">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="4" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <minimum-size width="300" height="-1"/>
@@ -22,7 +22,7 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="4dca8" class="javax.swing.JTable" binding="crypto_currency_table">
+          <component id="4dca8" class="javax.swing.JTable" binding="digital_currency_table">
             <constraints/>
             <properties>
               <toolTipText value="新浪加密货币"/>
@@ -30,7 +30,7 @@
           </component>
         </children>
       </scrollpane>
-      <component id="f6094" class="javax.swing.JLabel" binding="crypto_currency_timestamp">
+      <component id="f6094" class="javax.swing.JLabel" binding="digital_currency_timestamp">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -39,7 +39,7 @@
           <text value="1970-01-01 00:00:00"/>
         </properties>
       </component>
-      <component id="c4983" class="javax.swing.JButton" binding="crypto_currency_sync">
+      <component id="c4983" class="javax.swing.JButton" binding="digital_currency_sync">
         <constraints>
           <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -51,7 +51,7 @@
           <text value="Sync"/>
         </properties>
       </component>
-      <component id="8d863" class="javax.swing.JButton" binding="crypto_currency_search">
+      <component id="8d863" class="javax.swing.JButton" binding="digital_currency_search">
         <constraints>
           <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>

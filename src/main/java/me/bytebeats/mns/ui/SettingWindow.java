@@ -7,7 +7,6 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import java.awt.event.ItemEvent;
-import java.util.List;
 
 public class SettingWindow implements Configurable {
     private JPanel mns_setting;
@@ -36,15 +35,15 @@ public class SettingWindow implements Configurable {
     private JComboBox<String> refresh_frequency_stock_list;
     private JLabel refresh_frequency_fund;
     private JComboBox<String> refresh_frequency_fund_list;
-    private JLabel refresh_frequency_crypto;
-    private JComboBox<String> refresh_frequency_crypto_list;
+    private JLabel refresh_frequency_digital;
+    private JComboBox<String> refresh_frequency_digital_list;
     private JLabel refresh_frequency_indices;
     private JComboBox<String> refresh_frequency_indices_list;
 
     private final String[] INDICES_FREQUENCIES = {"2", "5", "10", "20", "30"};
     private final String[] STOCK_FREQUENCIES = {"1", "3", "5", "8", "10"};
     private final String[] FUND_FREQUENCIES = {"5", "10", "20", "30", "60"};
-    private final String[] CRYPTO_FREQUENCIES = {"2", "5", "10", "15", "20"};
+    private final String[] DIGITAL_FREQUENCIES = {"2", "5", "10", "15", "20"};
 
     @Nls(capitalization = Nls.Capitalization.Title)
     @Override
@@ -64,8 +63,8 @@ public class SettingWindow implements Configurable {
         for (String frequency : FUND_FREQUENCIES) {
             refresh_frequency_fund_list.addItem(frequency);
         }
-        for (String frequency : CRYPTO_FREQUENCIES) {
-            refresh_frequency_crypto_list.addItem(frequency);
+        for (String frequency : DIGITAL_FREQUENCIES) {
+            refresh_frequency_digital_list.addItem(frequency);
         }
         red_rise_green_fall.addItemListener(e -> {
             if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -104,7 +103,7 @@ public class SettingWindow implements Configurable {
         settings.indicesFrequency = Integer.parseInt(refresh_frequency_indices_list.getSelectedItem().toString());
         settings.stockFrequency = Integer.parseInt(refresh_frequency_stock_list.getSelectedItem().toString());
         settings.fundFrequency = Integer.parseInt(refresh_frequency_fund_list.getSelectedItem().toString());
-        settings.cryptoFrequency = Integer.parseInt(refresh_frequency_crypto_list.getSelectedItem().toString());
+        settings.cryptoFrequency = Integer.parseInt(refresh_frequency_digital_list.getSelectedItem().toString());
     }
 
     @Override
@@ -134,7 +133,7 @@ public class SettingWindow implements Configurable {
         refresh_frequency_indices_list.setSelectedItem(String.valueOf(settings.indicesFrequency));
         refresh_frequency_stock_list.setSelectedItem(String.valueOf(settings.stockFrequency));
         refresh_frequency_fund_list.setSelectedItem(String.valueOf(settings.fundFrequency));
-        refresh_frequency_crypto_list.setSelectedItem(String.valueOf(settings.cryptoFrequency));
+        refresh_frequency_digital_list.setSelectedItem(String.valueOf(settings.cryptoFrequency));
     }
 
     @Override
