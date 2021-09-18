@@ -44,7 +44,6 @@ public class TencentStockHandler extends AbsStockHandler {
     }
 
     private void fetch(List<String> symbols) {
-        LogUtil.info(getTipText() + ": " + frequency);
         if (symbols.isEmpty()) {
             return;
         }
