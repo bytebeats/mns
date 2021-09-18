@@ -30,17 +30,19 @@
             <children>
               <component id="e7465" class="javax.swing.JButton" binding="fund_add">
                 <constraints>
-                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <iconTextGap value="0"/>
                   <text value="Add"/>
                 </properties>
               </component>
               <component id="5723f" class="javax.swing.JButton" binding="fund_cancel">
                 <constraints>
-                  <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <iconTextGap value="0"/>
                   <text value="Cancel"/>
                 </properties>
               </component>
@@ -51,9 +53,11 @@
               </hspacer>
               <component id="850c8" class="javax.swing.JButton" binding="fund_delete">
                 <constraints>
-                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <hideActionText value="false"/>
+                  <iconTextGap value="0"/>
                   <text value="Delete"/>
                   <visible value="true"/>
                 </properties>
@@ -94,9 +98,10 @@
               </component>
               <component id="4794c" class="javax.swing.JButton" binding="fund_search">
                 <constraints>
-                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <horizontalTextPosition value="0"/>
                   <text value="Search"/>
                 </properties>
               </component>
