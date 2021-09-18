@@ -43,6 +43,7 @@ public class StockWindow {
     }
 
     public void onInit() {
+        stock_market_list.removeAllItems();
         for (String market : markets) {
             stock_market_list.addItem(market);
         }

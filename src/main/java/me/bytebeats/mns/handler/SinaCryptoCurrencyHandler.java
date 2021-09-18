@@ -125,6 +125,7 @@ public class SinaCryptoCurrencyHandler extends AbstractHandler {
 
     @Override
     public Object[][] convert2Data() {
+        columnTextColors.clear();
         Object[][] data = new Object[cryptoCurrencies.size()][cryptoCurrencyColumnNames.length];
         for (int i = 0; i < cryptoCurrencies.size(); i++) {
             CryptoCurrency currency = cryptoCurrencies.get(i);
@@ -132,7 +133,12 @@ public class SinaCryptoCurrencyHandler extends AbstractHandler {
             if (isInHiddenMode()) {
                 name = PinyinUtils.toPinyin(name);
             }
-            data[i] = new Object[]{name, currency.getSymbol(), currency.getPrice(), currency.getPnl(), currency.getPnlR()};
+            if (i < cryptoCurrencies.size()) {
+                data[i] = new Object[]{name, currency.getSymbol(), currency.getPrice(), currency.formattedPnl(), currency.getPnlR()};
+                columnTextColors.put(i, currency.pnl());
+            } else {
+                break;
+            }
         }
         return data;
     }

@@ -12,7 +12,9 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Timer;
 
 /**
@@ -30,6 +32,7 @@ public abstract class AbstractHandler implements UISettingProvider {
     private final JLabel jLabel;
 
     private final int[] numColumnIdx = {2, 3, 4};//哪些列需要修改字体颜色, 当UI设置发生改变的时候.
+    protected final Map<Integer, Double> columnTextColors = new HashMap<>();
 
     public AbstractHandler(JTable table, JLabel label) {
         this.jTable = table;
@@ -70,24 +73,11 @@ public abstract class AbstractHandler implements UISettingProvider {
     public abstract void resetTabSize();
 
     protected void updateRowTextColors() {
-        final double[] chg = {0.0};
-        jTable.getColumn(jTable.getColumnName(3)).setCellRenderer(new DefaultTableCellRenderer() {
-            @Override
-            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                try {
-                    chg[0] = Double.parseDouble(value.toString());
-                } catch (NumberFormatException e) {
-                    chg[0] = 0.0;
-                }
-                return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-            }
-        });
-
         for (int idx : numColumnIdx) {
             jTable.getColumn(jTable.getColumnName(idx)).setCellRenderer(new DefaultTableCellRenderer() {
                 @Override
                 public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                    setForeground(getTextColor(chg[0]));
+                    setForeground(getTextColor(columnTextColors.getOrDefault(row, 0.0)));
                     return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
                 }
             });
