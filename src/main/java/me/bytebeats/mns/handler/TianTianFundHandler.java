@@ -59,7 +59,6 @@ public class TianTianFundHandler extends AbstractHandler {
     }
 
     private void fetch(List<String> symbols) {
-        LogUtil.info(getTipText() + ": " + frequency);
         if (symbols.isEmpty()) {
             return;
         }
