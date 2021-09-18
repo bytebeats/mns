@@ -21,7 +21,7 @@ public class SinaCryptoCurrencyHandler extends AbstractHandler {
     protected List<CryptoCurrency> cryptoCurrencies = new ArrayList<>();
     private final int[] cryptoCurrencyTabWidths = {0, 0, 0, 0, 0};
     private final String[] cryptoCurrencyColumnNames = {StringResUtils.CRYPTO_CURRENCY_NAME, StringResUtils.CRYPTO_CURRENCY_CODE,
-            StringResUtils.CRYPTO_CURRENCY_PRICE, StringResUtils.CRYPTO_CURRENCY_VOLUME, StringResUtils.CRYPTO_CURRENCY_PNLR};
+            StringResUtils.CRYPTO_CURRENCY_PRICE, StringResUtils.RISE_AND_FALL, StringResUtils.RISE_AND_FALL_RATIO};
 
     public SinaCryptoCurrencyHandler(JTable table, JLabel label) {
         super(table, label);
@@ -95,19 +95,9 @@ public class SinaCryptoCurrencyHandler extends AbstractHandler {
                 }
                 String name = metas[9].replace(String.format("(%s/USD)", symbol.toUpperCase()), "");
                 String price = metas[8];
-                String price1 = metas[7];
-                String price2 = metas[6];
-                String price3 = metas[5];
-                String price4 = metas[4];
-                double p = Double.parseDouble(price);
-                double p1 = Double.parseDouble(price1);
-                double p2 = Double.parseDouble(price2);
-                double p3 = Double.parseDouble(price3);
-                double p4 = Double.parseDouble(price4);
-                LogUtil.info(String.format("%.4f, %.4f, %.4f, %.4f", p / p1 - 1, p / p2 - 1, p / p3 - 1, p / p4 - 1));
+                String preClose = metas[5];
                 String volume = metas[10];
-                String pnlr = "--";
-                updateCryptoCurrency(new CryptoCurrency(symbol, name, price, volume, pnlr));
+                updateCryptoCurrency(new CryptoCurrency(symbol, name, preClose, price, volume));
                 updateView();
             }
         }
@@ -137,13 +127,12 @@ public class SinaCryptoCurrencyHandler extends AbstractHandler {
     public Object[][] convert2Data() {
         Object[][] data = new Object[cryptoCurrencies.size()][cryptoCurrencyColumnNames.length];
         for (int i = 0; i < cryptoCurrencies.size(); i++) {
-            CryptoCurrency fund = cryptoCurrencies.get(i);
-            String name = fund.getName();
+            CryptoCurrency currency = cryptoCurrencies.get(i);
+            String name = currency.getName();
             if (isInHiddenMode()) {
                 name = PinyinUtils.toPinyin(name);
             }
-            data[i] = new Object[]{name, fund.getSymbol(), fund.getPrice(), fund.getVolume(),
-                    fund.getPnlr()};
+            data[i] = new Object[]{name, currency.getSymbol(), currency.getPrice(), currency.getPnl(), currency.getPnlR()};
         }
         return data;
     }

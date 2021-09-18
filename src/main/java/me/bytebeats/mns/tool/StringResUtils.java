@@ -39,5 +39,4 @@ public class StringResUtils {
     public static final String CRYPTO_CURRENCY_CODE = "代码";
     public static final String CRYPTO_CURRENCY_VOLUME = "成交量(24H)";
     public static final String CRYPTO_CURRENCY_PRICE = "最新价(USD)";
-    public static final String CRYPTO_CURRENCY_PNLR = "涨跌幅";
 }
