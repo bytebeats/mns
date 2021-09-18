@@ -1,7 +1,7 @@
 package me.bytebeats.mns.ui;
 
 import me.bytebeats.mns.SymbolParser;
-import me.bytebeats.mns.handler.SinaCryptoCurrencyHandler;
+import me.bytebeats.mns.handler.SinaDigitalCurrencyHandler;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,35 +16,35 @@ import java.util.List;
  * @email <happychinapc@gmail.com>
  * @since 2021/9/17 11:32
  */
-public class CryptoCurrencyWindow implements SymbolParser {
-    private JPanel crypto_currency_window;
-    private JScrollPane crypto_currency_scroll;
-    private JTable crypto_currency_table;
-    private JLabel crypto_currency_timestamp;
-    private JButton crypto_currency_sync;
-    private JButton crypto_currency_search;
+public class DigitalCurrencyWindow implements SymbolParser {
+    private JPanel digital_currency_window;
+    private JScrollPane digital_currency_scroll;
+    private JTable digital_currency_table;
+    private JLabel digital_currency_timestamp;
+    private JButton digital_currency_sync;
+    private JButton digital_currency_search;
 
-    private final SinaCryptoCurrencyHandler handler;
+    private final SinaDigitalCurrencyHandler handler;
 
     private FundSearchDialog fundSearchDialog;
 
     private String fundSymbols;
 
-    public CryptoCurrencyWindow() {
-        handler = new SinaCryptoCurrencyHandler(crypto_currency_table, crypto_currency_timestamp);
+    public DigitalCurrencyWindow() {
+        handler = new SinaDigitalCurrencyHandler(digital_currency_table, digital_currency_timestamp);
     }
 
     public JPanel getJPanel() {
-        return crypto_currency_window;
+        return digital_currency_window;
     }
 
     public void onInit() {
         fundSymbols = AppSettingState.getInstance().dailyFunds;
-        crypto_currency_sync.addActionListener(e -> {
+        digital_currency_sync.addActionListener(e -> {
             handler.stop();
             syncRefresh();
         });
-        crypto_currency_search.addActionListener(e -> popSearchDialog());
+        digital_currency_search.addActionListener(e -> popSearchDialog());
         syncRefresh();
     }
 

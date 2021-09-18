@@ -2,7 +2,7 @@ package me.bytebeats.mns.handler;
 
 import me.bytebeats.mns.HttpClientPool;
 import me.bytebeats.mns.LogUtil;
-import me.bytebeats.mns.meta.CryptoCurrency;
+import me.bytebeats.mns.meta.DigitalCurrency;
 import me.bytebeats.mns.tool.PinyinUtils;
 import me.bytebeats.mns.tool.StringResUtils;
 import me.bytebeats.mns.ui.AppSettingState;
@@ -15,14 +15,14 @@ import java.util.TimerTask;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SinaCryptoCurrencyHandler extends AbstractHandler {
+public class SinaDigitalCurrencyHandler extends AbstractHandler {
 
-    protected List<CryptoCurrency> cryptoCurrencies = new ArrayList<>();
+    protected List<DigitalCurrency> cryptoCurrencies = new ArrayList<>();
     private final int[] cryptoCurrencyTabWidths = {0, 0, 0, 0, 0};
     private final String[] cryptoCurrencyColumnNames = {StringResUtils.CRYPTO_CURRENCY_NAME, StringResUtils.CRYPTO_CURRENCY_CODE,
             StringResUtils.CRYPTO_CURRENCY_PRICE, StringResUtils.RISE_AND_FALL, StringResUtils.RISE_AND_FALL_RATIO};
 
-    public SinaCryptoCurrencyHandler(JTable table, JLabel label) {
+    public SinaDigitalCurrencyHandler(JTable table, JLabel label) {
         super(table, label);
     }
 
@@ -103,7 +103,7 @@ public class SinaCryptoCurrencyHandler extends AbstractHandler {
                 String price = metas[8];
                 String preClose = metas[5];
                 String volume = metas[10];
-                updateCryptoCurrency(new CryptoCurrency(symbol, name, preClose, price, volume));
+                updateCryptoCurrency(new DigitalCurrency(symbol, name, preClose, price, volume));
                 updateView();
             }
         }
@@ -134,7 +134,7 @@ public class SinaCryptoCurrencyHandler extends AbstractHandler {
         columnTextColors.clear();
         Object[][] data = new Object[cryptoCurrencies.size()][cryptoCurrencyColumnNames.length];
         for (int i = 0; i < cryptoCurrencies.size(); i++) {
-            CryptoCurrency currency = cryptoCurrencies.get(i);
+            DigitalCurrency currency = cryptoCurrencies.get(i);
             String name = currency.getName();
             if (isInHiddenMode()) {
                 name = PinyinUtils.toPinyin(name);
@@ -149,7 +149,7 @@ public class SinaCryptoCurrencyHandler extends AbstractHandler {
         return data;
     }
 
-    private void updateCryptoCurrency(CryptoCurrency currency) {
+    private void updateCryptoCurrency(DigitalCurrency currency) {
         int idx = cryptoCurrencies.indexOf(currency);
         if (idx > -1 && idx < cryptoCurrencies.size()) {
             cryptoCurrencies.set(idx, currency);

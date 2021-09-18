@@ -1,10 +1,10 @@
 # mns: Money Never Sleeps!
-IntelliJ IDEA平台插件. 支持查看股票实时行情. 支持股票, 基金和加密货币. 其中股票包括美股, 港股和 A 股.
+IntelliJ IDEA平台插件. 支持查看股票实时行情. 支持股票, 基金和数字货币. 其中股票包括美股, 港股和 A 股.
 
 ## Notes
 
 * In Setting page, symbols should be separated by comma/blanket/colon in English; 股票/基金/加密货币编码请用英语的逗号, 冒号或者空格分隔.
-* symbols of supported Crypto currencies, please check in [Here](https://finance.sina.com.cn/blockchain/hq.shtml). 加密货币代码请从 [这里](https://finance.sina.com.cn/blockchain/hq.shtml) 查找.
+* symbols of supported Crypto currencies, please check in [Here](https://finance.sina.com.cn/blockchain/hq.shtml). 数字货币代码请从 [这里](https://finance.sina.com.cn/blockchain/hq.shtml) 查找.
 * Stock service is supported by Tencent. Please check symbols [Here](https://stockapp.finance.qq.com/mstats/). 股票代码请从查找 [这里](https://stockapp.finance.qq.com/mstats/).
 * Fund service is supported by TianTian funds. Please check fund symbols [Here](https://fund.eastmoney.com). 基金代码请从 [这里](https://fund.eastmoney.com) 查找
 
@@ -90,7 +90,7 @@ Fund Query:
 * **<b>股价行情图</b>**
 * **<b>总盈亏估算</b>**
 * **<b>北交所</b>**
-* **<b><s>加密货币</s></b>**
+* **<b><s>数字货币</s></b>**
 * **<b>...</b>**
 
 ## Support

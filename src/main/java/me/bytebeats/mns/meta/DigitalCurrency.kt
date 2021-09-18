@@ -2,7 +2,7 @@ package me.bytebeats.mns.meta
 
 import java.util.*
 
-data class CryptoCurrency(
+data class DigitalCurrency(
     val symbol: String,
     val name: String,
     val preClose: String,
@@ -25,8 +25,8 @@ data class CryptoCurrency(
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other == null || javaClass != other.javaClass) return false
-        val cryptoCurrency = other as CryptoCurrency
-        return symbol == cryptoCurrency.symbol
+        val digitalCurrency = other as DigitalCurrency
+        return symbol == digitalCurrency.symbol
     }
 
     override fun hashCode(): Int {
