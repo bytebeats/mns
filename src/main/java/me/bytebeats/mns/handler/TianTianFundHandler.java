@@ -148,6 +148,7 @@ public class TianTianFundHandler extends AbstractHandler {
 
     @Override
     public Object[][] convert2Data() {
+        columnTextColors.clear();
         Object[][] data = new Object[funds.size()][fundColumnNames.length];
         for (int i = 0; i < funds.size(); i++) {
             Fund fund = funds.get(i);
@@ -155,8 +156,13 @@ public class TianTianFundHandler extends AbstractHandler {
             if (isInHiddenMode()) {
                 name = PinyinUtils.toPinyin(name);
             }
-            data[i] = new Object[]{name, fund.getFundcode(), fund.getDwjz(), fund.getGsz(),
-                    fund.getEstimateNetValueRatio()};
+            if (i < funds.size()) {
+                data[i] = new Object[]{name, fund.getFundcode(), fund.getDwjz(), fund.getGsz(),
+                        fund.getEstimateNetValueRatio()};
+                columnTextColors.put(i, Double.parseDouble(fund.getGszzl()));
+            } else {
+                break;
+            }
         }
         return data;
     }

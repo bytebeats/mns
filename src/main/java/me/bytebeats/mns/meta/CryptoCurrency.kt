@@ -12,13 +12,15 @@ data class CryptoCurrency(
     private val pre: Double = preClose.toDouble()
     private val p: Double = price.toDouble()
 
-    fun getPnl(): String {
-        return String.format("%.4f", p - pre)
+    fun formattedPnl(): String {
+        return String.format("%.4f", pnl())
     }
 
     fun getPnlR(): String {
-        return String.format("%.2f\\%", (p / pre - 1) * 100)
+        return String.format("%.2f", (p / pre - 1) * 100) + "%"
     }
+
+    fun pnl(): Double = p - pre
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

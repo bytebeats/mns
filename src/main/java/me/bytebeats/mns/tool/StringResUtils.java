@@ -34,7 +34,7 @@ public class StringResUtils {
     public static final String TIANTIAN_FUND_URL = "http://fundgz.1234567.com.cn/js/%s.js?rt=%d";//天天基金数据接口
     public static final String SINA_CRYPTO_CURRENCY_URL = "http://hq.sinajs.cn/list=%s";//天天基金数据接口
 
-    public static final String CRYPTO_CURRENCIES = "Crypto Currencies";
+    public static final String CRYPTO_CURRENCIES = "Cryptos";
     public static final String CRYPTO_CURRENCY_NAME = "名称";
     public static final String CRYPTO_CURRENCY_CODE = "代码";
     public static final String CRYPTO_CURRENCY_VOLUME = "成交量(24H)";

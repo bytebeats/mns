@@ -75,6 +75,7 @@ public abstract class AbsStockHandler extends AbstractHandler implements UISetti
 
     @Override
     public Object[][] convert2Data() {
+        columnTextColors.clear();
         Object[][] data = new Object[stocks.size()][stockColumnNames.length];
         for (int i = 0; i < stocks.size(); i++) {
             Stock stock = stocks.get(i);
@@ -85,6 +86,7 @@ public abstract class AbsStockHandler extends AbstractHandler implements UISetti
             if (i < stocks.size()) {//ArrayIndexOutOfBoundsException from issues: https://github.com/bytebeats/mns/issues/76
                 data[i] = new Object[]{name, stock.getSymbol(), stock.getLatestPrice(), stock.getChange(),
                         stock.getChangeRatioString()};
+                columnTextColors.put(i, stock.getChange());
             } else {
                 break;
             }

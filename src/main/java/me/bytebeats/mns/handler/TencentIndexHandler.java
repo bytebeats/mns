@@ -158,6 +158,7 @@ public class TencentIndexHandler extends AbstractHandler {
 
     @Override
     public Object[][] convert2Data() {
+        columnTextColors.clear();
         Object[][] data = new Object[indices.size()][indexColumnNames.length];
         for (int i = 0; i < indices.size(); i++) {
             Index index = indices.get(i);
@@ -171,8 +172,11 @@ public class TencentIndexHandler extends AbstractHandler {
             if (isInHiddenMode()) {
                 name = PinyinUtils.toPinyin(name);
             }
-            data[i] = new Object[]{name, index.getSymbol(), index.getLatest(), index.getChange(),
-                    index.getChangeRatioString()};//, highest, lowest, open, close, dailyRatio, turnover
+            if (i < indices.size()) {
+                data[i] = new Object[]{name, index.getSymbol(), index.getLatest(), index.getChange(),
+                        index.getChangeRatioString()};//, highest, lowest, open, close, dailyRatio, turnover
+                columnTextColors.put(i, index.getChange());
+            }
         }
         return data;
     }
