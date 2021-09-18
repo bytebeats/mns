@@ -1,41 +1,41 @@
 # mns: Money Never Sleeps!
-IntelliJ IDEA平台插件. 支持查看股票实时行情. 支持美股, 港股, A股和基金.
+IntelliJ IDEA平台插件. 支持查看股票实时行情. 支持股票, 基金和加密货币. 其中股票包括美股, 港股和 A 股.
 
-# Installation:
-* IntelliJ IDEA -> Preferences -> Plugins -> Install Plugin From Disk..., 从本项目中下载 `lib/mns-x.x.x.jar`文件并选中, 安装.
+## Notes
+
+* In Setting page, symbols should be separated by comma/blanket/colon in English; 股票/基金/加密货币编码请用英语的逗号, 冒号或者空格分隔.
+* symbols of supported Crypto currencies, please check in [Here](https://finance.sina.com.cn/blockchain/hq.shtml). 加密货币编码请从 [这里](https://finance.sina.com.cn/blockchain/hq.shtml) 查找.
+
+## Installation:
 * IntelliJ IDEA -> Preferences -> Plugins -> Marketplace, type `mns`/`money`/`money never`/`money never sleeps` to search and install.
 
-# Compilation:
-打开 `Terminal` 窗口, 运行 `./gradlew build` 命令, 结束后你会发现 `libs/mns-x.x.x.jar` 文件的生成.
-
-# Usage:
+## Usage:
 
 Settings:
 
-![Setting](media/mns_screenshot_6.png)
+![Setting](media/mns_settings.png)
 
-US stocks:
+Stocks:
 
-![Detail](media/mns_screenshot_2.png)
+![Detail](media/stocks.png)
 
-Core indices:
+Indices:
 
-![Index](media/mns_screenshot_1.png)
+![Index](media/core_indices.png)
 
 Funds:
 
-![Index](media/mns_screenshot_3.png)
+![Index](media/funds.png)
 
 Stock Details:
 
-![Index](media/mns_screenshot_4.png)
+![Index](media/stock_details.png)
 
 Fund Query:
 
-<img src="/media/mns_screenshot_5.png" width="470" height="540"/>
+![Index](media/fund_search_dialog.png)
 
-
-# Changes
+## Changes
 * V1.0.0
   * 添加了设置窗口, 美股实时数据.
 * V1.1.0
@@ -73,8 +73,8 @@ Fund Query:
 * V1.7.4, 1.7.5
     * bugs fixed.
 * V1.8.0 merge stock windows for more space for klines.
-  
-# TODO
+
+## TODO
 * **<b><s>基金</s></b>**
 * **<b><s>股票盘口数据</s></b>**
 * **<b><s>股票实时资金流向</s></b>**
@@ -85,10 +85,11 @@ Fund Query:
 * **<b><s>创业版</s></b>**
 * **<b>股价行情图</b>**
 * **<b>总盈亏估算</b>**
-* **<b>加密货币</b>**
+* **<b>北交所</b>**
+* **<b><s>加密货币</s></b>**
 * **<b>...</b>**
 
-# Support
+## Support
 <br>Open-source is no easy job, for which I have to sacrifice my weekends and other non-working hours.</br>
 <br>开源不易, 尤其是对于全职的开源爱好者. 需要占用不少下班以及周末时间.</br>
 <br>If you think this plugin is meaningful, is worthy, you are welcome to support this project by following:</br>
@@ -111,14 +112,14 @@ Fund Query:
 <br>邮箱地址：<a href="mailto:happychinapc@gmail.com?subject=mns捐赠&body=你做的工作很有意义, 加油!">happychinapc@gmail.com</a></br>
 <br>感谢您的支持！</br>
 
-# More plugins
+## More plugins
 * [Polyglot](https://github.com/bytebeats/polyglot) Translators
 * [JsonMaster](https://github.com/bytebeats/JsonMaster)
 * [kfiglet](https://github.com/bytebeats/kfiglet) Ascii Arts
 
-# Contributors
+## Contributors
 
-# Donates
+## Donates
 * <a href="mailto:vip-cyq@qq.com">小鱼</a>
 
 ## Stargazers over time
