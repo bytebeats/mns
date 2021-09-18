@@ -2,7 +2,7 @@
     <id>me.bytebeats.mns</id>
     <name>Money Never Sleeps</name>
     <vendor email="happychinapc@gmail.com" url="https://github.com/bytebeats">bytebeats</vendor>
-    <version>1.8.1</version>
+    <version>1.8.2</version>
     <idea-version since-build="183.*" />
 
     <description><![CDATA[
@@ -36,6 +36,7 @@
       v1.7.4, 1.7.5, 1.7.6 bugs fixed.<br>
       v1.8.0 merge stock windows for more space for klines.<br>
       v1.8.1 crypto currency window.<br>
+      v1.8.2 customize refresh frequency.<br>
     ]]></change-notes>
 
     <depends>com.intellij.modules.platform</depends>

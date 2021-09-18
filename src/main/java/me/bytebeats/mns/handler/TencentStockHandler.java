@@ -12,7 +12,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TencentStockHandler extends AbsStockHandler {
-    private static final long REFRESH_INTERVAL = 3L * 1000L;
 
     public TencentStockHandler(JTable table, JLabel label) {
         super(table, label);
@@ -28,13 +27,14 @@ public class TencentStockHandler extends AbsStockHandler {
         stocks.clear();
         if (timer == null) {
             timer = new Timer();
+            updateFrequency();
         }
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 fetch(symbols);
             }
-        }, 0, REFRESH_INTERVAL);
+        }, 0, frequency);
         LogUtil.info("starts updating " + getTipText() + " stocks");
     }
 
@@ -44,6 +44,7 @@ public class TencentStockHandler extends AbsStockHandler {
     }
 
     private void fetch(List<String> symbols) {
+        LogUtil.info(getTipText() + ": " + frequency);
         if (symbols.isEmpty()) {
             return;
         }

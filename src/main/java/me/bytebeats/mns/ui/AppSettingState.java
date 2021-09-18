@@ -33,6 +33,10 @@ public class AppSettingState implements PersistentStateComponent<AppSettingState
     public String cryptoCurrencies = "BTC;DOGE";
     public String stockSymbol = "usTSLA";
     public String fundSymbol = "570008";
+    public int indicesFrequency = 5;
+    public int stockFrequency = 3;
+    public int fundFrequency = 20;
+    public int cryptoFrequency = 5;
 
     public static AppSettingState getInstance() {
         return ServiceManager.getService(AppSettingState.class);

@@ -6,6 +6,7 @@ import me.bytebeats.mns.meta.Fund;
 import me.bytebeats.mns.tool.GsonUtils;
 import me.bytebeats.mns.tool.PinyinUtils;
 import me.bytebeats.mns.tool.StringResUtils;
+import me.bytebeats.mns.ui.AppSettingState;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -17,8 +18,6 @@ import java.util.regex.Pattern;
 
 public class TianTianFundHandler extends AbstractHandler {
 
-    private static final long REFRESH_INTERVAL = 10L * 1000L;
-
     protected List<Fund> funds = new ArrayList<>();
     private final int[] fundTabWidths = {0, 0, 0, 0, 0};
     private final String[] fundColumnNames = {StringResUtils.FUND_NAME, StringResUtils.FUND_CODE,
@@ -26,6 +25,11 @@ public class TianTianFundHandler extends AbstractHandler {
 
     public TianTianFundHandler(JTable table, JLabel label) {
         super(table, label);
+    }
+
+    @Override
+    public void updateFrequency() {
+        this.frequency = AppSettingState.getInstance().fundFrequency * 1000L;
     }
 
     @Override
@@ -38,13 +42,14 @@ public class TianTianFundHandler extends AbstractHandler {
         funds.clear();
         if (timer == null) {
             timer = new Timer();
+            updateFrequency();
         }
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 fetch(symbols);
             }
-        }, 0, REFRESH_INTERVAL);
+        }, 0, frequency);
         LogUtil.info("starts updating " + getTipText() + " funds");
     }
 
@@ -54,6 +59,7 @@ public class TianTianFundHandler extends AbstractHandler {
     }
 
     private void fetch(List<String> symbols) {
+        LogUtil.info(getTipText() + ": " + frequency);
         if (symbols.isEmpty()) {
             return;
         }
