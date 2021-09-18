@@ -15,6 +15,7 @@ public class CoreIndicesWindow implements SymbolParser {
     private JTable indices_table;
     private JLabel indices_timestamp;
     private JButton indices_sync;
+    private long frequency = AppSettingState.getInstance().indicesFrequency;
 
     private TencentIndexHandler handler;
 
@@ -31,7 +32,10 @@ public class CoreIndicesWindow implements SymbolParser {
     }
 
     public void onInit() {
-        indices_sync.addActionListener(e -> syncRefresh());
+        indices_sync.addActionListener(e -> {
+            frequency = AppSettingState.getInstance().indicesFrequency;
+            syncRefresh();
+        });
         syncRefresh();
     }
 

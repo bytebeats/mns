@@ -6,6 +6,7 @@ import me.bytebeats.mns.OnSymbolSelectedListener;
 import me.bytebeats.mns.meta.Index;
 import me.bytebeats.mns.tool.PinyinUtils;
 import me.bytebeats.mns.tool.StringResUtils;
+import me.bytebeats.mns.ui.AppSettingState;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -16,8 +17,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TencentIndexHandler extends AbstractHandler {
-
-    public static final long REFRESH_INTERVAL = 5L * 1000L;
 
     protected List<Index> indices = new ArrayList<>();
     private final int[] IndexTabWidths = {0, 0, 0, 0, 0};
@@ -44,6 +43,11 @@ public class TencentIndexHandler extends AbstractHandler {
     }
 
     @Override
+    public void updateFrequency() {
+        this.frequency = AppSettingState.getInstance().indicesFrequency * 1000L;
+    }
+
+    @Override
     public String[] getColumnNames() {
         return handleColumnNames(indexColumnNames);
     }
@@ -53,13 +57,14 @@ public class TencentIndexHandler extends AbstractHandler {
         indices.clear();
         if (timer == null) {
             timer = new Timer();
+            updateFrequency();
         }
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 fetch(symbols);
             }
-        }, 0, REFRESH_INTERVAL);
+        }, 0, frequency);
         LogUtil.info("starts updating " + getTipText() + " indices");
     }
 
@@ -69,6 +74,7 @@ public class TencentIndexHandler extends AbstractHandler {
     }
 
     private void fetch(List<String> symbols) {
+        LogUtil.info(getTipText() + ": " + frequency);
         if (symbols.isEmpty()) {
             return;
         }

@@ -6,6 +6,7 @@ import me.bytebeats.mns.UISettingProvider;
 import me.bytebeats.mns.meta.Stock;
 import me.bytebeats.mns.tool.PinyinUtils;
 import me.bytebeats.mns.tool.StringResUtils;
+import me.bytebeats.mns.ui.AppSettingState;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -51,6 +52,11 @@ public abstract class AbsStockHandler extends AbstractHandler implements UISetti
                 LogUtil.info(String.format("updating %s in Details Window", symbol));
             }
         });
+    }
+
+    @Override
+    public void updateFrequency() {
+        this.frequency = AppSettingState.getInstance().stockFrequency * 1000L;
     }
 
     @Override

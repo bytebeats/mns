@@ -34,6 +34,8 @@ public abstract class AbstractHandler implements UISettingProvider {
     private final int[] numColumnIdx = {2, 3, 4};//哪些列需要修改字体颜色, 当UI设置发生改变的时候.
     protected final Map<Integer, Double> columnTextColors = new HashMap<>();
 
+    protected long frequency = 0L;
+
     public AbstractHandler(JTable table, JLabel label) {
         this.jTable = table;
         this.jLabel = label;
@@ -54,6 +56,8 @@ public abstract class AbstractHandler implements UISettingProvider {
     }
 
     public abstract void load(List<String> symbols);
+
+    public abstract void updateFrequency();
 
     public void stop() {
         if (timer != null) {

@@ -76,6 +76,7 @@ Fund Query:
     * bugs fixed.
 * V1.8.0 merge stock windows for more space for klines.
 * V1.8.1 crypto currency window.<br>
+* v1.8.2 customize refresh frequency.<br>
 
 ## TODO
 * **<b><s>基金</s></b>**

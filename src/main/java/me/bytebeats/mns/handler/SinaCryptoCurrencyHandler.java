@@ -5,6 +5,7 @@ import me.bytebeats.mns.LogUtil;
 import me.bytebeats.mns.meta.CryptoCurrency;
 import me.bytebeats.mns.tool.PinyinUtils;
 import me.bytebeats.mns.tool.StringResUtils;
+import me.bytebeats.mns.ui.AppSettingState;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -16,8 +17,6 @@ import java.util.regex.Pattern;
 
 public class SinaCryptoCurrencyHandler extends AbstractHandler {
 
-    private static final long REFRESH_INTERVAL = 10L * 1000L;
-
     protected List<CryptoCurrency> cryptoCurrencies = new ArrayList<>();
     private final int[] cryptoCurrencyTabWidths = {0, 0, 0, 0, 0};
     private final String[] cryptoCurrencyColumnNames = {StringResUtils.CRYPTO_CURRENCY_NAME, StringResUtils.CRYPTO_CURRENCY_CODE,
@@ -25,6 +24,11 @@ public class SinaCryptoCurrencyHandler extends AbstractHandler {
 
     public SinaCryptoCurrencyHandler(JTable table, JLabel label) {
         super(table, label);
+    }
+
+    @Override
+    public void updateFrequency() {
+        this.frequency = AppSettingState.getInstance().cryptoFrequency * 1000L;
     }
 
     @Override
@@ -37,13 +41,14 @@ public class SinaCryptoCurrencyHandler extends AbstractHandler {
         cryptoCurrencies.clear();
         if (timer == null) {
             timer = new Timer();
+            updateFrequency();
         }
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 fetch(symbols);
             }
-        }, 0, REFRESH_INTERVAL);
+        }, 0, frequency);
         LogUtil.info("starts updating " + getTipText());
     }
 
@@ -53,6 +58,7 @@ public class SinaCryptoCurrencyHandler extends AbstractHandler {
     }
 
     private void fetch(List<String> symbols) {
+        LogUtil.info(getTipText() + ": " + frequency);
         if (symbols.isEmpty()) {
             return;
         }
