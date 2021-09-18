@@ -29,7 +29,7 @@ public abstract class AbstractHandler implements UISettingProvider {
     protected final JTable jTable;
     private final JLabel jLabel;
 
-    private final int[] numColumnIdx = {3, 4};//哪些列需要修改字体颜色, 当UI设置发生改变的时候.
+    private final int[] numColumnIdx = {2, 3, 4};//哪些列需要修改字体颜色, 当UI设置发生改变的时候.
 
     public AbstractHandler(JTable table, JLabel label) {
         this.jTable = table;
@@ -70,21 +70,24 @@ public abstract class AbstractHandler implements UISettingProvider {
     public abstract void resetTabSize();
 
     protected void updateRowTextColors() {
+        final double[] chg = {0.0};
+        jTable.getColumn(jTable.getColumnName(3)).setCellRenderer(new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                try {
+                    chg[0] = Double.parseDouble(value.toString());
+                } catch (NumberFormatException e) {
+                    chg[0] = 0.0;
+                }
+                return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+            }
+        });
+
         for (int idx : numColumnIdx) {
             jTable.getColumn(jTable.getColumnName(idx)).setCellRenderer(new DefaultTableCellRenderer() {
                 @Override
                 public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                    double chg = 0.0;
-                    try {
-                        String chgRaw = value.toString();
-                        if (column == 4) {
-                            chgRaw = chgRaw.substring(0, chgRaw.length() - 1);
-                        }
-                        chg = Double.parseDouble(chgRaw);
-                    } catch (NumberFormatException e) {
-                        chg = 0.0;
-                    }
-                    setForeground(getTextColor(chg));
+                    setForeground(getTextColor(chg[0]));
                     return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
                 }
             });
