@@ -32,7 +32,7 @@ public class NotificationUtil {
      * @param message
      */
     public static void infoBalloon(String message) {
-        BALLOON_NOTIFICATION_GROUP.createNotification("Mns", message, NotificationType.WARNING, null).notify(ProjectManagerEx.getInstance().getDefaultProject());
+        BALLOON_NOTIFICATION_GROUP.createNotification("Money Never Sleeps", message, NotificationType.WARNING, null).notify(ProjectManagerEx.getInstance().getDefaultProject());
     }
 
     /**
@@ -41,6 +41,6 @@ public class NotificationUtil {
      * @param message
      */
     public static void infoToolWindow(String message) {
-        TOOL_WINDOW_NOTIFICATION_GROUP.createNotification("Mns", message, NotificationType.ERROR, null).notify(ProjectManagerEx.getInstance().getDefaultProject());
+        TOOL_WINDOW_NOTIFICATION_GROUP.createNotification("Money Never Sleeps", message, NotificationType.ERROR, null).notify(ProjectManagerEx.getInstance().getDefaultProject());
     }
 }

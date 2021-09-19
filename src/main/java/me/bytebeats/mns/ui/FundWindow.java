@@ -9,6 +9,7 @@ import me.bytebeats.mns.enumation.FundChartType;
 import me.bytebeats.mns.handler.TianTianFundHandler;
 import me.bytebeats.mns.listener.OnItemRightClickListener;
 import me.bytebeats.mns.listener.WindowSwitchListener;
+import me.bytebeats.mns.tool.PopupsUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -40,12 +41,12 @@ public class FundWindow implements SymbolParser {
 
     public FundWindow() {
         handler = new TianTianFundHandler(fund_table, fund_timestamp);
-        handler.setOnItemClickListener((s, xOnScreen, yOnScreen) -> PopupsUtil.INSTANCE.popFundChart(s, FundChartType.EstimatedNetWorth, new Point(xOnScreen, yOnScreen)));
+        handler.setOnItemDoubleClickListener((s, xOnScreen, yOnScreen) -> PopupsUtil.INSTANCE.popFundChart(s, FundChartType.EstimatedNetWorth, new Point(xOnScreen, yOnScreen)));
         handler.setOnItemRightClickListener(new OnItemRightClickListener<String>() {
             @Override
             public void onItemRightClick(String s, int xOnScreen, int yOnScreen) {
                 JBPopupFactory.getInstance()
-                        .createListPopup(new BaseListPopupStep<FundChartType>("Fund Charts", FundChartType.values()) {
+                        .createListPopup(new BaseListPopupStep<FundChartType>("K线图", FundChartType.values()) {
                             @Override
                             public @NotNull
                             String getTextFor(FundChartType value) {

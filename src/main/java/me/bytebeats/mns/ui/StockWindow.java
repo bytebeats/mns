@@ -1,13 +1,24 @@
 package me.bytebeats.mns.ui;
 
+import com.intellij.openapi.ui.popup.JBPopupFactory;
+import com.intellij.openapi.ui.popup.PopupStep;
+import com.intellij.openapi.ui.popup.util.BaseListPopupStep;
+import com.intellij.ui.awt.RelativePoint;
 import me.bytebeats.mns.OnSymbolSelectedListener;
+import me.bytebeats.mns.enumation.StockChartType;
 import me.bytebeats.mns.handler.AbsStockHandler;
 import me.bytebeats.mns.handler.TencentStockHandler;
+import me.bytebeats.mns.listener.OnItemClick;
+import me.bytebeats.mns.listener.OnItemRightClickListener;
+import me.bytebeats.mns.tool.PopupsUtil;
 import me.bytebeats.mns.tool.StringResUtils;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -32,6 +43,28 @@ public class StockWindow {
                 return Objects.requireNonNull(stock_market_list.getSelectedItem()).toString();
             }
         };
+        handler.setOnItemDoubleClickListener((s, xOnScreen, yOnScreen) -> PopupsUtil.INSTANCE.popupStockChart(s, StockChartType.Minute, new Point(xOnScreen, yOnScreen)));
+        handler.setOnItemRightClickListener(new OnItemRightClickListener<String>() {
+            @Override
+            public void onItemRightClick(String s, int xOnScreen, int yOnScreen) {
+                JBPopupFactory.getInstance()
+                        .createListPopup(new BaseListPopupStep<StockChartType>("K线图", StockChartType.values()) {
+                            @Override
+                            public @NotNull
+                            String getTextFor(StockChartType value) {
+                                return value.getDescription();
+                            }
+
+                            @Override
+                            public @Nullable
+                            PopupStep<?> onChosen(StockChartType selectedValue, boolean finalChoice) {
+                                PopupsUtil.INSTANCE.popupStockChart(s, selectedValue, new Point(xOnScreen, yOnScreen));
+                                return super.onChosen(selectedValue, finalChoice);
+                            }
+                        })
+                        .show(RelativePoint.fromScreen(new Point(xOnScreen, yOnScreen)));
+            }
+        });
     }
 
     public void setOnSymbolSelectedListener(OnSymbolSelectedListener listener) {
