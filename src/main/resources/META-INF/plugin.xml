@@ -2,7 +2,7 @@
     <id>me.bytebeats.mns</id>
     <name>Money Never Sleeps</name>
     <vendor email="happychinapc@gmail.com" url="https://github.com/bytebeats">bytebeats</vendor>
-    <version>1.8.2</version>
+    <version>1.8.3</version>
     <idea-version since-build="183.*" />
 
     <description><![CDATA[

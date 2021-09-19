@@ -1,8 +1,8 @@
 package me.bytebeats.mns.ui;
 
 import com.google.gson.reflect.TypeToken;
-import me.bytebeats.mns.HttpClientPool;
-import me.bytebeats.mns.LogUtil;
+import me.bytebeats.mns.network.HttpClientPool;
+import me.bytebeats.mns.tool.LogUtil;
 import me.bytebeats.mns.meta.FundBrief;
 import me.bytebeats.mns.meta.FundFirm;
 import me.bytebeats.mns.meta.FundFirmOp;

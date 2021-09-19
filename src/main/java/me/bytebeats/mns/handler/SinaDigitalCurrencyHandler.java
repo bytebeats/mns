@@ -1,13 +1,15 @@
 package me.bytebeats.mns.handler;
 
-import me.bytebeats.mns.HttpClientPool;
-import me.bytebeats.mns.LogUtil;
+import me.bytebeats.mns.listener.MousePressedListener;
+import me.bytebeats.mns.network.HttpClientPool;
+import me.bytebeats.mns.tool.LogUtil;
 import me.bytebeats.mns.meta.DigitalCurrency;
 import me.bytebeats.mns.tool.PinyinUtils;
 import me.bytebeats.mns.tool.StringResUtils;
 import me.bytebeats.mns.ui.AppSettingState;
 
 import javax.swing.*;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -24,6 +26,28 @@ public class SinaDigitalCurrencyHandler extends AbstractHandler {
 
     public SinaDigitalCurrencyHandler(JTable table, JLabel label) {
         super(table, label);
+        table.addMouseListener(new MousePressedListener() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                int selectedRowIdx = jTable.getSelectedRow();
+                if (selectedRowIdx < 0) {
+                    return;
+                }
+                String symbol = cryptoCurrencies.get(selectedRowIdx).getSymbol();
+                if (SwingUtilities.isLeftMouseButton(e)) {
+                    if (e.getClickCount() == 2 && onItemDoubleClickListener != null) {
+                        onItemDoubleClickListener.onItemDoubleClick(symbol, e.getXOnScreen(), e.getYOnScreen());
+                    } else if (e.getClickCount() == 1 && onItemClickListener != null) {
+                        onItemClickListener.onItemClick(symbol, e.getXOnScreen(), e.getYOnScreen());
+                    }
+                } else if (SwingUtilities.isRightMouseButton(e)) {
+                    if (onItemRightClickListener != null) {
+                        onItemRightClickListener.onItemRightClick(symbol, e.getXOnScreen(), e.getYOnScreen());
+                    }
+                }
+            }
+        });
+
     }
 
     @Override

@@ -1,8 +1,8 @@
 package me.bytebeats.mns.ui;
 
 import com.intellij.ui.JBColor;
-import me.bytebeats.mns.HttpClientPool;
-import me.bytebeats.mns.LogUtil;
+import me.bytebeats.mns.network.HttpClientPool;
+import me.bytebeats.mns.tool.LogUtil;
 import me.bytebeats.mns.UISettingProvider;
 import me.bytebeats.mns.tool.PinyinUtils;
 import me.bytebeats.mns.tool.StringResUtils;
