@@ -8,10 +8,11 @@
     <description><![CDATA[
     mns: Money Never Sleeps!
     IntelliJ IDEA platform plugin. Supports instant stock market from USA, HK and China mainland.<br>
-    IntelliJ IDEA 平台插件, 支持股票, 基金和数字货币的行情数据的实时更新, 其中股票包括美股, 港股和宇宙第一大A股!.<br>
+    IntelliJ IDEA 平台插件, 支持<b>股票</b>, <b>基金</b>和<b>数字货币</b>的行情数据的实时更新, 其中股票包括<b>美股</b>, <b>港股</b>和宇宙第一大<b>A股</b>!.<br>
     Money never sleeps, NEITHER do We!<br>
     金钱永不眠, 我们也不睡!<br>
     Good luck!<br>
+    The most important thing is: Try <b>mns</b> and spread the word!<br>
     使用说明: https://github.com/bytebeats/mns
     ]]></description>
 
@@ -37,6 +38,7 @@
       v1.8.0 merge stock windows for more space for klines.<br>
       v1.8.1 crypto currency window.<br>
       v1.8.2 customize refresh frequency.<br>
+      v1.8.3 net worth chart of fund.<br>
     ]]></change-notes>
 
     <depends>com.intellij.modules.platform</depends>

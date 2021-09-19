@@ -9,11 +9,16 @@ IntelliJ IDEA平台插件. 支持查看股票实时行情. 支持<b>股票</b>, 
 * Fund service is supported by TianTian funds. Please check fund symbols [Here](https://fund.eastmoney.com). 基金代码请从 [这里](https://fund.eastmoney.com) 查找
 
 ## Installation:
-* IntelliJ IDEA -> Preferences -> Plugins -> Marketplace, type `mns`/`money`/`money never`/`money never sleeps` to search and install.
+* `IntelliJ IDEA` -> `Preferences` -> `Plugins` -> `Marketplace`, type `mns`/`money`/`money never`/`money never sleeps` to search and install.
+
+## Questions
+* Where to add symbols?
+  * `IntelliJ IDEA` -> `Preferences` -> `Other Settings` -> `Money Never Sleeps`
+* How to check fund k-line charts?
+  * double left-click or sing right-click on fund list, you'll see popup windows.
 
 ## Compilation
-
-* File -> Project Structure -> Project Settings -> Artifacts -> + -> Jar -> From modules with dependencies
+* `File` -> `Project Structure` -> `Project Settings` -> `Artifacts` -> `+` -> `Jar` -> `From modules with dependencies`
 * In Dialog <b>Create JAR from Modules</b>, select `mns.main` for <b>Module</b>, select `extract to the target JAR` for <b>Jar files from libraries</b>, then click <b>OK</b>.
 * Then click `+` icon in <b>Output Layout</b> and select `module sources`, and then click `Apply`/`OK`
 * Last step, how to <b>Build Artifacts</b>
@@ -92,14 +97,15 @@ Fund Query:
 * V1.7.4, 1.7.5
     * bugs fixed.
 * V1.8.0 merge stock windows for more space for klines.
-* V1.8.1 crypto currency window.<br>
-* v1.8.2 customize refresh frequency.<br>
+* V1.8.1 crypto currency window.
+* V1.8.2 customize refresh frequency.
+* V1.8.3 net worth chart of fund.
 
 ## TODO
 * **<b><s>基金</s></b>**
 * **<b><s>股票盘口数据</s></b>**
 * **<b><s>股票实时资金流向</s></b>**
-* **<b>基金行情图</b>**
+* **<b><s>基金行情图</s></b>**
 * **<b><s>查看基金公司</s></b>**
 * **<b><s>搜索基金</s></b>**
 * **<b>股价提醒功能</b>**
@@ -144,5 +150,4 @@ Fund Query:
 * <a href="mailto:vip-cyq@qq.com">小鱼</a>
 
 ## Stargazers over time
-
 [![Stargazers over time](https://starchart.cc/bytebeats/mns.svg)](https://starchart.cc/bytebeats/mns)
