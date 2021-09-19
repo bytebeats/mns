@@ -1,5 +1,5 @@
 # mns: Money Never Sleeps!
-IntelliJ IDEA平台插件. 支持查看股票实时行情. 支持股票, 基金和数字货币. 其中股票包括美股, 港股和 A 股.
+IntelliJ IDEA平台插件. 支持查看股票实时行情. 支持<b>股票</b>, <b>基金</b>和<b>数字货币</b>. 其中股票包括<b>美股</b>, <b>港股</b>和 <b>A 股</b>.
 
 ## Notes
 
@@ -23,19 +23,23 @@ Stocks:
 
 Indices:
 
-![Index](media/core_indices.png)
+![Indices](media/core_indices.png)
 
 Funds:
 
-![Index](media/funds.png)
+![Funds](media/funds.png)
+
+Digital Currencies:
+
+![Cryptos](media/crypto_currency.png)
 
 Stock Details:
 
-![Index](media/stock_details.png)
+![Details](media/stock_details.png)
 
 Fund Query:
 
-![Index](media/fund_search_dialog.png)
+![Query](media/fund_search_dialog.png)
 
 ## Changes
 * V1.0.0
