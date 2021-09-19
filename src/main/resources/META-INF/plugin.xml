@@ -46,8 +46,12 @@
         <toolWindow icon="/icon_mns.png" anchor="left" id="mns" factoryClass="me.bytebeats.mns.ui.MainWindow" />
         <applicationConfigurable id="mns_setting" instance="me.bytebeats.mns.ui.SettingWindow"
             displayName="Money Never Sleeps" />
-        <notificationGroup displayType="NONE" id="Mns Event" icon="AllIcons.General.Note" key="notification.group.name"
-            toolWindowId="Mns Event" isLogByDefault="true" />
+        <notificationGroup displayType="NONE" id="Mns Log" icon="AllIcons.General.NotificationInfo"
+            key="notification.group.main" isLogByDefault="true" />
+        <notificationGroup displayType="BALLOON" id="Mns Balloon" icon="AllIcons.General.NotificationWarning"
+            key="notification.group.balloon" isLogByDefault="true" />
+        <notificationGroup displayType="TOOL_WINDOW" id="Mns Tool Window" icon="AllIcons.General.NotificationError"
+            toolWindowId="Mns Tool Window" key="notification.group.toolwindow" isLogByDefault="true" />
     </extensions>
 
     <actions>

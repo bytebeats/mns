@@ -2,7 +2,7 @@ package me.bytebeats.mns.handler;
 
 import me.bytebeats.mns.listener.MousePressedListener;
 import me.bytebeats.mns.network.HttpClientPool;
-import me.bytebeats.mns.tool.LogUtil;
+import me.bytebeats.mns.tool.NotificationUtil;
 import me.bytebeats.mns.meta.DigitalCurrency;
 import me.bytebeats.mns.tool.PinyinUtils;
 import me.bytebeats.mns.tool.StringResUtils;
@@ -73,7 +73,7 @@ public class SinaDigitalCurrencyHandler extends AbstractHandler {
                 fetch(symbols);
             }
         }, 0, frequency);
-        LogUtil.info("starts updating " + getTipText());
+        NotificationUtil.info("starts updating " + getTipText());
     }
 
     @Override
@@ -99,10 +99,10 @@ public class SinaDigitalCurrencyHandler extends AbstractHandler {
             String entity = HttpClientPool.getInstance().get(getCryptoCurrencyUrl(params.toString()));
             parse(symbols, entity);
         } catch (Exception e) {
-            LogUtil.info(e.getMessage());
+            NotificationUtil.info(e.getMessage());
             timer.cancel();
             timer = null;
-            LogUtil.info("stops updating " + jTable.getToolTipText() + " data because of " + e.getMessage());
+            NotificationUtil.info("stops updating " + jTable.getToolTipText() + " data because of " + e.getMessage());
         }
     }
 

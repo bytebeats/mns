@@ -39,4 +39,7 @@ public class StringResUtils {
     public static final String CRYPTO_CURRENCY_CODE = "代码";
     public static final String CRYPTO_CURRENCY_VOLUME = "成交量(24H)";
     public static final String CRYPTO_CURRENCY_PRICE = "最新价(USD)";
+
+    public static final String URL_FUND_CHART_ESTIMATED_NET_WORTH_WITH_WATER_PRINT = "http://j4.dfcfw.com/charts/pic6/%s.png?%s";
+    public static final String URL_FUND_CHART_ESTIMATED_NET_WORTH = "http://j4.dfcfw.com/charts/pic7/%s.png?%s";
 }

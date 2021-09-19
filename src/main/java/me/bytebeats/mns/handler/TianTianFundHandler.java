@@ -2,7 +2,7 @@ package me.bytebeats.mns.handler;
 
 import me.bytebeats.mns.listener.MousePressedListener;
 import me.bytebeats.mns.network.HttpClientPool;
-import me.bytebeats.mns.tool.LogUtil;
+import me.bytebeats.mns.tool.NotificationUtil;
 import me.bytebeats.mns.meta.Fund;
 import me.bytebeats.mns.tool.GsonUtils;
 import me.bytebeats.mns.tool.PinyinUtils;
@@ -73,7 +73,7 @@ public class TianTianFundHandler extends AbstractHandler {
                 fetch(symbols);
             }
         }, 0, frequency);
-        LogUtil.info("starts updating " + getTipText() + " funds");
+        NotificationUtil.info("starts updating " + getTipText() + " funds");
     }
 
     @Override
@@ -94,7 +94,7 @@ public class TianTianFundHandler extends AbstractHandler {
                 if (timer != null) {
                     timer.cancel();
                     timer = null;
-                    LogUtil.info("stops updating " + jTable.getToolTipText() + " data because of " + e.getMessage());
+                    NotificationUtil.info("stops updating " + jTable.getToolTipText() + " data because of " + e.getMessage());
                 }
             }
         }

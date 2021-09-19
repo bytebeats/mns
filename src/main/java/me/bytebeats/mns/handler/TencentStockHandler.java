@@ -2,7 +2,7 @@ package me.bytebeats.mns.handler;
 
 import me.bytebeats.mns.listener.MousePressedListener;
 import me.bytebeats.mns.network.HttpClientPool;
-import me.bytebeats.mns.tool.LogUtil;
+import me.bytebeats.mns.tool.NotificationUtil;
 import me.bytebeats.mns.meta.Stock;
 
 import javax.swing.*;
@@ -59,7 +59,7 @@ public class TencentStockHandler extends AbsStockHandler {
                 fetch(symbols);
             }
         }, 0, frequency);
-        LogUtil.info("starts updating " + getTipText() + " stocks");
+        NotificationUtil.info("starts updating " + getTipText() + " stocks");
     }
 
     @Override
@@ -83,10 +83,10 @@ public class TencentStockHandler extends AbsStockHandler {
             String entity = HttpClientPool.getInstance().get(appendParams(params.toString()));
             parse(symbols, entity);
         } catch (Exception e) {
-            LogUtil.info(e.getMessage());
+            NotificationUtil.info(e.getMessage());
             timer.cancel();
             timer = null;
-            LogUtil.info("stops updating " + jTable.getToolTipText() + " data because of " + e.getMessage());
+            NotificationUtil.info("stops updating " + jTable.getToolTipText() + " data because of " + e.getMessage());
         }
     }
 

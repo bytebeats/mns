@@ -2,7 +2,7 @@ package me.bytebeats.mns.handler;
 
 import me.bytebeats.mns.listener.MousePressedListener;
 import me.bytebeats.mns.network.HttpClientPool;
-import me.bytebeats.mns.tool.LogUtil;
+import me.bytebeats.mns.tool.NotificationUtil;
 import me.bytebeats.mns.OnSymbolSelectedListener;
 import me.bytebeats.mns.meta.Index;
 import me.bytebeats.mns.tool.PinyinUtils;
@@ -11,7 +11,6 @@ import me.bytebeats.mns.ui.AppSettingState;
 
 import javax.swing.*;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -89,7 +88,7 @@ public class TencentIndexHandler extends AbstractHandler {
                 fetch(symbols);
             }
         }, 0, frequency);
-        LogUtil.info("starts updating " + getTipText() + " indices");
+        NotificationUtil.info("starts updating " + getTipText() + " indices");
     }
 
     @Override
@@ -115,7 +114,7 @@ public class TencentIndexHandler extends AbstractHandler {
         } catch (Exception e) {
             timer.cancel();
             timer = null;
-            LogUtil.info("stops updating " + jTable.getToolTipText() + " data because of " + e.getMessage());
+            NotificationUtil.info("stops updating " + jTable.getToolTipText() + " data because of " + e.getMessage());
         }
     }
 

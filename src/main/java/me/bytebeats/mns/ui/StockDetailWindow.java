@@ -2,7 +2,7 @@ package me.bytebeats.mns.ui;
 
 import com.intellij.ui.JBColor;
 import me.bytebeats.mns.network.HttpClientPool;
-import me.bytebeats.mns.tool.LogUtil;
+import me.bytebeats.mns.tool.NotificationUtil;
 import me.bytebeats.mns.UISettingProvider;
 import me.bytebeats.mns.tool.PinyinUtils;
 import me.bytebeats.mns.tool.StringResUtils;
@@ -185,14 +185,14 @@ public class StockDetailWindow implements UISettingProvider {
             }
         }, 0, REFRESH_INTERVAL);
         updateLabels();
-        LogUtil.info("starts updating " + symbol + " detail data");
+        NotificationUtil.info("starts updating " + symbol + " detail data");
     }
 
     private void fetchStockDetails() {
         if (symbol == null || symbol.equals("")) {
             detailTimer.cancel();
             detailTimer = null;
-            LogUtil.info("symbol can't be null or empty");
+            NotificationUtil.info("symbol can't be null or empty");
             return;
         }
         try {
@@ -200,10 +200,10 @@ public class StockDetailWindow implements UISettingProvider {
             parseStockDetail(entity);
             updateTimestamp();
         } catch (Exception e) {
-            LogUtil.info(e.getMessage());
+            NotificationUtil.info(e.getMessage());
             detailTimer.cancel();
             detailTimer = null;
-            LogUtil.info("stops updating " + symbol + " detail data because of " + e.getMessage());
+            NotificationUtil.info("stops updating " + symbol + " detail data because of " + e.getMessage());
         }
     }
 
@@ -268,7 +268,7 @@ public class StockDetailWindow implements UISettingProvider {
                 stock_detail_highest.setForeground(getTextColor(Double.parseDouble(metas[33]) - latestPrice));
                 stock_detail_lowest.setForeground(getTextColor(Double.parseDouble(metas[34]) - latestPrice));
             } catch (NumberFormatException e) {
-                LogUtil.info(e.getMessage());
+                NotificationUtil.info(e.getMessage());
             }
         } else {
             stock_detail_name.setText("--");
@@ -305,7 +305,7 @@ public class StockDetailWindow implements UISettingProvider {
         if (symbol == null || symbol.equals("")) {
             handicapTimer.cancel();
             handicapTimer = null;
-            LogUtil.info("symbol can't be null or empty");
+            NotificationUtil.info("symbol can't be null or empty");
             return;
         }
         try {
@@ -313,10 +313,10 @@ public class StockDetailWindow implements UISettingProvider {
             parseHandicap(entity);
             updateTimestamp();
         } catch (Exception e) {
-            LogUtil.info(e.getMessage());
+            NotificationUtil.info(e.getMessage());
             handicapTimer.cancel();
             handicapTimer = null;
-            LogUtil.info("stops updating " + symbol + " handicap data because of " + e.getMessage());
+            NotificationUtil.info("stops updating " + symbol + " handicap data because of " + e.getMessage());
         }
     }
 
@@ -342,7 +342,7 @@ public class StockDetailWindow implements UISettingProvider {
         if (symbol == null || symbol.equals("")) {
             moneyFlowTimer.cancel();
             moneyFlowTimer = null;
-            LogUtil.info("symbol can't be null or empty");
+            NotificationUtil.info("symbol can't be null or empty");
             return;
         }
         try {
@@ -350,10 +350,10 @@ public class StockDetailWindow implements UISettingProvider {
             parseMoneyFlow(entity);
             updateTimestamp();
         } catch (Exception e) {
-            LogUtil.info(e.getMessage());
+            NotificationUtil.info(e.getMessage());
             moneyFlowTimer.cancel();
             moneyFlowTimer = null;
-            LogUtil.info("stops updating " + symbol + " money flow data because of " + e.getMessage());
+            NotificationUtil.info("stops updating " + symbol + " money flow data because of " + e.getMessage());
         }
     }
 
