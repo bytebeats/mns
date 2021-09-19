@@ -3,7 +3,7 @@ IntelliJ IDEA平台插件. 支持查看股票实时行情. 支持<b>股票</b>, 
 
 ## Notes
 
-* In Setting page, symbols should be separated by comma/blanket/colon in English; 股票/基金/加密货币编码请用英语的逗号, 冒号或者空格分隔.
+* In Setting page, symbols should be separated by comma/blanket/colon in English; 股票/基金/加密货币编码请用英语的逗号, 冒号或者空格分隔. 不要用汉字或者其它语言的标识符号.
 * symbols of supported Crypto currencies, please check in [Here](https://finance.sina.com.cn/blockchain/hq.shtml). 数字货币代码请从 [这里](https://finance.sina.com.cn/blockchain/hq.shtml) 查找.
 * Stock service is supported by Tencent. Please check symbols [Here](https://stockapp.finance.qq.com/mstats/). 股票代码请从查找 [这里](https://stockapp.finance.qq.com/mstats/).
 * Fund service is supported by TianTian funds. Please check fund symbols [Here](https://fund.eastmoney.com). 基金代码请从 [这里](https://fund.eastmoney.com) 查找
@@ -11,7 +11,20 @@ IntelliJ IDEA平台插件. 支持查看股票实时行情. 支持<b>股票</b>, 
 ## Installation:
 * IntelliJ IDEA -> Preferences -> Plugins -> Marketplace, type `mns`/`money`/`money never`/`money never sleeps` to search and install.
 
+## Compilation
+
+* File -> Project Structure -> Project Settings -> Artifacts -> + -> Jar -> From modules with dependencies
+* In Dialog <b>Create JAR from Modules</b>, select `mns.main` for <b>Module</b>, select `extract to the target JAR` for <b>Jar files from libraries</b>, then click <b>OK</b>.
+* Then click `+` icon in <b>Output Layout</b> and select `module sources`, and then click `Apply`/`OK`
+* Last step, how to <b>Build Artifacts</b>
+  * <b>Build</b> -> <b>Build Artifacts</b> -> `mns:main:jar` -> <b>Build/Rebuild/Clean</b>
+  * Then you'll see `mns.main.jar` in `out/artifacts/mns_main_jar/`
+
 ## Usage:
+
+mns is IntelliJ IDEA plugin, which means all IDEs who base on IntelliJ supports mns, namely <b>IntelliJ/Android Studio/PyCharm/CLion/GoLand/AppCode/Rider/WebStorm</b> and so on.
+
+mns是 IntelliJ 平台插件, 所有基于 IntelliJ 平台的 IDE 都会支持 mns 插件. 诸如 <b>IntelliJ/Android Studio/PyCharm/CLion/GoLand/AppCode/Rider/WebStorm</b> 等等.
 
 Settings:
 
