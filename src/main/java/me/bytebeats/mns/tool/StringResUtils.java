@@ -39,4 +39,28 @@ public class StringResUtils {
     public static final String CRYPTO_CURRENCY_CODE = "代码";
     public static final String CRYPTO_CURRENCY_VOLUME = "成交量(24H)";
     public static final String CRYPTO_CURRENCY_PRICE = "最新价(USD)";
+
+    public static final String URL_FUND_CHART_ESTIMATED_NET_WORTH_WITH_WATER_PRINT = "http://j4.dfcfw.com/charts/pic6/%s.png?%s";
+    public static final String URL_FUND_CHART_ESTIMATED_NET_WORTH = "http://j4.dfcfw.com/charts/pic7/%s.png?%s";
+
+    public static final String URL_SINA_CHART = "http://image.sinajs.cn/newchart";
+    // 沪深股
+    // 分时线图  http://image.sinajs.cn/newchart/min/n/sh600519.gif
+    // 日K线图  http://image.sinajs.cn/newchart/daily/n/sh600519.gif
+    // 周K线图  http://image.sinajs.cn/newchart/weekly/n/sh600519.gif
+    // 月K线图  http://image.sinajs.cn/newchart/monthly/n/sh600519.gif
+    public static final String URL_SINA_CHART_CN_FORMATTER = "%s/%s/n/%s.gif?%s";
+    // 美股
+    // 分时线图 http://image.sinajs.cn/newchart/png/min/us/AAPL.png
+    // 日K线图 http://image.sinajs.cn/newchart/usstock/daily/aapl.gif
+    // 周K线图 http://image.sinajs.cn/newchart/usstock/weekly/aapl.gif
+    // 月K线图 http://image.sinajs.cn/newchart/usstock/monthly/aapl.gif
+    public static final String URL_SINA_CHART_MIN_FORMATTER = "%s/png/%s/%s/%s.png?%s";
+    public static final String URL_SINA_CHART_US_FORMATTER = "%s/%sstock/%s/%s.gif?%s";
+    // 港股
+    // 分时线图 http://image.sinajs.cn/newchart/png/min/hk/02202.png
+    // 日K线图 http://image.sinajs.cn/newchart/hk_stock/daily/02202.gif
+    // 周K线图 http://image.sinajs.cn/newchart/hk_stock/weekly/02202.gif
+    // 月K线图 http://image.sinajs.cn/newchart/hk_stock/monthly/02202.gif
+    public static final String URL_SINA_CHART_HK_FORMATTER = "%s/%s_stock/%s/%s.gif?%s";
 }

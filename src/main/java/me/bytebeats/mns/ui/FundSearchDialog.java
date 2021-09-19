@@ -1,8 +1,8 @@
 package me.bytebeats.mns.ui;
 
 import com.google.gson.reflect.TypeToken;
-import me.bytebeats.mns.HttpClientPool;
-import me.bytebeats.mns.LogUtil;
+import me.bytebeats.mns.network.HttpClientPool;
+import me.bytebeats.mns.tool.NotificationUtil;
 import me.bytebeats.mns.meta.FundBrief;
 import me.bytebeats.mns.meta.FundFirm;
 import me.bytebeats.mns.meta.FundFirmOp;
@@ -86,9 +86,9 @@ public class FundSearchDialog extends JDialog {
             if (callback != null) {
                 callback.onChange();
             }
-            LogUtil.info("Succeeded in adding " + code);
+            NotificationUtil.info("Succeeded in adding " + code);
         } else {
-            LogUtil.info("You already added " + code);
+            NotificationUtil.info("You already added " + code);
         }
     }
 
@@ -98,9 +98,9 @@ public class FundSearchDialog extends JDialog {
             if (callback != null) {
                 callback.onChange();
             }
-            LogUtil.info("Succeeded in deleting " + code);
+            NotificationUtil.info("Succeeded in deleting " + code);
         } else {
-            LogUtil.info(code + " is not in your fund list");
+            NotificationUtil.info(code + " is not in your fund list");
         }
     }
 
@@ -122,7 +122,7 @@ public class FundSearchDialog extends JDialog {
                 updateViews();
             }
         } catch (Exception e) {
-            LogUtil.info(e.getMessage());
+            NotificationUtil.info(e.getMessage());
             firms.clear();
             briefs.clear();
             updateViews();

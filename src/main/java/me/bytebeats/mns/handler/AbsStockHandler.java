@@ -1,6 +1,6 @@
 package me.bytebeats.mns.handler;
 
-import me.bytebeats.mns.LogUtil;
+import me.bytebeats.mns.tool.NotificationUtil;
 import me.bytebeats.mns.OnSymbolSelectedListener;
 import me.bytebeats.mns.UISettingProvider;
 import me.bytebeats.mns.meta.Stock;
@@ -49,7 +49,7 @@ public abstract class AbsStockHandler extends AbstractHandler implements UISetti
             if (selectedRowIdx > -1 && listener != null) {
                 String symbol = stocks.get(selectedRowIdx).getSymbol();
                 listener.onSelected(symbol);
-                LogUtil.info(String.format("updating %s in Details Window", symbol));
+                NotificationUtil.info(String.format("updating %s in Details Window", symbol));
             }
         });
     }

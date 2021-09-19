@@ -1,10 +1,12 @@
 package me.bytebeats.mns.handler;
 
-import me.bytebeats.mns.HttpClientPool;
-import me.bytebeats.mns.LogUtil;
+import me.bytebeats.mns.listener.MousePressedListener;
+import me.bytebeats.mns.network.HttpClientPool;
+import me.bytebeats.mns.tool.NotificationUtil;
 import me.bytebeats.mns.meta.Stock;
 
 import javax.swing.*;
+import java.awt.event.MouseEvent;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -15,6 +17,28 @@ public class TencentStockHandler extends AbsStockHandler {
 
     public TencentStockHandler(JTable table, JLabel label) {
         super(table, label);
+        table.addMouseListener(new MousePressedListener() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                int selectedRowIdx = jTable.getSelectedRow();
+                if (selectedRowIdx < 0) {
+                    return;
+                }
+                String symbol = stocks.get(selectedRowIdx).getSymbol();
+                if (SwingUtilities.isLeftMouseButton(e)) {
+                    if (e.getClickCount() == 2 && onItemDoubleClickListener != null) {
+                        onItemDoubleClickListener.onItemDoubleClick(symbol, e.getXOnScreen(), e.getYOnScreen());
+                    } else if (e.getClickCount() == 1 && onItemClickListener != null) {
+                        onItemClickListener.onItemClick(symbol, e.getXOnScreen(), e.getYOnScreen());
+                    }
+                } else if (SwingUtilities.isRightMouseButton(e)) {
+                    if (onItemRightClickListener != null) {
+                        onItemRightClickListener.onItemRightClick(symbol, e.getXOnScreen(), e.getYOnScreen());
+                    }
+                }
+            }
+        });
+
     }
 
     @Override
@@ -35,7 +59,7 @@ public class TencentStockHandler extends AbsStockHandler {
                 fetch(symbols);
             }
         }, 0, frequency);
-        LogUtil.info("starts updating " + getTipText() + " stocks");
+        NotificationUtil.info("starts updating " + getTipText() + " stocks");
     }
 
     @Override
@@ -59,10 +83,10 @@ public class TencentStockHandler extends AbsStockHandler {
             String entity = HttpClientPool.getInstance().get(appendParams(params.toString()));
             parse(symbols, entity);
         } catch (Exception e) {
-            LogUtil.info(e.getMessage());
+            NotificationUtil.info(e.getMessage());
             timer.cancel();
             timer = null;
-            LogUtil.info("stops updating " + jTable.getToolTipText() + " data because of " + e.getMessage());
+            NotificationUtil.info("stops updating " + jTable.getToolTipText() + " data because of " + e.getMessage());
         }
     }
 

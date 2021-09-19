@@ -7,7 +7,6 @@ import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentFactory;
 import com.intellij.ui.content.ContentManagerEvent;
 import com.intellij.ui.content.ContentManagerListener;
-import me.bytebeats.mns.LogUtil;
 import me.bytebeats.mns.OnSymbolSelectedListener;
 import me.bytebeats.mns.tool.StringResUtils;
 import org.jetbrains.annotations.NotNull;
@@ -21,7 +20,6 @@ public class MainWindow implements ToolWindowFactory, OnSymbolSelectedListener {
 
     @Override
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
-        LogUtil.init(project);
         ContentFactory contentFactory = ContentFactory.SERVICE.getInstance();
         Content indicesContent = contentFactory.createContent(indicesWindow.getJPanel(), StringResUtils.INDICES, true);
         Content stockContent = contentFactory.createContent(stockWindow.getJPanel(), StringResUtils.STOCK, true);
