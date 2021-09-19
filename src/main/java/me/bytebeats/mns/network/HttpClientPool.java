@@ -1,4 +1,4 @@
-package me.bytebeats.mns;
+package me.bytebeats.mns.network;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.config.RequestConfig;
@@ -13,6 +13,15 @@ import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.util.EntityUtils;
 
 import java.net.URLDecoder;
+
+/**
+ * @Author bytebeats
+ * @Email <happychinapc@gmail.com>
+ * @Github https://github.com/bytebeats
+ * @Created at 2021/9/19 15:06
+ * @Version 1.0
+ * @Description HttpClient Pool
+ */
 
 public class HttpClientPool {
 

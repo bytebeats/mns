@@ -15,12 +15,33 @@ public class CoreIndicesWindow implements SymbolParser {
     private JTable indices_table;
     private JLabel indices_timestamp;
     private JButton indices_sync;
-    private long frequency = AppSettingState.getInstance().indicesFrequency;
 
-    private TencentIndexHandler handler;
+    private final TencentIndexHandler handler;
 
     public CoreIndicesWindow() {
         handler = new TencentIndexHandler(indices_table, indices_timestamp);
+//        handler.setOnItemDoubleClickListener((s, xOnScreen, yOnScreen) -> PopupsUtil.INSTANCE.popupStockChart(s, StockChartType.Minute, new Point(xOnScreen, yOnScreen)));
+//        handler.setOnItemRightClickListener(new OnItemRightClickListener<String>() {
+//            @Override
+//            public void onItemRightClick(String s, int xOnScreen, int yOnScreen) {
+//                JBPopupFactory.getInstance()
+//                        .createListPopup(new BaseListPopupStep<StockChartType>("K线图", StockChartType.values()) {
+//                            @Override
+//                            public @NotNull
+//                            String getTextFor(StockChartType value) {
+//                                return value.getDescription();
+//                            }
+//
+//                            @Override
+//                            public @Nullable
+//                            PopupStep<?> onChosen(StockChartType selectedValue, boolean finalChoice) {
+//                                PopupsUtil.INSTANCE.popupStockChart(s, selectedValue, new Point(xOnScreen, yOnScreen));
+//                                return super.onChosen(selectedValue, finalChoice);
+//                            }
+//                        })
+//                        .show(RelativePoint.fromScreen(new Point(xOnScreen, yOnScreen)));
+//            }
+//        });
     }
 
     public void setOnSymbolSelectedListener(OnSymbolSelectedListener listener) {
@@ -33,7 +54,6 @@ public class CoreIndicesWindow implements SymbolParser {
 
     public void onInit() {
         indices_sync.addActionListener(e -> {
-            frequency = AppSettingState.getInstance().indicesFrequency;
             syncRefresh();
         });
         syncRefresh();

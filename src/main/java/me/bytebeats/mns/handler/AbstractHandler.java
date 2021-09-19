@@ -2,6 +2,9 @@ package me.bytebeats.mns.handler;
 
 import com.intellij.ui.JBColor;
 import me.bytebeats.mns.UISettingProvider;
+import me.bytebeats.mns.listener.OnItemClick;
+import me.bytebeats.mns.listener.OnItemDoubleClick;
+import me.bytebeats.mns.listener.OnItemRightClickListener;
 import me.bytebeats.mns.tool.PinyinUtils;
 import me.bytebeats.mns.tool.StringResUtils;
 import me.bytebeats.mns.ui.AppSettingState;
@@ -35,6 +38,10 @@ public abstract class AbstractHandler implements UISettingProvider {
     protected final Map<Integer, Double> columnTextColors = new HashMap<>();
 
     protected long frequency = 0L;
+
+    protected OnItemClick<String> onItemClickListener;
+    protected OnItemDoubleClick<String> onItemDoubleClickListener;
+    protected OnItemRightClickListener<String> onItemRightClickListener;
 
     public AbstractHandler(JTable table, JLabel label) {
         this.jTable = table;
@@ -117,5 +124,29 @@ public abstract class AbstractHandler implements UISettingProvider {
     @Override
     public boolean isRedRise() {
         return AppSettingState.getInstance().isRedRise;
+    }
+
+    public OnItemClick<String> getOnItemClickListener() {
+        return onItemClickListener;
+    }
+
+    public void setOnItemClickListener(OnItemClick<String> onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    public OnItemDoubleClick<String> getOnItemDoubleClickListener() {
+        return onItemDoubleClickListener;
+    }
+
+    public void setOnItemDoubleClickListener(OnItemDoubleClick<String> onItemDoubleClickListener) {
+        this.onItemDoubleClickListener = onItemDoubleClickListener;
+    }
+
+    public OnItemRightClickListener<String> getOnItemRightClickListener() {
+        return onItemRightClickListener;
+    }
+
+    public void setOnItemRightClickListener(OnItemRightClickListener<String> onItemRightClickListener) {
+        this.onItemRightClickListener = onItemRightClickListener;
     }
 }

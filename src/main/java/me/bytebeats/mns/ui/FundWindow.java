@@ -1,12 +1,21 @@
 package me.bytebeats.mns.ui;
 
+import com.intellij.openapi.ui.popup.JBPopupFactory;
+import com.intellij.openapi.ui.popup.PopupStep;
+import com.intellij.openapi.ui.popup.util.BaseListPopupStep;
+import com.intellij.ui.awt.RelativePoint;
 import me.bytebeats.mns.SymbolParser;
+import me.bytebeats.mns.enumation.FundChartType;
 import me.bytebeats.mns.handler.TianTianFundHandler;
+import me.bytebeats.mns.listener.OnItemRightClickListener;
+import me.bytebeats.mns.listener.WindowSwitchListener;
+import me.bytebeats.mns.tool.PopupsUtil;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -32,6 +41,28 @@ public class FundWindow implements SymbolParser {
 
     public FundWindow() {
         handler = new TianTianFundHandler(fund_table, fund_timestamp);
+        handler.setOnItemDoubleClickListener((s, xOnScreen, yOnScreen) -> PopupsUtil.INSTANCE.popFundChart(s, FundChartType.EstimatedNetWorth, new Point(xOnScreen, yOnScreen)));
+        handler.setOnItemRightClickListener(new OnItemRightClickListener<String>() {
+            @Override
+            public void onItemRightClick(String s, int xOnScreen, int yOnScreen) {
+                JBPopupFactory.getInstance()
+                        .createListPopup(new BaseListPopupStep<FundChartType>("K线图", FundChartType.values()) {
+                            @Override
+                            public @NotNull
+                            String getTextFor(FundChartType value) {
+                                return value.getDescription();
+                            }
+
+                            @Override
+                            public @Nullable
+                            PopupStep<?> onChosen(FundChartType selectedValue, boolean finalChoice) {
+                                PopupsUtil.INSTANCE.popFundChart(s, selectedValue, new Point(xOnScreen, yOnScreen));
+                                return super.onChosen(selectedValue, finalChoice);
+                            }
+                        })
+                        .show(RelativePoint.fromScreen(new Point(xOnScreen, yOnScreen)));
+            }
+        });
     }
 
     public JPanel getJPanel() {
@@ -79,41 +110,16 @@ public class FundWindow implements SymbolParser {
             fundSearchDialog.setCallback(() -> {
                 // do nothing here
             });
-            fundSearchDialog.addWindowListener(new WindowListener() {
+            fundSearchDialog.addWindowListener(new WindowSwitchListener() {
                 @Override
                 public void windowOpened(WindowEvent e) {
                     handler.stop();
                 }
 
                 @Override
-                public void windowClosing(WindowEvent e) {
-
-                }
-
-                @Override
                 public void windowClosed(WindowEvent e) {
                     fundSymbols = AppSettingState.getInstance().dailyFunds;
                     syncRefresh();
-                }
-
-                @Override
-                public void windowIconified(WindowEvent e) {
-
-                }
-
-                @Override
-                public void windowDeiconified(WindowEvent e) {
-
-                }
-
-                @Override
-                public void windowActivated(WindowEvent e) {
-
-                }
-
-                @Override
-                public void windowDeactivated(WindowEvent e) {
-
                 }
             });
         }
