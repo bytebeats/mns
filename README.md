@@ -1,4 +1,19 @@
 # mns: Money Never Sleeps!
+
+[![GitHub latest commit](https://badgen.net/github/last-commit/bytebeats/mns)](https://GitHub.com/bytebeats/mns/commit/)
+[![GitHub forks](https://img.shields.io/github/forks/bytebeats/mns.svg?style=social&label=Fork&maxAge=2592000)](https://GitHub.com/bytebeats/mns/network/)
+[![GitHub stars](https://img.shields.io/github/stars/bytebeats/mns.svg?style=social&label=Star&maxAge=2592000)](https://GitHub.com/bytebeats/mns/stargazers/)
+[![GitHub watchers](https://img.shields.io/github/watchers/bytebeats/mns.svg?style=social&label=Watch&maxAge=2592000)](https://GitHub.com/bytebeats/mns/watchers/)
+[![GitHub contributors](https://img.shields.io/github/contributors/bytebeats/badges.svg)](https://GitHub.com/bytebeats/badges/graphs/contributors/)
+[![GitHub issues](https://img.shields.io/github/issues/bytebeats/mns.svg)](https://GitHub.com/bytebeats/mns/issues/)
+[![Open Source? Yes!](https://badgen.net/badge/Open%20Source%20%3F/Yes%21/blue?icon=github)](https://github.com/bytebeats/badges/)
+[![JetBrains Plugins](https://img.shields.io/jetbrains/plugin/v/14801-mns.svg)](https://plugins.jetbrains.com/)
+
+[comment]: <> ([![ForTheBadge built-with-love]&#40;http://ForTheBadge.com/images/badges/built-with-love.svg&#41;]&#40;https://github.com/bytebeats/&#41;)
+
+[comment]: <> ([![ForTheBadge powered-by-electricity]&#40;http://ForTheBadge.com/images/badges/powered-by-electricity.svg&#41;]&#40;http://ForTheBadge.com&#41;)
+
+
 IntelliJ IDEA平台插件. 支持查看股票实时行情. 支持<b>股票</b>, <b>基金</b>和<b>数字货币</b>. 其中股票包括<b>美股</b>, <b>港股</b>和 <b>A 股</b>.
 
 ## Notes
@@ -147,8 +162,13 @@ Fund Query:
 
 ## Contributors
 
+[![Contributors over time](https://contributor-graph-api.apiseven.com/contributors-svg?chart=contributorOverTime&repo=bytebeats/badges)](https://www.apiseven.com/en/contributor-graph?chart=contributorOverTime&repo=bytebeats/badges)
+
 ## Donates
 * <a href="mailto:vip-cyq@qq.com">小鱼</a>
 
 ## Stargazers over time
 [![Stargazers over time](https://starchart.cc/bytebeats/mns.svg)](https://starchart.cc/bytebeats/mns)
+
+## Github Stars Sparklines
+[![Sparkline](https://stars.medv.io/bytebeats/badges.svg)](https://stars.medv.io/bytebeats/badges)
