@@ -5,8 +5,6 @@ import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowFactory;
 import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentFactory;
-import com.intellij.ui.content.ContentManagerEvent;
-import com.intellij.ui.content.ContentManagerListener;
 import me.bytebeats.mns.OnSymbolSelectedListener;
 import me.bytebeats.mns.tool.StringResUtils;
 import org.jetbrains.annotations.NotNull;
@@ -33,27 +31,6 @@ public class MainWindow implements ToolWindowFactory, OnSymbolSelectedListener {
         toolWindow.getContentManager().addContent(fundContent);
         toolWindow.getContentManager().addContent(cryptoCurrencyContent);
         toolWindow.getContentManager().addContent(stockDetailContent);
-        toolWindow.getContentManager().addContentManagerListener(new ContentManagerListener() {
-            @Override
-            public void contentAdded(@NotNull ContentManagerEvent event) {
-                ContentManagerListener.super.contentAdded(event);
-            }
-
-            @Override
-            public void contentRemoved(@NotNull ContentManagerEvent event) {
-                ContentManagerListener.super.contentRemoved(event);
-            }
-
-            @Override
-            public void contentRemoveQuery(@NotNull ContentManagerEvent event) {
-                ContentManagerListener.super.contentRemoveQuery(event);
-            }
-
-            @Override
-            public void selectionChanged(@NotNull ContentManagerEvent event) {
-                ContentManagerListener.super.selectionChanged(event);
-            }
-        });
     }
 
     @Override

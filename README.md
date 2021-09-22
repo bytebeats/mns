@@ -99,7 +99,8 @@ Fund Query:
 * V1.8.0 merge stock windows for more space for klines.
 * V1.8.1 crypto currency window.
 * V1.8.2 customize refresh frequency.
-* V1.8.3 net worth chart of fund.
+* V1.8.3 net worth chart of fund. 
+* V1.8.4 k-line chart of stock.<br>
 
 ## TODO
 * **<b><s>基金</s></b>**
@@ -110,7 +111,7 @@ Fund Query:
 * **<b><s>搜索基金</s></b>**
 * **<b>股价提醒功能</b>**
 * **<b><s>创业版</s></b>**
-* **<b>股价行情图</b>**
+* **<b><s>股价行情图</s></b>**
 * **<b>总盈亏估算</b>**
 * **<b>北交所</b>**
 * **<b><s>数字货币</s></b>**
