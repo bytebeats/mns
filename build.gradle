@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'io.github.bytebeats'
-version '1.8.3'
+version '1.8.4'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -50,6 +50,7 @@ patchPluginXml {
       v1.8.1 crypto currency window.<br>
       v1.8.2 customize refresh frequency.<br>
       v1.8.3 net worth chart of fund.<br>
+      v1.8.4 k-line chart of stock.<br>
       """
 }
 
