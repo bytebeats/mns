@@ -17,7 +17,8 @@
 IntelliJ IDEA平台插件. 支持查看股票实时行情. 支持<b>股票</b>, <b>基金</b>和<b>数字货币</b>. 其中股票包括<b>美股</b>, <b>港股</b>和 <b>A 股</b>.
 
 ## Notes
-
+* Double left-click on item of indices or stocks, you'll see k-line charts poped-up; Single right-click, you'll see stock chart type options. 双击鼠标左键, 你会看到股票行情图; 单击鼠标右键, 你会看到股票行情图分类;
+* Double left-click on item of funds, you'll see k-line charts poped-up; Single right-click, you'll see fund chart type options. 基金点击操作如上.
 * In Setting page, symbols should be separated by comma/blanket/colon in English; 股票/基金/加密货币编码请用英语的逗号, 冒号或者空格分隔. 不要用汉字或者其它语言的标识符号.
 * symbols of supported Crypto currencies, please check in [Here](https://finance.sina.com.cn/blockchain/hq.shtml). 数字货币代码请从 [这里](https://finance.sina.com.cn/blockchain/hq.shtml) 查找.
 * Stock service is supported by Tencent. Please check symbols [Here](https://stockapp.finance.qq.com/mstats/). 股票代码请从查找 [这里](https://stockapp.finance.qq.com/mstats/).
