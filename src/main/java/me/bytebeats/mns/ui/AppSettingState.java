@@ -1,10 +1,10 @@
 package me.bytebeats.mns.ui;
 
-import com.intellij.openapi.components.PersistentStateComponent;
-import com.intellij.openapi.components.ServiceManager;
-import com.intellij.openapi.components.State;
-import com.intellij.openapi.components.Storage;
+import com.intellij.ide.plugins.PluginManager;
+import com.intellij.openapi.components.*;
+import com.intellij.openapi.extensions.PluginId;
 import com.intellij.util.xmlb.XmlSerializerUtil;
+import me.bytebeats.mns.tool.NotificationUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -37,6 +37,41 @@ public class AppSettingState implements PersistentStateComponent<AppSettingState
     public int stockFrequency = 3;
     public int fundFrequency = 20;
     public int cryptoFrequency = 5;
+
+    public String localVersion = "0.0.0";
+    public String version = "1.8.4";
+
+    @Override
+    public void initializeComponent() {
+        PersistentStateComponent.super.initializeComponent();
+        version = PluginManager.getPlugin(PluginId.getId("me.bytebeats.mns")).getVersion();
+        if (isNewVersion()) {
+            updateLocalVersion();
+            NotificationUtil.infoToolWindow("股票股指支持 K 线图了!! 双击鼠标左键或者单击右键开始尝试~~~");
+        }
+    }
+
+    private boolean isNewVersion() {
+        String[] subLocalVersions = localVersion.split("\\.");
+        String[] subVersions = version.split("\\.");
+        if (subLocalVersions.length != subVersions.length) {
+            return false;
+        }
+        int idx = 0;
+        do {
+            int localVersion = Integer.parseInt(subLocalVersions[idx]);
+            int version = Integer.parseInt(subVersions[idx]);
+            if (version > localVersion) {
+                return true;
+            }
+            idx++;
+        } while (idx < subLocalVersions.length);
+        return false;
+    }
+
+    private void updateLocalVersion() {
+        localVersion = version;
+    }
 
     public static AppSettingState getInstance() {
         return ServiceManager.getService(AppSettingState.class);

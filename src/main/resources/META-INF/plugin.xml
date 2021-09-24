@@ -3,7 +3,7 @@
     <name>Money Never Sleeps</name>
     <vendor email="happychinapc@gmail.com" url="https://github.com/bytebeats">bytebeats</vendor>
     <version>1.8.4</version>
-    <idea-version since-build="183.*" />
+    <idea-version since-build="192.*" />
 
     <description><![CDATA[
     mns: Money Never Sleeps!
@@ -17,27 +17,6 @@
     ]]></description>
 
     <change-notes><![CDATA[
-      v1.0.0 添加了美股股票的实时查询.<br>
-      v1.1.0 添加了港股股票的实时查询.<br>
-      v1.2.0 添加了上证, 深证股票的实时查询.<br>
-      v1.2.1 格式化了成交额, 成交量, 总市值.<br>
-      v1.2.2 新增了简洁模式.<br>
-      v1.4.0 新增了核心指数.<br>
-      v1.4.1 更新了 plugin.xml 以上传 Marketplace.<br>
-      v1.4.2 跟随 IdeaIC 2020.2 更新.<br>
-      v1.4.3 激活了隐秘模式.<br>
-      v1.5.0 新增了基金数据.<br>
-      v1.5.1 添加了plugin icon.<br>
-      v1.5.2 代码优化, 以及 Android Studio 上面中文乱码的问题.<br>
-      v1.5.3 使用零宽断言解析jsonp, 并激活了简洁模式.<br>
-      v1.6.0 添加了股票详情窗口.<br>
-      v1.7.1 添加了基金和基金公司的搜索和基金的自动添加.<br>
-      v1.7.2 bugs fixed and merge sh and sz.<br>
-      v1.7.3 added ask&bid 5.<br>
-      v1.7.4, 1.7.5, 1.7.6 bugs fixed.<br>
-      v1.8.0 merge stock windows for more space for klines.<br>
-      v1.8.1 crypto currency window.<br>
-      v1.8.2 customize refresh frequency.<br>
       v1.8.3 net worth chart of fund.<br>
       v1.8.4 k-line chart of stock.<br>
     ]]></change-notes>
@@ -53,7 +32,7 @@
             key="notification.group.main" isLogByDefault="true" />
         <notificationGroup displayType="BALLOON" id="Mns Balloon" icon="AllIcons.General.NotificationWarning"
             key="notification.group.balloon" isLogByDefault="true" />
-        <notificationGroup displayType="TOOL_WINDOW" id="Mns Tool Window" icon="AllIcons.General.NotificationError"
+        <notificationGroup displayType="TOOL_WINDOW" id="Mns Tool Window" icon="AllIcons.Plugins.Updated"
             toolWindowId="Mns Tool Window" key="notification.group.toolwindow" isLogByDefault="true" />
     </extensions>
 
