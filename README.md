@@ -1,18 +1,14 @@
 # mns: Money Never Sleeps!
 
-[![GitHub latest commit](https://badgen.net/github/last-commit/bytebeats/mns)](https://GitHub.com/bytebeats/mns/commit/)
-[![GitHub contributors](https://img.shields.io/github/contributors/bytebeats/mns.svg)](https://GitHub.com/bytebeats/mns/graphs/contributors/)
-[![GitHub issues](https://img.shields.io/github/issues/bytebeats/mns.svg)](https://GitHub.com/bytebeats/mns/issues/)
+[![GitHub latest commit](https://badgen.net/github/last-commit/bytebeats/mns)](https://github.com/bytebeats/mns/commit/)
+[![GitHub contributors](https://img.shields.io/github/contributors/bytebeats/mns.svg)](https://github.com/bytebeats/mns/graphs/contributors/)
+[![GitHub issues](https://img.shields.io/github/issues/bytebeats/mns.svg)](https://github.com/bytebeats/mns/issues/)
 [![Open Source? Yes!](https://badgen.net/badge/Open%20Source%20%3F/Yes%21/blue?icon=github)](https://github.com/bytebeats/mns/)
-[![JetBrains Plugins](https://img.shields.io/jetbrains/plugin/v/14801-mns.svg)](https://plugins.jetbrains.com/)
-[![GitHub forks](https://img.shields.io/github/forks/bytebeats/mns.svg?style=social&label=Fork&maxAge=2592000)](https://GitHub.com/bytebeats/mns/network/)
-[![GitHub stars](https://img.shields.io/github/stars/bytebeats/mns.svg?style=social&label=Star&maxAge=2592000)](https://GitHub.com/bytebeats/mns/stargazers/)
-[![GitHub watchers](https://img.shields.io/github/watchers/bytebeats/mns.svg?style=social&label=Watch&maxAge=2592000)](https://GitHub.com/bytebeats/mns/watchers/)
-
-[comment]: <> ([![ForTheBadge built-with-love]&#40;http://ForTheBadge.com/images/mns/built-with-love.svg&#41;]&#40;https://github.com/bytebeats/&#41;)
-
-[comment]: <> ([![ForTheBadge powered-by-electricity]&#40;http://ForTheBadge.com/images/mns/powered-by-electricity.svg&#41;]&#40;http://ForTheBadge.com&#41;)
-
+[![JetBrains Plugins](https://img.shields.io/jetbrains/plugin/v/14801-mns.svg)](https://plugins.jetbrains.com/plugin/14801-money-never-sleeps)
+[![JetBrains Plugins](https://img.shields.io/jetbrains/plugin/r/rating/14801)](https://plugins.jetbrains.com/plugin/14801-money-never-sleeps)
+[![GitHub forks](https://img.shields.io/github/forks/bytebeats/mns.svg?style=social&label=Fork&maxAge=2592000)](https://github.com/bytebeats/mns/network/)
+[![GitHub stars](https://img.shields.io/github/stars/bytebeats/mns.svg?style=social&label=Star&maxAge=2592000)](https://github.com/bytebeats/mns/stargazers/)
+[![GitHub watchers](https://img.shields.io/github/watchers/bytebeats/mns.svg?style=social&label=Watch&maxAge=2592000)](https://github.com/bytebeats/mns/watchers/)
 
 IntelliJ IDEA平台插件. 支持查看股票实时行情. 支持<b>股票</b>, <b>基金</b>和<b>数字货币</b>. 其中股票包括<b>美股</b>, <b>港股</b>和 <b>A 股</b>.
 
