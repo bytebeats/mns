@@ -89,12 +89,11 @@ public abstract class AbsStockHandler extends AbstractHandler implements UISetti
             if (isInHiddenMode()) {
                 name = PinyinUtils.toPinyin(name);
             }
-            if (i < stocks.size()) {//ArrayIndexOutOfBoundsException from issues: https://github.com/bytebeats/mns/issues/76
-                data[i] = new Object[]{name, stock.getSymbol(), stock.getLatestPrice(), stock.getChange(),
-                        stock.getChangeRatioString()};
+            data[i] = new Object[]{name, stock.getSymbol(), stock.getLatestPrice(), stock.getChange(),
+                    stock.getChangeRatioString()};
+            //ArrayIndexOutOfBoundsException from issues: https://github.com/bytebeats/mns/issues/76
+            if(i < stockColumnNames.length) {
                 columnTextColors.put(i, stock.getChange());
-            } else {
-                break;
             }
         }
         return data;
