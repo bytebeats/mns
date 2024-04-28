@@ -10,10 +10,8 @@ import me.bytebeats.mns.ui.AppSettingState;
 
 import javax.swing.*;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.Timer;
-import java.util.TimerTask;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -88,7 +86,7 @@ public class SinaDigitalCurrencyHandler extends AbstractHandler {
 
         StringBuilder params = new StringBuilder();
         for (String symbol : symbols) {
-            if (params.length() != 0) {
+            if (!params.isEmpty()) {
                 params.append(',');
             }
             params.append("btc_btc");
@@ -96,7 +94,7 @@ public class SinaDigitalCurrencyHandler extends AbstractHandler {
             params.append("usd");
         }
         try {
-            String entity = HttpClientPool.getInstance().get(getCryptoCurrencyUrl(params.toString()));
+            String entity = HttpClientPool.getInstance().get(getCryptoCurrencyUrl(params.toString()), getHeaders());
             parse(symbols, entity);
         } catch (Exception e) {
             NotificationUtil.info(e.getMessage());
@@ -183,5 +181,11 @@ public class SinaDigitalCurrencyHandler extends AbstractHandler {
 
     private String getCryptoCurrencyUrl(String code) {
         return String.format(StringResUtils.SINA_CRYPTO_CURRENCY_URL, code);
+    }
+
+    private Map<String, String> getHeaders() {
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Referer", "https://finance.sina.com.cn");
+        return headers;
     }
 }

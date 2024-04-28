@@ -13,6 +13,7 @@ import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.util.EntityUtils;
 
 import java.net.URLDecoder;
+import java.util.Map;
 
 /**
  * @Author bytebeats
@@ -55,12 +56,26 @@ public class HttpClientPool {
     }
 
     public String get(String url) throws Exception {
+        return get(url, null);
+    }
+
+    public String get(String url, Map<String, String> headers) throws Exception {
         HttpGet httpGet = new HttpGet(url);
+        if (headers != null && !headers.isEmpty()) {
+            for (String key : headers.keySet()) {
+                httpGet.addHeader(key, headers.get(key));
+            }
+        }
         return getResponseContent(url, httpGet);
     }
 
-    public String post(String url) throws Exception {
+    public String post(String url, Map<String, String> headers) throws Exception {
         HttpPost httpPost = new HttpPost(url);
+        if (headers != null && !headers.isEmpty()) {
+            for (String key : headers.keySet()) {
+                httpPost.addHeader(key, headers.get(key));
+            }
+        }
         return getResponseContent(url, httpPost);
     }
 

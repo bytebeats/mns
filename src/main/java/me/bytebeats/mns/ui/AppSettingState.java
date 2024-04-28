@@ -1,14 +1,22 @@
 package me.bytebeats.mns.ui;
 
-import com.intellij.ide.plugins.PluginManager;
-import com.intellij.openapi.components.*;
+import com.intellij.ide.plugins.PluginManagerCore;
+import com.intellij.openapi.application.ApplicationManager;
+import com.intellij.openapi.components.PersistentStateComponent;
+import com.intellij.openapi.components.State;
+import com.intellij.openapi.components.Storage;
 import com.intellij.openapi.extensions.PluginId;
 import com.intellij.util.xmlb.XmlSerializerUtil;
 import me.bytebeats.mns.tool.NotificationUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@State(name = "me.bytebeats.mns.ui.AppSettingState", storages = {@Storage("mns_plugin_setting.xml")})
+import java.util.Objects;
+
+@State(
+        name = "me.bytebeats.mns.ui.AppSettingState",
+        storages = {@Storage("mns_plugin_setting.xml")}
+)
 public class AppSettingState implements PersistentStateComponent<AppSettingState> {
 
     public final static boolean IS_RED_RISE = true;
@@ -44,10 +52,10 @@ public class AppSettingState implements PersistentStateComponent<AppSettingState
     @Override
     public void initializeComponent() {
         PersistentStateComponent.super.initializeComponent();
-        version = PluginManager.getPlugin(PluginId.getId("me.bytebeats.mns")).getVersion();
+        version = Objects.requireNonNull(PluginManagerCore.getPlugin(PluginId.getId("me.bytebeats.mns"))).getVersion();
         if (isNewVersion()) {
             updateLocalVersion();
-            NotificationUtil.infoToolWindow("股票股指支持 K 线图了!! 双击鼠标左键或者单击右键开始尝试~~~");
+            NotificationUtil.infoToolWindow("修复了新浪财经接口被禁止调用的问题; 近 4 年来的工程层面最大的 Upgrade! ");
         }
     }
 
@@ -74,7 +82,7 @@ public class AppSettingState implements PersistentStateComponent<AppSettingState
     }
 
     public static AppSettingState getInstance() {
-        return ServiceManager.getService(AppSettingState.class);
+        return ApplicationManager.getApplication().getService(AppSettingState.class);
     }
 
     public void reset() {

@@ -2,8 +2,8 @@
     <id>me.bytebeats.mns</id>
     <name>Money Never Sleeps</name>
     <vendor email="happychinapc@gmail.com" url="https://github.com/bytebeats">bytebeats</vendor>
-    <version>1.8.4</version>
-    <idea-version since-build="192.*" />
+    <version>2.0.0</version>
+    <idea-version since-build="230.*"/>
 
     <description><![CDATA[
     mns: Money Never Sleeps!
@@ -17,23 +17,43 @@
     ]]></description>
 
     <change-notes><![CDATA[
-      v1.8.3 net worth chart of fund.<br>
       v1.8.4 k-line chart of stock.<br>
+      v2.0.0 giant upgrade to the project and bugfix.<br>
     ]]></change-notes>
 
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="me.bytebeats.mns.ui.AppSettingState" />
-        <toolWindow icon="/icon_mns.png" anchor="left" id="mns" factoryClass="me.bytebeats.mns.ui.MainWindow" />
-        <applicationConfigurable id="mns_setting" instance="me.bytebeats.mns.ui.SettingWindow"
-            displayName="Money Never Sleeps" />
-        <notificationGroup displayType="NONE" id="Mns Log" icon="AllIcons.General.NotificationInfo"
-            key="notification.group.main" isLogByDefault="true" />
-        <notificationGroup displayType="BALLOON" id="Mns Balloon" icon="AllIcons.General.NotificationWarning"
-            key="notification.group.balloon" isLogByDefault="true" />
-        <notificationGroup displayType="TOOL_WINDOW" id="Mns Tool Window" icon="AllIcons.Plugins.Updated"
-            toolWindowId="Mns Tool Window" key="notification.group.toolwindow" isLogByDefault="true" />
+        <applicationService
+                serviceImplementation="me.bytebeats.mns.ui.AppSettingState"/>
+
+        <toolWindow
+                id="mns"
+                icon="/icon_mns.png"
+                anchor="left"
+                factoryClass="me.bytebeats.mns.ui.MainWindow"/>
+
+        <applicationConfigurable
+                id="mns_setting"
+                instance="me.bytebeats.mns.ui.SettingWindow"
+                displayName="Money Never Sleeps"/>
+
+        <notificationGroup
+                displayType="NONE"
+                id="Mns Log"
+                isLogByDefault="true"/>
+
+        <notificationGroup
+                displayType="BALLOON"
+                id="Mns Balloon"
+                isLogByDefault="true"/>
+
+        <notificationGroup
+                displayType="TOOL_WINDOW"
+                id="Mns Tool Window"
+                toolWindowId="Mns Tool Window"
+                isLogByDefault="true"/>
+
     </extensions>
 
     <actions>

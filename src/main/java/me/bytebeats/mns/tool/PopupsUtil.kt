@@ -1,15 +1,14 @@
 package me.bytebeats.mns.tool
 
+import com.intellij.openapi.project.ProjectManager
 import com.intellij.openapi.project.ex.ProjectManagerEx
 import com.intellij.openapi.ui.popup.JBPopupFactory
-import com.intellij.ui.JBColor
 import com.intellij.ui.awt.RelativePoint
 import com.intellij.ui.tabs.TabInfo
 import com.intellij.ui.tabs.TabsListener
 import com.intellij.ui.tabs.impl.JBTabsImpl
 import me.bytebeats.mns.enumation.FundChartType
 import me.bytebeats.mns.enumation.StockChartType
-import java.awt.Color
 import java.awt.Point
 import java.net.MalformedURLException
 import java.net.URL
@@ -21,7 +20,7 @@ object PopupsUtil {
      * pop up k-line chart of funds
      */
     fun popFundChart(code: String, chartType: FundChartType, anchor: Point) {
-        if (ProjectManagerEx.getInstance().defaultProject.isDisposed) {
+        if (ProjectManager.getInstance().defaultProject.isDisposed) {
             return
         }
         if (chartType != FundChartType.EstimatedNetWorth) {
@@ -46,7 +45,7 @@ object PopupsUtil {
             return
         }
         netWorthTabInfo.text = chartType.description
-        val tabs = JBTabsImpl(ProjectManagerEx.getInstance().defaultProject)
+        val tabs = JBTabsImpl(ProjectManager.getInstance().defaultProject)
         tabs.addTab(netWorthTabInfo)
         JBPopupFactory.getInstance()
             .createComponentPopupBuilder(tabs, null)
@@ -117,10 +116,10 @@ object PopupsUtil {
      * pop up k-line charts of stock
      */
     fun popupStockChart(stockSymbol: String, chartType: StockChartType, anchor: Point) {
-        if (ProjectManagerEx.getInstance().defaultProject.isDisposed) {
+        if (ProjectManager.getInstance().defaultProject.isDisposed) {
             return
         }
-        val tabs = JBTabsImpl(ProjectManagerEx.getInstance().defaultProject)
+        val tabs = JBTabsImpl(ProjectManager.getInstance().defaultProject)
         for (type in StockChartType.values()) {
             val chartUrl = stockChartUrl(stockSymbol, type)
             val label = JLabel()

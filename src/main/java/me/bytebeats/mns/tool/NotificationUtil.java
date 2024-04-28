@@ -1,6 +1,7 @@
 package me.bytebeats.mns.tool;
 
-import com.intellij.notification.*;
+import com.intellij.notification.NotificationGroupManager;
+import com.intellij.notification.NotificationType;
 import com.intellij.openapi.project.ex.ProjectManagerEx;
 
 /**
@@ -13,9 +14,10 @@ import com.intellij.openapi.project.ex.ProjectManagerEx;
  */
 
 public class NotificationUtil {
-    private static final NotificationGroup LOG_NOTIFICATION_GROUP = NotificationGroup.logOnlyGroup("Mns Log");
-    private static final NotificationGroup BALLOON_NOTIFICATION_GROUP = NotificationGroup.balloonGroup("Mns Balloon");
-    private static final NotificationGroup TOOL_WINDOW_NOTIFICATION_GROUP = NotificationGroup.toolWindowGroup("Mns Tool Window", "Mns Tool Window");
+    private static final String NOTIFICATION_TITLE = "Money Never Sleeps";
+    private static final String LOG_NOTIFICATION_GROUP = "Mns Log";
+    private static final String BALLOON_NOTIFICATION_GROUP = "Mns Balloon";
+    private static final String TOOL_WINDOW_NOTIFICATION_GROUP = "Mns Tool Window";
 
     /**
      * messages on Event Log Window
@@ -23,7 +25,10 @@ public class NotificationUtil {
      * @param message
      */
     public static void info(String message) {
-        LOG_NOTIFICATION_GROUP.createNotification("Mns", message, NotificationType.INFORMATION, null).notify(ProjectManagerEx.getInstance().getDefaultProject());
+        NotificationGroupManager.getInstance()
+                .getNotificationGroup(LOG_NOTIFICATION_GROUP)
+                .createNotification(NOTIFICATION_TITLE, message, NotificationType.INFORMATION)
+                .notify(ProjectManagerEx.getInstance().getDefaultProject());
     }
 
     /**
@@ -32,7 +37,10 @@ public class NotificationUtil {
      * @param message
      */
     public static void infoBalloon(String message) {
-        BALLOON_NOTIFICATION_GROUP.createNotification("Money Never Sleeps", message, NotificationType.WARNING, null).notify(ProjectManagerEx.getInstance().getDefaultProject());
+        NotificationGroupManager.getInstance()
+                .getNotificationGroup(BALLOON_NOTIFICATION_GROUP)
+                .createNotification(NOTIFICATION_TITLE, message, NotificationType.WARNING)
+                .notify(ProjectManagerEx.getInstance().getDefaultProject());
     }
 
     /**
@@ -41,6 +49,9 @@ public class NotificationUtil {
      * @param message
      */
     public static void infoToolWindow(String message) {
-        TOOL_WINDOW_NOTIFICATION_GROUP.createNotification("Money Never Sleeps", message, NotificationType.ERROR, null).notify(ProjectManagerEx.getInstance().getDefaultProject());
+        NotificationGroupManager.getInstance()
+                .getNotificationGroup(TOOL_WINDOW_NOTIFICATION_GROUP)
+                .createNotification(NOTIFICATION_TITLE, message, NotificationType.ERROR)
+                .notify(ProjectManagerEx.getInstance().getDefaultProject());
     }
 }

@@ -18,7 +18,7 @@ public class MainWindow implements ToolWindowFactory, OnSymbolSelectedListener {
 
     @Override
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
-        ContentFactory contentFactory = ContentFactory.SERVICE.getInstance();
+        ContentFactory contentFactory = ContentFactory.getInstance();
         Content indicesContent = contentFactory.createContent(indicesWindow.getJPanel(), StringResUtils.INDICES, true);
         Content stockContent = contentFactory.createContent(stockWindow.getJPanel(), StringResUtils.STOCK, true);
         Content fundContent = contentFactory.createContent(fundWindow.getJPanel(), StringResUtils.FUNDS, true);
@@ -50,10 +50,5 @@ public class MainWindow implements ToolWindowFactory, OnSymbolSelectedListener {
             return;
         }
         stockDetailWindow.setSymbol(symbol);
-    }
-
-    @Override
-    public boolean shouldBeAvailable(@NotNull Project project) {
-        return true;
     }
 }
