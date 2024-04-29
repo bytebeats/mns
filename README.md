@@ -29,13 +29,24 @@ IntelliJ IDEA平台插件. 支持查看股票实时行情. 支持<b>股票</b>, 
 * How to check fund k-line charts?
   * double left-click or sing right-click on fund list, you'll see popup windows.
 
-## Compilation
+## Compilation 1 (@deprecated)
 * `File` -> `Project Structure` -> `Project Settings` -> `Artifacts` -> `+` -> `Jar` -> `From modules with dependencies`
 * In Dialog <b>Create JAR from Modules</b>, select `mns.main` for <b>Module</b>, select `extract to the target JAR` for <b>Jar files from libraries</b>, then click <b>OK</b>.
 * Then click `+` icon in <b>Output Layout</b> and select `module sources`, and then click `Apply`/`OK`
 * Last step, how to <b>Build Artifacts</b>
   * <b>Build</b> -> <b>Build Artifacts</b> -> `mns:main:jar` -> <b>Build/Rebuild/Clean</b>
   * Then you'll see `mns.main.jar` in `out/artifacts/mns_main_jar/`
+
+## Compilation 2 
+
+See:
+
+![Build](media/build-options.png)
+
+After the build finished, you'll see `mns-x.y.z.zip` under the `plugins` directory.
+
+Note: if you can't build, remember to comment `signPlugin` and `publishPlugin` in the `build.gradle.kts` file.
+
 
 ## Usage:
 
@@ -112,7 +123,8 @@ Fund Query:
 * V1.8.1 crypto currency window.
 * V1.8.2 customize refresh frequency.
 * V1.8.3 net worth chart of fund. 
-* V1.8.4 k-line chart of stock.<br>
+* V1.8.4 k-line chart of stock.
+* V2.0.0 bugfix and upgrade project configuration to Java 17.
 
 ## TODO
 * **<b><s>基金</s></b>**
@@ -132,10 +144,10 @@ Fund Query:
 * **<b>...</b>**
 
 ## Support
-<br>Open-source is no easy job, for which I have to sacrifice my weekends and other non-working hours.</br>
-<br>开源不易, 尤其是对于全职的开源爱好者. 需要占用不少下班以及周末时间.</br>
-<br>If you think this plugin is meaningful, is worthy, you are welcome to support this project by following:</br>
-<br>如果您觉着这个项目是值得做的, 是做的有意义的, 可以通过以下方式来表达支持: </br>
+<br>Open-source is no easy job, for which I have to sacrifice my weekends and other non-working hours.
+<br>开源不易, 尤其是对于全职的开源爱好者. 需要占用不少下班以及周末时间.
+<br>If you think this plugin is meaningful, is worthy, you are welcome to support this project by following:
+<br>如果您觉着这个项目是值得做的, 是做的有意义的, 可以通过以下方式来表达支持:
 
 * [Watch/Star/Fork](https://github.com/bytebeats/mns) this project. [关注/标星/Fork](https://github.com/bytebeats/mns) 该项目.
 * Share/Recommend this plugin(<b>mns</b>) to your friends/work mates. 向朋友或者同事推荐该插件.
@@ -144,15 +156,15 @@ Fund Query:
 * Create [Issue](https://github.com/bytebeats/mns/issues) s. 反馈问题, 提供您的建议或者想法.
 * If you love this plugin, you may donate for maintain this project and this plugin. 如果你喜欢这个插件, 可以考虑捐赠, 以持续地对该项目跟插件进行维护.
 
-    Open Collective | 支付宝/Alipay | 微信/Wechat | PayPal
-    -------------- | -------------- | -------------- | --------------
-    <a href=https://opencollective.com/mns-collective>mns Collective</a> | ![alipay](media/alipay_receipt.png) | ![wechat](media/wechat_receipt.png) | <a href=https://www.paypal.me/bytesbeat>Donate</a>
+  | Open Collective                                                      | 支付宝/Alipay                          | 微信/Wechat                           | PayPal                                             |
+  |----------------------------------------------------------------------|-------------------------------------|-------------------------------------|----------------------------------------------------|
+  | <a href=https://opencollective.com/mns-collective>mns Collective</a> | ![alipay](media/alipay_receipt.png) | ![wechat](media/wechat_receipt.png) | <a href=https://www.paypal.me/bytesbeat>Donate</a> |
 
-<br>使用支付宝/微信支付捐赠后请留言或者通过邮件提供您的名字/昵称和网站，格式为：</br>
-<br>名字/昵称 [<网站>][：留言]（网站与留言为可选部分，例子：bytebeats <github.com/bytebeats>：加油！）</br>
-<br>您提供的名字、网站和捐赠总额将会被添加到捐赠者列表中。</br>
-<br>邮箱地址：<a href="mailto:happychinapc@gmail.com?subject=mns捐赠&body=你做的工作很有意义, 加油!">happychinapc@gmail.com</a></br>
-<br>感谢您的支持！</br>
+<br>使用支付宝/微信支付捐赠后请留言或者通过邮件提供您的名字/昵称和网站，格式为：
+<br>名字/昵称 [<网站>][：留言]（网站与留言为可选部分，例子：bytebeats <github.com/bytebeats>：加油！
+<br>您提供的名字、网站和捐赠总额将会被添加到捐赠者列表中。
+<br>邮箱地址：<a href="mailto:happychinapc@gmail.com?subject=mns捐赠&body=你做的工作很有意义, 加油!">happychinapc@gmail.com</a>
+<br>感谢您的支持
 
 ## More plugins
 * [Polyglot](https://github.com/bytebeats/polyglot) Translators
