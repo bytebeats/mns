@@ -2,8 +2,8 @@
     <id>me.bytebeats.mns</id>
     <name>Money Never Sleeps</name>
     <vendor email="happychinapc@gmail.com" url="https://github.com/bytebeats">bytebeats</vendor>
-    <version>2.0.0</version>
-    <idea-version since-build="230.*"/>
+    <version>2.1.0</version>
+    <idea-version since-build="251"/>
 
     <description><![CDATA[
     mns: Money Never Sleeps!
@@ -19,6 +19,7 @@
     <change-notes><![CDATA[
       v1.8.4 k-line chart of stock.<br>
       v2.0.0 giant upgrade to the project and bugfix.<br>
+      v2.1.0 upgrade mns with Java 21 and Idea 2025.1.<br>
     ]]></change-notes>
 
     <depends>com.intellij.modules.platform</depends>

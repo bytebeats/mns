@@ -1,7 +1,6 @@
 package me.bytebeats.mns.tool
 
 import com.intellij.openapi.project.ProjectManager
-import com.intellij.openapi.project.ex.ProjectManagerEx
 import com.intellij.openapi.ui.popup.JBPopupFactory
 import com.intellij.ui.awt.RelativePoint
 import com.intellij.ui.tabs.TabInfo
@@ -44,7 +43,7 @@ object PopupsUtil {
             NotificationUtil.info(ignore.message)
             return
         }
-        netWorthTabInfo.text = chartType.description
+        netWorthTabInfo.setText(chartType.description)
         val tabs = JBTabsImpl(ProjectManager.getInstance().defaultProject)
         tabs.addTab(netWorthTabInfo)
         JBPopupFactory.getInstance()
@@ -120,12 +119,12 @@ object PopupsUtil {
             return
         }
         val tabs = JBTabsImpl(ProjectManager.getInstance().defaultProject)
-        for (type in StockChartType.values()) {
+        for (type in StockChartType.entries) {
             val chartUrl = stockChartUrl(stockSymbol, type)
             val label = JLabel()
             label.text = chartUrl
             val tabInfo = TabInfo(label)
-            tabInfo.text = type.description
+            tabInfo.setText(type.description)
             tabs.addTab(tabInfo)
             if (type == chartType) {
                 tabs.select(tabInfo, true)
