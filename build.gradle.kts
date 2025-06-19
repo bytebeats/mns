@@ -28,7 +28,7 @@ repositories {
 dependencies {
     implementation("com.github.promeg:tinypinyin:2.0.3")
     intellijPlatform {
-        create("IC", "2025.1")
+        create("IC", "2024.2")
         testFramework(org.jetbrains.intellij.platform.gradle.TestFrameworkType.Platform)
 
         // Add necessary plugin dependencies for compilation here, example:
@@ -39,7 +39,7 @@ dependencies {
 intellijPlatform {
     pluginConfiguration {
         ideaVersion {
-            sinceBuild = "251"
+            sinceBuild = "242"
         }
 
         changeNotes = """
@@ -61,7 +61,7 @@ tasks {
     }
 
     patchPluginXml {
-        sinceBuild.set("251")
+        sinceBuild.set("242")
 //        untilBuild.set("242.*")
 
         changeNotes.set("""
