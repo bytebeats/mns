@@ -1,4 +1,5 @@
 plugins {
+    application
     id("java")
     id("org.jetbrains.kotlin.jvm") version "2.1.0"
     id("org.jetbrains.intellij.platform") version "2.5.0"
@@ -40,6 +41,7 @@ intellijPlatform {
     pluginConfiguration {
         ideaVersion {
             sinceBuild = "242"
+            untilBuild = "251.*"
         }
 
         changeNotes = """
@@ -48,6 +50,10 @@ intellijPlatform {
       v2.1.0 upgrade mns with Java 21 and Idea 2025.1.<br>
     """.trimIndent()
     }
+}
+
+application {
+    mainClass = "me.bytebeats.mns.ui.MainWindow"
 }
 
 tasks {
@@ -62,7 +68,7 @@ tasks {
 
     patchPluginXml {
         sinceBuild.set("242")
-//        untilBuild.set("242.*")
+        untilBuild.set("251.*")
 
         changeNotes.set("""
       v1.8.4 k-line chart of stock.<br>
@@ -86,6 +92,7 @@ tasks {
     }
 
     register<Copy>("MoveBuildArtifacts") {
+        dependsOn(named("distZip"))
         mustRunAfter("DeletePluginFiles")
         println("Moving Build Artifacts!")
         from(layout.buildDirectory.dir("distributions"))
