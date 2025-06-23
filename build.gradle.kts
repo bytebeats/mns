@@ -66,17 +66,6 @@ tasks {
         kotlinOptions.jvmTarget = "21"
     }
 
-    patchPluginXml {
-        sinceBuild.set("242")
-        untilBuild.set("251.*")
-
-        changeNotes.set("""
-      v1.8.4 k-line chart of stock.<br>
-      v2.0.0 giant upgrade to the project and bugfix.<br>
-      v2.1.0 upgrade mns with Java 21 and Idea 2025.1.<br>
-    """.trimIndent())
-    }
-
     signPlugin {
         certificateChain.set(System.getenv("CERTIFICATE_CHAIN"))
         privateKey.set(System.getenv("PRIVATE_KEY"))
