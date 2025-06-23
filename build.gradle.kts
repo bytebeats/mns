@@ -1,3 +1,6 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     application
     id("java")
@@ -59,11 +62,11 @@ application {
 tasks {
     // Set the JVM compatibility versions
     withType<JavaCompile> {
-        sourceCompatibility = "21"
-        targetCompatibility = "21"
+        sourceCompatibility = JavaVersion.VERSION_21.toString()
+        targetCompatibility = JavaVersion.VERSION_21.toString()
     }
-    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        kotlinOptions.jvmTarget = "21"
+    withType<KotlinCompile> {
+        compilerOptions.jvmTarget.set(JvmTarget.JVM_21)
     }
 
     signPlugin {
@@ -85,7 +88,7 @@ tasks {
         mustRunAfter("DeletePluginFiles")
         println("Moving Build Artifacts!")
         from(layout.buildDirectory.dir("distributions"))
-        include("mns-**.zip")
+        include("mns-$version.zip")
         into("plugins")
     }
 
